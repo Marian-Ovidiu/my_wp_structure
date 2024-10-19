@@ -16,13 +16,13 @@ class MenuWidget extends WP_Widget
     public function widget($args, $instance) {
         echo $args['before_widget'];
 
-        $menu_name = !empty($instance['menu_name']) ? $instance['menu_name'] : 'header-menu';
+        $menu_name = !empty($instance['menu_name']) ? camelToKebab($instance['menu_name']) : 'header-menu';
         $menu_items = wp_get_nav_menu_items($menu_name);
         if (!is_array($menu_items)) {
             $menu_items = [];
         }
 
-        echo App::blade('view')->make('partials.'.camelToKebab($menu_name), ['menu' => $menu_items])->render();
+        echo App::blade('view')->make('partials.'. $menu_name, ['menu' => $menu_items])->render();
         echo $args['after_widget'];
     }
 }

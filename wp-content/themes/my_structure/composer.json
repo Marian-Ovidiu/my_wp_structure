@@ -33,7 +33,8 @@
             "Assets\\": "source/assets/"
         },
         "files": [
-            "app/Helpers/helpers.php"
+            "app/Helpers/helpers.php",
+            "app/Helpers/acf_helpers.php"
         ]
     },
     "scripts": {

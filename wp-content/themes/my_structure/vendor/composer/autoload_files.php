@@ -21,4 +21,5 @@ return array(
     '2df68f9e79c919e2d88506611769ed2e' => $vendorDir . '/respect/stringifier/src/stringify.php',
     '667aeda72477189d0494fecd327c3641' => $vendorDir . '/symfony/var-dumper/Resources/functions/dump.php',
     '884b990fef6d388781933bccf6fbdf2c' => $baseDir . '/app/Helpers/helpers.php',
+    'dadca0279bc0666a4bc43794987e0b31' => $baseDir . '/app/Helpers/acf_helpers.php',
 );
