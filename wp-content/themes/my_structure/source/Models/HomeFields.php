@@ -23,6 +23,19 @@ class HomeFields extends BaseGroupAcf
     public $testo_missione;
     public $cta_missione_dona_ora;
     public $cta_missione_galleria;
+    public $immagine_tutti_progetti;
+    public $titolo_tutti_progetti;
+    public $cta_tutti_progetti;
+    public $immagine_sociale;
+    public $titolo_sociale;
+    public $cta_sociale;
+    public $immagine_antibracconaggio;
+    public $titolo_antibracconaggio;
+    public $cta_antibracconaggio;
+    public $immagine_cani;
+    public $titolo_cani;
+    public $cta_cani;
+    public $repeater_progetti;
     public function __construct($postId = null) {
         parent::__construct('group_6712db9b59faa', $postId ?: get_the_ID());
         $this->defineAttributes();
@@ -49,5 +62,37 @@ class HomeFields extends BaseGroupAcf
         $this->addField('testo_missione');
         $this->addField('cta_missione_dona_ora');
         $this->addField('cta_missione_galleria');
+
+        //Sezione progetti
+        $this->addField('immagine_tutti_progetti');
+        $this->addField('titolo_tutti_progetti');
+        $this->addField('cta_tutti_progetti');
+        $this->addField('immagine_sociale');
+        $this->addField('titolo_sociale');
+        $this->addField('cta_sociale');
+        $this->addField('immagine_antibracconaggio');
+        $this->addField('titolo_antibracconaggio');
+        $this->addField('cta_antibracconaggio');
+        $this->addField('immagine_cani');
+        $this->addField('titolo_cani');
+        $this->addField('cta_cani');
+    }
+
+    public function getProgettiAttribute()
+    {
+        $this->repeater_progetti[0]['immagine'] = $this->immagine_tutti_progetti;
+        $this->repeater_progetti[0]['titolo'] = $this->titolo_tutti_progetti;
+        $this->repeater_progetti[0]['cta'] = $this->cta_tutti_progetti;
+        $this->repeater_progetti[1]['immagine'] = $this->immagine_sociale;
+        $this->repeater_progetti[1]['titolo'] = $this->titolo_sociale;
+        $this->repeater_progetti[1]['cta'] = $this->cta_sociale;
+        $this->repeater_progetti[2]['immagine'] = $this->immagine_antibracconaggio;
+        $this->repeater_progetti[2]['titolo'] = $this->titolo_antibracconaggio;
+        $this->repeater_progetti[2]['cta'] = $this->cta_antibracconaggio;
+        $this->repeater_progetti[3]['immagine'] = $this->immagine_cani;
+        $this->repeater_progetti[3]['titolo'] = $this->titolo_cani;
+        $this->repeater_progetti[3]['cta'] = $this->cta_cani;
+
+        return $this->repeater_progetti;
     }
 }
