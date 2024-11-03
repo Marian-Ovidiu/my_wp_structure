@@ -19,6 +19,9 @@ export default defineConfig({
                     if (/\.(css)$/.test(assetInfo.name)) {
                         return 'css/[name]-[hash][extname]';
                     }
+                    if (/\.(ttf|woff|woff2)$/.test(assetInfo.name)) {
+                        return 'fonts/[name]-[hash][extname]';
+                    }
                     return '[ext]/[name]-[hash][extname]';
                 }
             },

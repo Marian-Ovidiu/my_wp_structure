@@ -35,6 +35,10 @@ abstract class Init extends Singleton
 
     public static function config($key)
     {
-        echo "Configuration loaded for key: $key.";
+        $file = get_template_directory() . '/app/Config/' . $key . '.php';
+        if (!file_exists($file)) {
+            return [];
+        }
+        return require $file;
     }
 }

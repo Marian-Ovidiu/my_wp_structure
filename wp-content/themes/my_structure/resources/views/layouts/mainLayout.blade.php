@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     @yield('head')
 </head>
-<body class="flex flex-col min-h-screen font-nunitoSans">
+<body class="flex flex-col min-h-screen font-nunitoSansRegular">
    <?php wp_head(); ?>
     @widget('HeaderMenu')
 

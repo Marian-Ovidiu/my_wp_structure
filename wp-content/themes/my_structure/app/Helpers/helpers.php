@@ -1,5 +1,7 @@
 <?php
 
+use Dotenv\Dotenv;
+
 if (!function_exists('vite_asset')) {
     function vite_asset($path)
     {
@@ -34,11 +36,7 @@ if (!function_exists('add_base_css')) {
     function add_base_css() {
         add_action('wp_enqueue_scripts', function() {
             $fullSrcStyle = vite_asset('scss/style.scss');
-            $fullSrcNunito = vite_asset('fonts/nunito/Nunito-Bold.ttf');
-            $fullSrcNunitoSans = vite_asset('fonts/nunito-sans/NunitoSans-Regular.ttf');
             wp_enqueue_style('style', $fullSrcStyle);
-            wp_enqueue_style('nunito', $fullSrcNunito);
-            wp_enqueue_style('nunitoSans', $fullSrcNunitoSans);
         });
     }
 }
@@ -71,6 +69,20 @@ if (!function_exists('camelToKebab')) {
     function camelToKebab($string) {
         $kebab = strtolower(preg_replace('/(?<!^)([A-Z])/', '-$1', $string));
         return $kebab;
+    }
+}
+
+if (!function_exists('my_env')) {
+    function my_env($key, $default = null)
+    {
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+        $my_envs = $dotenv->load();
+
+        if (!isset($my_envs[$key])) {
+            return $default;
+        }
+
+        return $my_envs[$key];
     }
 }
 

@@ -1,17 +1,26 @@
 <div class="container mx-auto">
-    <div class="flex hidden min-h-screen items-center justify-center bg-white sm:block md:block lg:block">
+    <div class="flex hidden items-center justify-center bg-white sm:block md:block lg:block">
         <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             <?php $__currentLoopData = $progetti; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $progetto): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30">
-                    <div class="h-96 w-full">
-                        <img class="h-full w-full object-cover transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125" src="<?php echo e($progetto['immagine']['url']); ?>" alt="" />
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/70 group-hover:via-black/60 group-hover:to-black/70"></div>
-                    <div class="absolute inset-0 flex translate-y-[75%] flex-col items-center justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0">
-                        <h1 class="font-dmserif text-3xl font-bold text-white"><?php echo e($progetto['titolo']); ?></h1>
-                        <button class="rounded-full bg-custom-dark-green py-2 px-3.5 font-com text-sm capitalize text-white shadow shadow-black/60">
-                            <a href="<?php echo e($progetto['cta']['url']); ?>"><?php echo e($progetto['cta']['title']); ?></a>
-                        </button>
+                <div class="out-group mb-4" style="z-index: <?php echo e($key+10); ?>">
+                    <div class="flex flex-col items-center justify-center w-full max-w-sm mx-auto">
+                        <div class="w-full h-64 bg-gray-300 bg-center bg-cover rounded-lg shadow-md relative" style="background-image: url(<?php echo e($progetto['immagine']['url']); ?>)">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/0"></div>
+                        </div>
+
+                        <div class="w-full px-4 -mt-10 overflow-hidden rounded-lg shadow-lg bg-gradient-to-t from-custom-green/30 via-custom-green to-custom-green" style="z-index: <?php echo e($key+11); ?>">
+                            <h4 class="py-2 font-bold tracking-wide text-center text-gray-800 uppercase dark:text-white"><?php echo e($progetto['titolo']); ?></h4>
+                            <div class="flex items-center justify-center px-3 py-2">
+                                <a href="<?php echo e($progetto['cta']['url']); ?>"
+                                   class="inline-flex items-center justify-center w-full px-4 py-2.5 overflow-hidden text-sm text-custom-dark-green transition-colors duration-300 bg-custom-light-green rounded-lg shadow sm:w-auto sm:mx-2 sm:mt-0 hover:bg-custom-green hover:text-white focus:ring focus:bg-custom-light-green focus:ring-opacity-80">
+                                    <?php echo $__env->make('svg.gallery', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                    <span class="mx-2">
+                                        <?php echo e($progetto['cta']['title']); ?>
+
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

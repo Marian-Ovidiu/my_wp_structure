@@ -20,9 +20,26 @@
         'cta_missione_galleria_url' => $data->cta_missione_galleria['url'], 'cta_missione_galleria_titolo' => $data->cta_missione_galleria['title'],
     ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->make('components.linear-slider', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <?php echo $__env->make('components.testo-sottotesto', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('components.testo-sottotesto',[
+        'titolo' => $data->titolo_progetti,
+        'sottotitolo' => $data->descrizione_progetti,
+    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->make('components.home-cards', ['progetti' => $data->progetti], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->make('components.home-mobile-cards', ['progetti' => $data->progetti], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
+    <div class="container mx-auto py-12">
+        <div class="flex flex-col items-center justify-center md:flex-row-reverse">
+            <?php echo $__env->make('components.testo-sottotesto',[
+                'titolo' => $data->titolo_chart,
+                'sottotitolo' => $data->descrizione_chart,
+            ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+            <?php echo $__env->make('components.chart', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        </div>
+    </div>
+    <?php echo $__env->make('components.aziende', [
+        'titolo' => $data->titolo_azienda,
+        'descrizione' => $data->descrizione_azienda,
+        'cta' => $data->cta_azienda,
+        'immagine' => $data->immagine_azienda,
+    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.mainLayout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/editweb2/Sites/01progetti-test/pac/wp-content/themes/my_structure/resources/views/home.blade.php ENDPATH**/ ?>

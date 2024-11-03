@@ -49,6 +49,7 @@ class ComposerStaticInit8841459f15bc6c85c5edbb25d624ddd7
             'Symfony\\Component\\String\\' => 25,
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\Console\\' => 26,
+            'Stripe\\' => 7,
         ),
         'R' => 
         array (
@@ -61,6 +62,7 @@ class ComposerStaticInit8841459f15bc6c85c5edbb25d624ddd7
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Container\\' => 14,
             'Psr\\Clock\\' => 10,
+            'PhpOption\\' => 10,
         ),
         'M' => 
         array (
@@ -83,8 +85,13 @@ class ComposerStaticInit8841459f15bc6c85c5edbb25d624ddd7
         array (
             'Helpers\\' => 8,
         ),
+        'G' => 
+        array (
+            'GrahamCampbell\\ResultType\\' => 26,
+        ),
         'D' => 
         array (
+            'Dotenv\\' => 7,
             'Doctrine\\Inflector\\' => 19,
         ),
         'C' => 
@@ -162,6 +169,10 @@ class ComposerStaticInit8841459f15bc6c85c5edbb25d624ddd7
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'Stripe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+        ),
         'Routes\\' => 
         array (
             0 => __DIR__ . '/../..' . '/source/routes',
@@ -185,6 +196,10 @@ class ComposerStaticInit8841459f15bc6c85c5edbb25d624ddd7
         'Psr\\Clock\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/clock/src',
+        ),
+        'PhpOption\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
         'Models\\' => 
         array (
@@ -235,6 +250,14 @@ class ComposerStaticInit8841459f15bc6c85c5edbb25d624ddd7
         'Helpers\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app/Helpers',
+        ),
+        'GrahamCampbell\\ResultType\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
+        ),
+        'Dotenv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
         'Doctrine\\Inflector\\' => 
         array (

@@ -1,19 +1,51 @@
 {
   "assets/fonts/nunito-sans/NunitoSans-Light.ttf": {
-    "file": "ttf/NunitoSans-Light-PPJkFQdb.ttf",
+    "file": "fonts/NunitoSans-Light-PPJkFQdb.ttf",
     "src": "assets/fonts/nunito-sans/NunitoSans-Light.ttf"
   },
+  "assets/fonts/nunito-sans/NunitoSans-Light.woff": {
+    "file": "fonts/NunitoSans-Light-Bgxaj2T_.woff",
+    "src": "assets/fonts/nunito-sans/NunitoSans-Light.woff"
+  },
+  "assets/fonts/nunito-sans/NunitoSans-Light.woff2": {
+    "file": "fonts/NunitoSans-Light-Cvsyly0s.woff2",
+    "src": "assets/fonts/nunito-sans/NunitoSans-Light.woff2"
+  },
   "assets/fonts/nunito-sans/NunitoSans-Regular.ttf": {
-    "file": "ttf/NunitoSans-Regular-ByjcheXy.ttf",
+    "file": "fonts/NunitoSans-Regular-ByjcheXy.ttf",
     "src": "assets/fonts/nunito-sans/NunitoSans-Regular.ttf"
   },
+  "assets/fonts/nunito-sans/NunitoSans-Regular.woff": {
+    "file": "fonts/NunitoSans-Regular-CkQpLZMG.woff",
+    "src": "assets/fonts/nunito-sans/NunitoSans-Regular.woff"
+  },
+  "assets/fonts/nunito-sans/NunitoSans-Regular.woff2": {
+    "file": "fonts/NunitoSans-Regular-B5XOCg07.woff2",
+    "src": "assets/fonts/nunito-sans/NunitoSans-Regular.woff2"
+  },
   "assets/fonts/nunito/Nunito-Bold.ttf": {
-    "file": "ttf/Nunito-Bold-CZ01jYvx.ttf",
+    "file": "fonts/Nunito-Bold-CZ01jYvx.ttf",
     "src": "assets/fonts/nunito/Nunito-Bold.ttf"
   },
+  "assets/fonts/nunito/Nunito-Bold.woff": {
+    "file": "fonts/Nunito-Bold-DQtQh58p.woff",
+    "src": "assets/fonts/nunito/Nunito-Bold.woff"
+  },
+  "assets/fonts/nunito/Nunito-Bold.woff2": {
+    "file": "fonts/Nunito-Bold-CUTCc2ZN.woff2",
+    "src": "assets/fonts/nunito/Nunito-Bold.woff2"
+  },
   "assets/fonts/nunito/Nunito-Regular.ttf": {
-    "file": "ttf/Nunito-Regular-BzIFT1ox.ttf",
+    "file": "fonts/Nunito-Regular-BzIFT1ox.ttf",
     "src": "assets/fonts/nunito/Nunito-Regular.ttf"
+  },
+  "assets/fonts/nunito/Nunito-Regular.woff": {
+    "file": "fonts/Nunito-Regular-D5cIVsV_.woff",
+    "src": "assets/fonts/nunito/Nunito-Regular.woff"
+  },
+  "assets/fonts/nunito/Nunito-Regular.woff2": {
+    "file": "fonts/Nunito-Regular-zu5vkZms.woff2",
+    "src": "assets/fonts/nunito/Nunito-Regular.woff2"
   },
   "assets/js/main.js": {
     "file": "js/main-CfVMGrlO.js",
@@ -22,7 +54,7 @@
     "isEntry": true
   },
   "assets/scss/style.scss": {
-    "file": "css/style-BJQ35_NM.css",
+    "file": "css/style-C6VjdQCy.css",
     "src": "assets/scss/style.scss",
     "isEntry": true
   }

@@ -8,8 +8,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        nunito: ['Nunito', 'sans-serif'],
-        nunitoSans: ['Nunito Sans', 'sans-serif'],
+  /*      nunitoRegular: ['Nunito Regular', 'sans-serif'],
+        nunitoBold: ['Nunito Bold', 'sans-serif'],
+        nunitoSansRegular: ['Nunito Sans Regular', 'sans-serif'],
+        nunitoSansLight: ['Nunito Sans Light', 'sans-serif'],*/
       },
       colors: {
         'custom-green': '#84CE59',

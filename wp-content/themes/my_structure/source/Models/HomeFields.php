@@ -23,6 +23,8 @@ class HomeFields extends BaseGroupAcf
     public $testo_missione;
     public $cta_missione_dona_ora;
     public $cta_missione_galleria;
+    public $titolo_progetti;
+    public $descrizione_progetti;
     public $immagine_tutti_progetti;
     public $titolo_tutti_progetti;
     public $cta_tutti_progetti;
@@ -36,6 +38,12 @@ class HomeFields extends BaseGroupAcf
     public $titolo_cani;
     public $cta_cani;
     public $repeater_progetti;
+    public $titolo_chart;
+    public $descrizione_chart;
+    public $titolo_azienda;
+    public $descrizione_azienda;
+    public $cta_azienda;
+    public $immagine_azienda;
     public function __construct($postId = null) {
         parent::__construct('group_6712db9b59faa', $postId ?: get_the_ID());
         $this->defineAttributes();
@@ -64,6 +72,8 @@ class HomeFields extends BaseGroupAcf
         $this->addField('cta_missione_galleria');
 
         //Sezione progetti
+        $this->addField('titolo_progetti');
+        $this->addField('descrizione_progetti');
         $this->addField('immagine_tutti_progetti');
         $this->addField('titolo_tutti_progetti');
         $this->addField('cta_tutti_progetti');
@@ -76,6 +86,16 @@ class HomeFields extends BaseGroupAcf
         $this->addField('immagine_cani');
         $this->addField('titolo_cani');
         $this->addField('cta_cani');
+
+        //Sezione chart
+        $this->addField('titolo_chart');
+        $this->addField('descrizione_chart');
+
+        // Sezione aziende
+        $this->addField('titolo_azienda');
+        $this->addField('descrizione_azienda');
+        $this->addField('cta_azienda');
+        $this->addField('immagine_azienda');
     }
 
     public function getProgettiAttribute()
