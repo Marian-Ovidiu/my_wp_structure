@@ -3,14 +3,18 @@
 namespace Controllers;
 
 use Core\Bases\BaseController;
+use Models\GalleriaFields;
 
 class PageController extends BaseController {
-    public function test()
+    public function galleria()
     {
-        $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
+        $this->addJs('highlight', 'highlight.js', ['stripe'], true);
+        $this->addVarJs('highlight', 'highlights', [
+            'Dedizione.',
+            'Coraggio.',
+            'Passione.',
+        ]);
 
-        $this->addJs('stripe', 'https://js.stripe.com/v3/', [], true);
-        $this->addJs('donation', 'donation.js', ['stripe'], true);
-        $this->render('forms', ['pagamenti_disponibili' => $available_gateways]);
+        $this->render('galleria', ['galleria' => GalleriaFields::get()]);
     }
 }
