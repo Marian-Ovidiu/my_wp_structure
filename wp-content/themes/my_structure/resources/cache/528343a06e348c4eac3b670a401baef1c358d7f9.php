@@ -6,22 +6,24 @@
     <div class="absolute inset-0 block bg-black/60 md:hidden"></div>
 
     <div class="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-        <div class="text-center md:w-2/3 lg:w-1/2 xl:w-1/3 md:text-left">
+        <div class="text-center <?php echo e($class ?? 'md:w-2/3 lg:w-1/2 xl:w-1/3'); ?> md:text-left">
             <h2 class="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl"><?php echo e($titolo); ?></h2>
-            <p class="mt-4 text-base text-gray-200"> <?php echo e($descrizione); ?></p>
-            <div class="flex items-center justify-center px-3 py-2">
-                <a href="<?php echo e($cta['url']); ?>"
-                   class="inline-flex items-center justify-center w-full px-4 py-2.5 overflow-hidden text-sm
+            <p class="mt-4 text-base text-gray-200"> <?php echo $descrizione; ?></p>
+            <?php if(isset($cta)): ?>
+                <div class="flex items-center justify-center px-3 py-2">
+                    <a href="<?php echo e($cta['url']); ?>"
+                       class="inline-flex items-center justify-center w-full px-4 py-2.5 overflow-hidden text-sm
                    text-custom-dark-green transition-colors duration-300 bg-custom-light-green rounded-lg
                    shadow sm:w-auto sm:mx-2 sm:mt-0 hover:bg-custom-green hover:text-white focus:ring
                    focus:bg-custom-light-green focus:ring-opacity-80">
-                    <?php echo $__env->make('svg.gallery', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                    <span class="mx-2">
+                        <?php echo $__env->make('svg.gallery', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                        <span class="mx-2">
                         <?php echo e($cta['title']); ?>
 
                     </span>
-                </a>
-            </div>
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </section><?php /**PATH /Users/editweb2/Sites/01progetti-test/pac/wp-content/themes/my_structure/resources/views/components/aziende.blade.php ENDPATH**/ ?>

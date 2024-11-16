@@ -7,7 +7,7 @@
         @endif
         @if($sottotitolo)
             <p class="block max-w-4xl mt-4 text-gray-500">
-                {{$sottotitolo}}
+                {!! $sottotitolo !!}
             </p>
         @endif
         @if(isset($highlight) && $highlight)

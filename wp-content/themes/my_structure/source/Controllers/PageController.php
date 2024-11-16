@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Core\Bases\BaseController;
 use Models\GalleriaFields;
+use Models\AziendeFields;
 
 class PageController extends BaseController {
     public function galleria()
@@ -16,5 +17,11 @@ class PageController extends BaseController {
         ]);
 
         $this->render('galleria', ['galleria' => GalleriaFields::get()]);
+    }
+
+    public function aziende()
+    {
+        $fields = AziendeFields::get();
+        $this->render('aziende', ['fields' => $fields]);
     }
 }

@@ -8,7 +8,7 @@
         <?php endif; ?>
         <?php if($sottotitolo): ?>
             <p class="block max-w-4xl mt-4 text-gray-500">
-                <?php echo e($sottotitolo); ?>
+                <?php echo $sottotitolo; ?>
 
             </p>
         <?php endif; ?>

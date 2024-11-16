@@ -107,7 +107,7 @@
                         <div class="mx-auto flex justify-center flex-col items-center max-w-screen-lg px-6">
                             <!-- Step 1: Selezione dell'importo -->
                             <div class="w-full text-center" x-show="step === 1">
-                                <p class="font-serif text-xl font-bold text-blue-900">Scegli quanto donare</p>
+                                <p class="font-serif text-xl font-bold text-custom-dark-green">Scegli quanto donare</p>
                                 <div class="mt-4 mx-auto grid grid-cols-2 gap-2 lg:max-w-xl">
                                     <button
                                             @click="selectedAmount = 20; customAmount = ''"
@@ -134,7 +134,7 @@
 
                             <!-- Step 1: Importo personalizzato -->
                             <div class="w-full text-center" x-show="step === 1">
-                                <p class="mt-8 font-serif text-xl font-bold text-blue-900">Oppure scegli tu l'importo</p>
+                                <p class="mt-8 font-serif text-xl font-bold text-custom-dark-green">Oppure scegli tu l'importo</p>
                                 <div class="w-full mx-auto md:w-1/2 px-3 mb-2 md:mb-0 flex flex-row justify-center items-center mt-4">
                                     <input x-model="customAmount" @input="selectedAmount = null" class="appearance-none block w-full rounded py-3 px-4 mb-3 leading-tight" type="number" placeholder="Scegli importo">
                                     <div class="decimals h-full px-4">,00</div>

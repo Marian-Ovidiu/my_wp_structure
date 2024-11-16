@@ -17,12 +17,27 @@ class MenuWidget extends WP_Widget
         echo $args['before_widget'];
 
         $menu_name = !empty($instance['menu_name']) ? camelToKebab($instance['menu_name']) : 'header-menu';
-        $menu_items = wp_get_nav_menu_items($menu_name);
+        $menu_items_raw = wp_get_nav_menu_items($menu_name);
+        $menu_items = $this->buildMenuTree($menu_items_raw);
         if (!is_array($menu_items)) {
             $menu_items = [];
         }
 
         echo App::blade('view')->make('partials.'. $menu_name, ['menu' => $menu_items])->render();
         echo $args['after_widget'];
+    }
+
+    private function buildMenuTree($items, $parent_id = 0) {
+        $tree = [];
+        foreach ($items as $item) {
+            if ($item->menu_item_parent == $parent_id) {
+                $children = $this->buildMenuTree($items, $item->ID);
+                if (!empty($children)) {
+                    $item->children = $children;
+                }
+                $tree[] = $item;
+            }
+        }
+        return $tree;
     }
 }

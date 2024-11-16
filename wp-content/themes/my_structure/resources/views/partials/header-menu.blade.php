@@ -27,6 +27,11 @@ $options = \Models\Options\OpzioniGlobaliFields::get();
             <div class="hidden lg:flex lg:items-center lg:ml-auto lg:space-x-10">
                 @foreach($menu as $key => $item)
                     <a href="{{ $item->url }}" title="" class="text-base font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green font-nunitoSans"> {{ $item->title }} </a>
+                    @if(!empty($item->children))
+                        @foreach($item->children as $subkey => $subitem)
+                            <a href="{{ $subitem->url }}" title="" class="text-base font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green font-nunitoSans"> {{ $subitem->title }} </a>
+                        @endforeach
+                    @endif
                 @endforeach
             </div>
 
@@ -43,9 +48,26 @@ $options = \Models\Options\OpzioniGlobaliFields::get();
              x-transition:leave-end="opacity-0 transform scale-95"
              class="absolute inset-x-0 pt-4 pb-6 bg-white border border-gray-200 rounded-md shadow-md lg:hidden z-50">
             <div class="flow-root">
-                <div class="flex flex-col px-6 -my-2 space-y-1">
-                    @foreach($menu as $key => $item)
-                        <a href="{{ $item->url }}" title="" class="justify-center inline-flex py-2 text-base font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green"> {{ $item->title }} </a>
+                <div class="flex flex-col items-center px-6 -my-2 space-y-4 pt-2">
+                    @foreach($menu as $item)
+                        <div>
+                            <a href="{{ $item->url }}"
+                               title=""
+                               class="text-base text-center font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green font-nunitoSans flex items-center">
+                                {{ $item->title }}
+                            </a>
+                        </div>
+                        @if(!empty($item->children))
+                            <div class="mt-1 space-y-1">
+                                @foreach($item->children as $subitem)
+                                    <a href="{{ $subitem->url }}"
+                                       title=""
+                                       class="block text-center text-sm font-medium text-gray-700 transition-all duration-200 hover:text-custom-green">
+                                        {{ $subitem->title }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             </div>

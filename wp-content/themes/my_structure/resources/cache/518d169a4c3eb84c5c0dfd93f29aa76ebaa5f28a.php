@@ -27,6 +27,11 @@ $options = \Models\Options\OpzioniGlobaliFields::get();
             <div class="hidden lg:flex lg:items-center lg:ml-auto lg:space-x-10">
                 <?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <a href="<?php echo e($item->url); ?>" title="" class="text-base font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green font-nunitoSans"> <?php echo e($item->title); ?> </a>
+                    <?php if(!empty($item->children)): ?>
+                        <?php $__currentLoopData = $item->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subkey => $subitem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <a href="<?php echo e($subitem->url); ?>" title="" class="text-base font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green font-nunitoSans"> <?php echo e($subitem->title); ?> </a>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
 
@@ -43,9 +48,28 @@ $options = \Models\Options\OpzioniGlobaliFields::get();
              x-transition:leave-end="opacity-0 transform scale-95"
              class="absolute inset-x-0 pt-4 pb-6 bg-white border border-gray-200 rounded-md shadow-md lg:hidden z-50">
             <div class="flow-root">
-                <div class="flex flex-col px-6 -my-2 space-y-1">
-                    <?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <a href="<?php echo e($item->url); ?>" title="" class="justify-center inline-flex py-2 text-base font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green"> <?php echo e($item->title); ?> </a>
+                <div class="flex flex-col items-center px-6 -my-2 space-y-4 pt-2">
+                    <?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div>
+                            <a href="<?php echo e($item->url); ?>"
+                               title=""
+                               class="text-base text-center font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green font-nunitoSans flex items-center">
+                                <?php echo e($item->title); ?>
+
+                            </a>
+                        </div>
+                        <?php if(!empty($item->children)): ?>
+                            <div class="mt-1 space-y-1">
+                                <?php $__currentLoopData = $item->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subitem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <a href="<?php echo e($subitem->url); ?>"
+                                       title=""
+                                       class="block text-center text-sm font-medium text-gray-700 transition-all duration-200 hover:text-custom-green">
+                                        <?php echo e($subitem->title); ?>
+
+                                    </a>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </div>
+                        <?php endif; ?>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
@@ -56,4 +80,6 @@ $options = \Models\Options\OpzioniGlobaliFields::get();
         </nav>
     </div>
 </header>
+
+
 <?php /**PATH /Users/editweb2/Sites/01progetti-test/pac/wp-content/themes/my_structure/resources/views/partials/header-menu.blade.php ENDPATH**/ ?>
