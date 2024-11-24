@@ -7,6 +7,12 @@ use Core\Bases\BaseGroupAcf;
 class GalleriaFields extends BaseGroupAcf
 {
 
+    public $titolo;
+    public $frase_base;
+    public $parola_1;
+    public $parola_2;
+    public $parola_3;
+    public $descrizione;
     public $immagine_1;
     public $immagine_2;
     public $immagine_3;
@@ -42,6 +48,12 @@ class GalleriaFields extends BaseGroupAcf
     public function defineAttributes()
     {
         //Slider
+        $this->addField('titolo');
+        $this->addField('frase_base');
+        $this->addField('parola_1');
+        $this->addField('parola_2');
+        $this->addField('parola_3');
+        $this->addField('descrizione');
         $this->addField('immagine_1');
         $this->addField('immagine_2');
         $this->addField('immagine_3');
@@ -143,5 +155,14 @@ class GalleriaFields extends BaseGroupAcf
         ];
 
         return $data;
+    }
+
+    public function getHighlightsAttribute()
+    {
+         return [
+           $this->parola_1,
+           $this->parola_2,
+           $this->parola_3,
+         ];
     }
 }

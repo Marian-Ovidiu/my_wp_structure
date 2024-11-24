@@ -3,14 +3,14 @@
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
         <div class="header flex-col items-center justify-center">
             <?php echo $__env->make('components.testo-sottotesto',[
-                'titolo' => 'Il Nostro Viaggio in Qualche Scatto',
+                'titolo' => $galleria->titolo,
                 'sottotitolo' => '',
                 'highlight' => true,
-                'text_base_highlight' => 'Ogni foto, una storia di '
+                'text_base_highlight' => $galleria->frase_base,
             ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <?php echo $__env->make('components.testo-sottotesto',[
                 'titolo' => null,
-                'sottotitolo' => 'Desideriamo condividere con te alcuni momenti significativi del nostro lavoro sul campo. Ogni scatto cattura un aspetto unico delle sfide che affrontiamo e delle vittorie che celebriamo, insieme a coloro che ci supportano. Queste foto raccontano storie di impegno, coraggio e passione che guidano la nostra missione di proteggere la fauna selvatica e sostenere le comunità locali.',
+                'sottotitolo' => $galleria->descrizione,
                 'highlight' => false,
             ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </div>

@@ -10,11 +10,7 @@ class PageController extends BaseController {
     public function galleria()
     {
         $this->addJs('highlight', 'highlight.js', ['stripe'], true);
-        $this->addVarJs('highlight', 'highlights', [
-            'Dedizione.',
-            'Coraggio.',
-            'Passione.',
-        ]);
+        $this->addVarJs('highlight', 'highlights', GalleriaFields::get()->highlights);
 
         $this->render('galleria', ['galleria' => GalleriaFields::get()]);
     }
