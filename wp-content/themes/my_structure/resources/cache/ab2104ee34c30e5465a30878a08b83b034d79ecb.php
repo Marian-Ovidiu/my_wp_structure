@@ -9,7 +9,23 @@
 <body class="flex flex-col min-h-screen font-nunitoSansRegular">
    <?php wp_head(); ?>
     <?php the_widget('Widget\MenuWidget', ['menu_name' => 'LanguageMenu']); ?>
-    <?php the_widget('Widget\MenuWidget', ['menu_name' => 'HeaderMenu']); ?>
+    <?php switch(pll_current_language()):
+        case ('it'): ?>
+            <?php the_widget('Widget\MenuWidget', ['menu_name' => 'HeaderMenu']); ?>
+            <?php break; ?>
+        <?php case ('en'): ?>
+            <?php the_widget('Widget\MenuWidget', ['menu_name' => 'HeaderMenuEnglish']); ?>
+            <?php break; ?>
+        <?php case ('fr'): ?>
+            <?php the_widget('Widget\MenuWidget', ['menu_name' => 'HeaderMenuFrancais']); ?>
+            <?php break; ?>
+        <?php case ('de'): ?>
+            <?php the_widget('Widget\MenuWidget', ['menu_name' => 'HeaderMenuDeutsch']); ?>
+            <?php break; ?>
+        <?php default: ?>
+            <?php the_widget('Widget\MenuWidget', ['menu_name' => 'HeaderMenu']); ?>
+            <?php break; ?>
+    <?php endswitch; ?>
 
     <main class="flex-grow main">
         <?php echo $__env->yieldContent('content'); ?>
