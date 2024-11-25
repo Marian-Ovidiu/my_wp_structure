@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Themes - Twenty Twenty-Four package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-09-07 00:27:43+0000\n"
+"PO-Revision-Date: 2024-10-07 10:10:12+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,25 +23,10 @@ msgstr "Twenty Twenty-Four"
 msgid "Twenty Twenty-Four is designed to be flexible, versatile and applicable to any website. Its collection of templates and patterns tailor to different needs, such as presenting a business, blogging and writing or showcasing work. A multitude of possibilities open up with just a few adjustments to color and typography. Twenty Twenty-Four comes with style variations and full page designs to help speed up the site building process, is fully compatible with the site editor, and takes advantage of new design tools introduced in WordPress 6.4."
 msgstr "Twenty Twenty-Four è progettato per essere flessibile, versatile e utilizzabile per qualsiasi sito web. La sua collezione di template e pattern si adatta perfettamente a necessità diverse, come presentare un'azienda, scrivere un blog, o presentare un lavoro. Con pochi ritocchi ai colori e alla tipografia si aprono una moltitudine di possibilità. Twenty Twenty-Four include variazioni di stile e design di pagine intere per velocizzare il procedimento di creazione di un sito, è completamente compatibile con l'editor del sito e sfrutta pienamente i nuovi strumenti di design introdotti in WordPress 6.4."
 
-#: patterns/text-title-left-image-right.php
-msgctxt "Pattern description"
-msgid "A title, a paragraph and a CTA button on the left with an image on the right."
-msgstr "Un titolo, un paragrafo e un pulsante CTA a sinistra con un'immagine a destra."
-
-#: patterns/text-project-details.php
-msgctxt "Pattern description"
-msgid "A text only section for project details."
-msgstr "Una sezione di solo testo per i dettagli del progetto."
-
 #: patterns/text-faq.php:35
 msgctxt "Question in the FAQ pattern"
 msgid "Who is behind Études?"
 msgstr "Chi c'è dietro Études?"
-
-#: patterns/text-alternating-images.php
-msgctxt "Pattern description"
-msgid "A text section, then a two column section with text in one and image in another."
-msgstr "Una sezione di testo, poi una sezione a due colonne con il testo in una e l'immagine in un'altra."
 
 #: patterns/posts-list.php
 msgctxt "Pattern description"
@@ -52,21 +37,6 @@ msgstr "Elenco di articoli senza immagini, 1 colonna."
 msgctxt "Pattern description"
 msgid "A footer section with a colophon and 4 columns."
 msgstr "Una sezione footer con colophon e 4 colonne."
-
-#: patterns/text-centered-statement.php
-msgctxt "Pattern description"
-msgid "A centered text statement with a large paddings."
-msgstr "Una frase di testo centrata con un'ampia spaziatura interna."
-
-#: patterns/text-centered-statement-small.php
-msgctxt "Pattern description"
-msgid "A centered itallic text statement with compact padding."
-msgstr "Una frase di testo in corsivo centrata con compatta spaziatura interna."
-
-#: patterns/testimonial-centered.php
-msgctxt "Pattern description"
-msgid "A centered testimonial section with a avatar, name, and job title."
-msgstr "Una sezione di testimonianze centrata con un avatar, un nome e un ruolo lavorativo."
 
 #: patterns/team-4-col.php
 msgctxt "Pattern description"
@@ -102,6 +72,111 @@ msgstr "Un elenco di articoli, 1 colonna."
 msgctxt "Pattern description"
 msgid "Project description section with title, paragraph, and an image."
 msgstr "Sezione di descrizione del progetto con titolo, paragrafo e immagine."
+
+#: patterns/text-feature-grid-3-col.php
+msgctxt "Pattern description"
+msgid "A feature grid of 2 rows and 3 columns with headings and text."
+msgstr "Una griglia in evidenza di 2 righe e 3 colonne con titoli e testo."
+
+#: patterns/gallery-project-layout.php
+msgctxt "Pattern description"
+msgid "A gallery section with a project layout with 2 images."
+msgstr "Una sezione galleria con un layout di progetto con 2 immagini."
+
+#: patterns/footer-colophon-3-col.php
+msgctxt "Pattern description"
+msgid "A footer section with a colophon and 3 columns."
+msgstr "Una sezione footer con colophon e 3 colonne."
+
+#: patterns/footer-centered-logo-nav.php
+msgctxt "Pattern description"
+msgid "A footer section with a centered logo, navigation, and WordPress credits."
+msgstr "Una sezione footer con un logo centrato, la navigazione e i riconoscimenti per WordPress."
+
+#: patterns/gallery-offset-images-grid-2-col.php
+msgctxt "Pattern description"
+msgid "A gallery section with 2 columns and offset images."
+msgstr "Una sezione galleria con un layout di progetto con 2 colonne con immagini sfalsate."
+
+#: patterns/gallery-offset-images-grid-3-col.php
+msgctxt "Pattern description"
+msgid "A gallery section with 3 columns and offset images."
+msgstr "Una sezione galleria con un layout di progetto con 3 colonne con immagini sfalsate."
+
+#: patterns/gallery-offset-images-grid-4-col.php
+msgctxt "Pattern description"
+msgid "A gallery section with 4 columns and offset images."
+msgstr "Una sezione galleria con un layout di progetto con 4 colonne con immagini sfalsate."
+
+#: patterns/banner-hero.php
+msgctxt "Pattern description"
+msgid "A hero section with a title, a paragraph, a CTA button, and an image."
+msgstr "Una sezione hero con un titolo, un paragrafo, un pulsante che invita all'azione e un'immagine."
+
+#: patterns/cta-rsvp.php patterns/page-rsvp-landing.php
+msgctxt "Pattern description"
+msgid "A large RSVP heading sideways, a description, and a CTA button."
+msgstr "Un grande titolo RSVP laterale, una descrizione e un pulsante che invita all'azione."
+
+#: patterns/cta-pricing.php
+msgctxt "Pattern description"
+msgid "A pricing section with a title, a paragraph and three pricing levels."
+msgstr "Una sezione per i prezzi con un titolo, un paragrafo e tre livelli di prezzo."
+
+#: patterns/page-newsletter-landing.php
+msgctxt "Pattern description"
+msgid "A block with a newsletter subscription CTA for a landing page."
+msgstr "Un blocco con un invito all'iscrizione alla newsletter, per una landing page."
+
+#: patterns/page-home-blogging.php
+msgctxt "Pattern description"
+msgid "A blogging home page with a hero section, a text section, a blog section, and a CTA section."
+msgstr "Homepage per un blog con una sezione hero, una sezione di testo, una sezione blog e una sezione per l'invito all'azione."
+
+#: patterns/page-about-business.php
+msgctxt "Pattern description"
+msgid "A business about page with a hero section, a text section, a services section, a team section, a clients section, a FAQ section, and a CTA section."
+msgstr "Una pagina aziendale con una sezione hero, una sezione di testo, una sezione servizi, una sezione team, una sezione clienti, una sezione FAQ e una sezione per l'invito all'azione."
+
+#: patterns/page-home-business.php
+msgctxt "Pattern description"
+msgid "A business home page with a hero section, a text section, a services section, a team section, a clients section, a FAQ section, and a CTA section."
+msgstr "Homepage aziendale con una sezione hero, una sezione di testo, una sezione servizi, una sezione team, una sezione clienti, una sezione FAQ e una sezione per l'invito all'azione."
+
+#: patterns/text-title-left-image-right.php
+msgctxt "Pattern description"
+msgid "A title, a paragraph and a CTA button on the left with an image on the right."
+msgstr "Un titolo, un paragrafo e un pulsante di invito all'azione a sinistra con un'immagine a destra."
+
+#: patterns/page-portfolio-overview.php
+msgctxt "Pattern description"
+msgid "A full portfolio page with a section for project description, project details, a full screen image, and a gallery section with two images."
+msgstr "Una pagina portfolio con una sezione per la descrizione del progetto, i dettagli del progetto, un'immagine a schermo intero e una sezione galleria con due immagini."
+
+#: patterns/page-home-portfolio.php
+msgctxt "Pattern description"
+msgid "A portfolio home page with a description and a 4-column post section with only feature images."
+msgstr "Una homepage di portfolio con una descrizione e una sezione a 4 colonne di articoli con sole immagini in evidenza."
+
+#: patterns/cta-content-image-on-right.php
+msgctxt "Pattern description"
+msgid "A title, paragraph, two CTA buttons, and an image for a general CTA section."
+msgstr "Un titolo, un paragrafo, due pulsanti che invitano all'azione e un'immagine per una sezione di invito all'azione generale."
+
+#: patterns/cta-services-image-left.php
+msgctxt "Pattern description"
+msgid "An image, title, paragraph and a CTA button to describe services."
+msgstr "Un'immagine, un titolo, un paragrafo e un pulsante di invito all'azione, per descrivere i servizi."
+
+#: patterns/cta-subscribe-centered.php
+msgctxt "Pattern description"
+msgid "Subscribers CTA section with a title, a paragraph and a CTA button."
+msgstr "Una sezione di invito all'azione per chi si abbona, con un titolo, un paragrafo e un pulsante di invito all'azione."
+
+#: patterns/gallery-full-screen-image.php
+msgctxt "Pattern description"
+msgid "A cover image section that covers the entire width."
+msgstr "Una sezione con un'immagine di copertina che copre l'intera larghezza."
 
 #: patterns/footer.php:96
 msgid "Twitter/X"
@@ -244,6 +319,7 @@ msgid "404"
 msgstr "404"
 
 #: patterns/hidden-post-navigation.php:9 patterns/hidden-post-navigation.php:10
+#: patterns/hidden-posts-heading.php:10
 #: patterns/template-index-portfolio.php:16
 msgid "Posts"
 msgstr "Articoli"
@@ -1534,6 +1610,16 @@ msgctxt "Feature for pricing level"
 msgid "Exclusive, unlimited access to <em>Études Articles</em>."
 msgstr "Accesso illimitato ed esclusivo agli articoli di <em>Études</em>."
 
+#: patterns/text-faq.php:46
+msgctxt "Question in the FAQ pattern"
+msgid "I'd like to get to meet fellow architects, how can I do that?"
+msgstr "Vorrei incontrare altri colleghi architetti, come posso fare?"
+
+#: patterns/text-faq.php:57
+msgctxt "Question in the FAQ pattern"
+msgid "Can I apply to be a part of the team or work as a contractor?"
+msgstr "Posso candidarmi per essere parte del team o lavorare come appaltatore?"
+
 #: patterns/cta-pricing.php:115
 msgctxt "Feature for pricing level"
 msgid "Access to 20 exclusive <em>Études Articles</em> per month."
@@ -1605,15 +1691,21 @@ msgctxt "Sample text for the feature area"
 msgid "2. Case studies that celebrate the artistry can fuel curiosity and ignite inspiration."
 msgstr "2. Casi di studio che celebrano la maestria possono alimentare la curiosità e accendere l'ispirazione."
 
-#: patterns/text-project-details.php:18
-msgctxt "Title text for the feature area"
-msgid "The revitalized art gallery is set to redefine cultural landscape."
-msgstr "La rivitalizzata Art Gallery ha lo scopo di ridefinire il paesaggio culturale."
+#: patterns/text-faq.php:27 patterns/text-faq.php:38 patterns/text-faq.php:49
+#: patterns/text-faq.php:60
+msgctxt "Answer in the FAQ pattern"
+msgid "Études offers comprehensive consulting, management, design, and research solutions. Our vision is to be at the forefront of architectural innovation, fostering a global community of architects and enthusiasts united by a passion for creating spaces. Every architectural endeavor is an opportunity to shape the future."
+msgstr "Études offre soluzioni complete di consulenza, management, design e ricerca. La nostra visione è di essere all'avanguardia dell'innovazione nell'architettura, e di promuovere la comunità globale di architetti ed entusiasti uniti da una passione per la creazione degli spazi. Ogni impresa nell'architettura è un'opportunità per dare forma al futuro."
 
 #: patterns/text-project-details.php:35 patterns/text-project-details.php:43
 msgctxt "Descriptive text for the feature area"
 msgid "The revitalized Art Gallery is set to redefine the cultural landscape of Toronto, serving as a nexus of artistic expression, community engagement, and architectural marvel. The expansion and renovation project pay homage to the Art Gallery's rich history while embracing the future, ensuring that the gallery remains a beacon of inspiration."
 msgstr "La rinnovata Art Gallery ha il compito di ridefinire l'orizzonte culturale di Toronto, fungendo da punto di incontro tra espressione artistica, coinvolgimento della comunità e meraviglia architettonica. Il progetto di espansione e di ristrutturazione rende omaggio alla ricca storia dell'Art Gallery abbracciandone allo stesso tempo il futuro, assicurando che la galleria rimanga un faro di ispirazione."
+
+#: patterns/text-project-details.php:18
+msgctxt "Title text for the feature area"
+msgid "The revitalized art gallery is set to redefine cultural landscape."
+msgstr "La rivitalizzata Art Gallery ha lo scopo di ridefinire il paesaggio culturale."
 
 #: patterns/banner-hero.php:26
 msgctxt "Content of the hero section"
@@ -1629,6 +1721,11 @@ msgstr "Pagina con immagine ampia"
 msgctxt "Name of testimonial pattern"
 msgid "Testimonial"
 msgstr "Testimonianze"
+
+#: patterns/text-faq.php:24
+msgctxt "Question in the FAQ pattern"
+msgid "What is your process working in smaller projects?"
+msgstr "Come procedi per lavorare su progetti più piccoli?"
 
 #. Author of the theme
 #: style.css

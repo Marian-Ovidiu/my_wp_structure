@@ -74,4 +74,35 @@ class BaseGroupAcf
 
         return null;
     }
+    public static function getByLanguage($postType, $acfField = 'lingua', $language = null) {
+        $language = $language ?? pll_current_language();
+
+        $args = [
+            'post_type' => $postType,
+            'post_status' => 'publish',
+            'meta_query' => [
+                [
+                    'key' => $acfField,
+                    'value' => $language,
+                    'compare' => '='
+                ]
+            ]
+        ];
+
+        $query = new \WP_Query($args);
+
+        $results = [];
+        if ($query->have_posts()) {
+            while ($query->have_posts()) {
+                $query->the_post();
+
+                $instance = new static(get_the_ID());
+                $instance->setFields();
+                $results[] = $instance;
+            }
+            wp_reset_postdata();
+        }
+
+        return $results;
+    }
 }
