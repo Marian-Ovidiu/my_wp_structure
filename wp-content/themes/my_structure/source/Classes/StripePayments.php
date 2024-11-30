@@ -18,6 +18,7 @@ class StripePayments
             'currency' => 'eur',
             'automatic_payment_methods' => ['enabled' => true],
         ]);
+        error_log(json_encode($paymentIntent));
 
         header('Content-Type: application/json');
         echo json_encode(['clientSecret' => $paymentIntent->client_secret]);

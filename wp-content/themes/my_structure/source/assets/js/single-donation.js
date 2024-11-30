@@ -15,7 +15,7 @@
             createIntent() {
                 this.loading = true;
                 let selectedDonationAmount = this.customAmount || this.selectedAmount;
-                selectedDonationAmount = selectedDonationAmount * 100;
+                selectedDonationAmount = Math.round(selectedDonationAmount * 100);
 
                 let call = new window.ApiService();
                 call.post('/create-payment-intent', {'amount' : selectedDonationAmount, 'progetto_id': progettoId}).then(response => {
