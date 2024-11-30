@@ -9,7 +9,7 @@ class StripePayments
 {
     public static function createIntent()
     {
-        var_dump('ciao1');
+        var_dump(my_env('SECRET_KEY'));
         Stripe::setApiKey(my_env('SECRET_KEY'));
         var_dump('ciao2');
         $data = json_decode(file_get_contents("php://input"), true);
