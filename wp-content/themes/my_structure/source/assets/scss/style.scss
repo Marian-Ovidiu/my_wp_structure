@@ -14,6 +14,10 @@
   margin-left: 8px;
 }
 
+.lazy-bg {
+  transition: background-image 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

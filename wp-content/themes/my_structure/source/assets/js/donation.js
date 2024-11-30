@@ -22,7 +22,7 @@
 
                     this.clientSecret = response.clientSecret;
 
-                    this.stripe = Stripe('pk_test_51QDoqrENQJ7o4OHH4swyMyR6zMLjnHuNH13yXNlIzzNh6vZhJg151TYBf1Sjd0kYxlUB8DXSCY8TkqHr5ZNtgZ2n00k3acuqoB'); // Sostituisci con la tua chiave pubblica
+                    this.stripe = Stripe('pk_live_51QQqzmP9ji9EUZt5LkB8kShCP2rhsd195h5SlYAzUb3gGabZ8R8Uinp0TiDGKXqFsBu7oCPVL7of79NbNSGrAr3u00xFyOm6u8'); // Sostituisci con la tua chiave pubblica
                     this.elements = this.stripe.elements({
                         clientSecret: this.clientSecret,
                         paymentMethodCreation: 'manual'
