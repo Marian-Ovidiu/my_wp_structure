@@ -16,10 +16,9 @@
                 this.loading = true;
                 let selectedDonationAmount = this.customAmount || this.selectedAmount;
                 selectedDonationAmount = Math.round(selectedDonationAmount * 100);
-
+                console.log(selectedDonationAmount);
                 let call = new window.ApiService();
                 call.post('/create-payment-intent', {'amount' : selectedDonationAmount, 'progetto_id': progettoId}).then(response => {
-
                     this.clientSecret = response.clientSecret;
                     console.log(this.clientSecret);
                     this.stripe = Stripe('pk_live_51QQqzmP9ji9EUZt5LkB8kShCP2rhsd195h5SlYAzUb3gGabZ8R8Uinp0TiDGKXqFsBu7oCPVL7of79NbNSGrAr3u00xFyOm6u8');
@@ -135,10 +134,10 @@
                 texts: highlights,
                 currentText: 0,
                 displayText: "",
-                speed: 100, // Velocità di digitazione (in ms)
+                speed: 100,
                 pauseBetweenTexts: 1000,
                 startTyping() {
-                    this.displayText = ""; // Resetta il testo visualizzato
+                    this.displayText = "";
                     let fullText = this.texts[this.currentText];
                     let i = 0;
 
@@ -151,10 +150,10 @@
                             setTimeout(() => {
                                 this.currentText++;
                                 if (this.currentText >= this.texts.length) {
-                                    this.currentText = 0; // Ritorna al primo testo
+                                    this.currentText = 0;
                                 }
                                 this.startTyping();
-                            }, this.pauseBetweenTexts); // Ritardo prima del prossimo testo
+                            }, this.pauseBetweenTexts);
                         }
                     }, this.speed);
                 },
