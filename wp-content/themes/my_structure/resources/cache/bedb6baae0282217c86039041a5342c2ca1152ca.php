@@ -1,7 +1,7 @@
 <section class="bg-white">
     <div class="container flex flex-col items-center px-4 py-12 mx-auto text-center">
         <?php if($titolo_missione): ?>
-            <h2 class="text-nunitoRegular text-2xl font-bold tracking-tight text-custom-dark-green xl:text-3xl">
+            <h2 class="font-nunitoBold text-2xl font-bold tracking-tight text-custom-dark-green xl:text-3xl">
                 <?php echo e($titolo_missione); ?>
 
             </h2>
