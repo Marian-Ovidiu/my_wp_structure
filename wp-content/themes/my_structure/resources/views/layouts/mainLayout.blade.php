@@ -38,7 +38,23 @@
     </main>
 
     <footer class="text-white">
-        @widget('FooterMenu')
+        @switch(pll_current_language())
+            @case('it')
+                @widget('FooterMenu')
+                @break
+            @case('en')
+                @widget('FooterMenuEnglish')
+                @break
+            @case('fr')
+                @widget('FooterMenuFrancais')
+                @break
+            @case('de')
+                @widget('FooterMenuDeutsch')
+                @break
+            @default
+                @widget('FooterMenu')
+                @break
+        @endswitch
     </footer>
     @yield('scripts')
    <?php wp_footer(); ?>

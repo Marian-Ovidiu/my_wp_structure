@@ -38,7 +38,23 @@
     </main>
 
     <footer class="text-white">
-        <?php the_widget('Widget\MenuWidget', ['menu_name' => 'FooterMenu']); ?>
+        <?php switch(pll_current_language()):
+            case ('it'): ?>
+                <?php the_widget('Widget\MenuWidget', ['menu_name' => 'FooterMenu']); ?>
+                <?php break; ?>
+            <?php case ('en'): ?>
+                <?php the_widget('Widget\MenuWidget', ['menu_name' => 'FooterMenuEnglish']); ?>
+                <?php break; ?>
+            <?php case ('fr'): ?>
+                <?php the_widget('Widget\MenuWidget', ['menu_name' => 'FooterMenuFrancais']); ?>
+                <?php break; ?>
+            <?php case ('de'): ?>
+                <?php the_widget('Widget\MenuWidget', ['menu_name' => 'FooterMenuDeutsch']); ?>
+                <?php break; ?>
+            <?php default: ?>
+                <?php the_widget('Widget\MenuWidget', ['menu_name' => 'FooterMenu']); ?>
+                <?php break; ?>
+        <?php endswitch; ?>
     </footer>
     <?php echo $__env->yieldContent('scripts'); ?>
    <?php wp_footer(); ?>

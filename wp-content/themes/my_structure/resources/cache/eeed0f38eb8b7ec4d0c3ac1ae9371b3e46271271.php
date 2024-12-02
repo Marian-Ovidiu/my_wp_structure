@@ -113,13 +113,13 @@
         </div>
         <div class="flex justify-center">
             <div class="px-4">
-                <p class="mt-4 max-w-xs text-center text-xs text-gray-500"> &copy; 2024. PAC - Project Africa Conservation A.P.S. All rights reserved.
-                    <br> &copy; This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply. </p>
+                <p class="mt-4 max-w-xs text-center text-xs text-gray-500"> &copy; 2024. PAC - Project Africa Conservation A.P.S. Tutti i diritti riservati.
+                    <br> &copy; Questo sito è protetto da reCAPTCHA ed è soggetto alla Privacy Policy e ai Termini di Servizio di Google. </p>
             </div>
         </div>
         <div class="flex justify-center bg-[#45752c]">
             <div>
-                <p class="text-xs text-white">Created with &hearts; by Marian</p>
+                <p class="text-xs text-white">Creato con &hearts; da Marian</p>
             </div>
         </div>
     </div>

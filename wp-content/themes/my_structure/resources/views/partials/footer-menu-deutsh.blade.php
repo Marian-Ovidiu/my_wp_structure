@@ -16,7 +16,7 @@
                 </div>
                 <div class="flex items-center justify-center">
                     <p class="mt-4 max-w-xs text-gray-500 text-center">
-                        La differenza la fai tu: ogni piccolo gesto crea un grande cambiamento.
+                        Der Unterschied bist du: Jede kleine Geste bewirkt eine große Veränderung.
                     </p>
                 </div>
 
@@ -44,8 +44,6 @@
             <div class="grid grid-cols-1 sm:grid-cols-1 lg:col-span-2 lg:grid-cols-1">
                 <div>
                     <ul class="mt-6 sm:mt-3 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
-
-
                         @foreach($menu as $key => $item)
                             <li>
                                 <a class="text-gray-700 transition hover:text-gray-700/75" href="{{$item->url}}"> {{$item->title}} </a>
@@ -102,7 +100,7 @@
                             </svg>
 
                             <address class="-mt-0.5 flex-1 not-italic text-gray-700">
-                                Via Cavour 7 -12042, Bra (CN)
+                                Via Cavour 7 - 12042, Bra (CN) Italy
                             </address>
                         </li>
                     </ul>
@@ -113,13 +111,13 @@
         </div>
         <div class="flex justify-center">
             <div class="px-4">
-                <p class="mt-4 max-w-xs text-center text-xs text-gray-500"> &copy; 2024. PAC - Project Africa Conservation A.P.S. Tutti i diritti riservati.
-                    <br> &copy; Questo sito è protetto da reCAPTCHA ed è soggetto alla Privacy Policy e ai Termini di Servizio di Google. </p>
+                <p class="mt-4 max-w-xs text-center text-xs text-gray-500"> &copy; 2024. PAC - Project Africa Conservation A.P.S. Alle Rechte vorbehalten.
+                    <br> &copy; Diese Seite wird durch reCAPTCHA und die Google-Datenschutzrichtlinie und Nutzungsbedingungen geschützt.  </p>
             </div>
         </div>
         <div class="flex justify-center bg-[#45752c]">
             <div>
-                <p class="text-xs text-white">Creato con &hearts; da Marian</p>
+                <p class="text-xs text-white">Erstellt mit &hearts; von Marian</p>
             </div>
         </div>
     </div>

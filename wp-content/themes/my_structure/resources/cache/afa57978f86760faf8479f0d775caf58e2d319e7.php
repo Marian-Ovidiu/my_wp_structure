@@ -1,6 +1,6 @@
-@php
+<?php
     $options = \Models\Options\OpzioniGlobaliFields::get();
-@endphp
+?>
 <footer class="bg-white">
     <div class="mx-auto space-y-4 px-0 pt-8 sm:px-0 lg:px-0">
         <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -9,14 +9,14 @@
                 <div class="text-teal-600">
                     <div class="text-center flex flex-col items-center justify-between">
                         <a href="#" title="" class="flex">
-                            <img class="w-auto h-12 lg:h-12" src="{{$options->logo['url']}}" alt="" />
+                            <img class="w-auto h-12 lg:h-12" src="<?php echo e($options->logo['url']); ?>" alt="" />
                         </a>
                         <div class="text-custom-dark-green font-bold text-xs">Project Africa Conservation</div>
                     </div>
                 </div>
                 <div class="flex items-center justify-center">
                     <p class="mt-4 max-w-xs text-gray-500 text-center">
-                        La differenza la fai tu: ogni piccolo gesto crea un grande cambiamento.
+                        The difference is you: every small gesture creates a big change.
                     </p>
                 </div>
 
@@ -46,18 +46,18 @@
                     <ul class="mt-6 sm:mt-3 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
 
 
-                        @foreach($menu as $key => $item)
+                        <?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li>
-                                <a class="text-gray-700 transition hover:text-gray-700/75" href="{{$item->url}}"> {{$item->title}} </a>
+                                <a class="text-gray-700 transition hover:text-gray-700/75" href="<?php echo e($item->url); ?>"> <?php echo e($item->title); ?> </a>
                             </li>
-                            @if(!empty($item->children))
-                                @foreach($item->children as $subkey => $subitem)
+                            <?php if(!empty($item->children)): ?>
+                                <?php $__currentLoopData = $item->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subkey => $subitem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <li>
-                                        <a class="text-gray-700 transition hover:text-gray-700/75" href="{{$subitem->url}}"> {{$subitem->title}} </a>
+                                        <a class="text-gray-700 transition hover:text-gray-700/75" href="<?php echo e($subitem->url); ?>"> <?php echo e($subitem->title); ?> </a>
                                     </li>
-                                @endforeach
-                            @endif
-                        @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
 
@@ -113,14 +113,14 @@
         </div>
         <div class="flex justify-center">
             <div class="px-4">
-                <p class="mt-4 max-w-xs text-center text-xs text-gray-500"> &copy; 2024. PAC - Project Africa Conservation A.P.S. Tutti i diritti riservati.
-                    <br> &copy; Questo sito è protetto da reCAPTCHA ed è soggetto alla Privacy Policy e ai Termini di Servizio di Google. </p>
+                <p class="mt-4 max-w-xs text-center text-xs text-gray-500"> &copy; 2024. PAC - Project Africa Conservation A.P.S. All rights reserved.
+                    <br> &copy; This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply. </p>
             </div>
         </div>
         <div class="flex justify-center bg-[#45752c]">
             <div>
-                <p class="text-xs text-white">Creato con &hearts; da Marian</p>
+                <p class="text-xs text-white">Created with &hearts; by Marian</p>
             </div>
         </div>
     </div>
-</footer>
+</footer><?php /**PATH /Users/editweb2/Sites/01progetti-test/pac/wp-content/themes/my_structure/resources/views/partials/footer-menu-english.blade.php ENDPATH**/ ?>

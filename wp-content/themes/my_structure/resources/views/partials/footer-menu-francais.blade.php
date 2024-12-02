@@ -16,7 +16,7 @@
                 </div>
                 <div class="flex items-center justify-center">
                     <p class="mt-4 max-w-xs text-gray-500 text-center">
-                        La differenza la fai tu: ogni piccolo gesto crea un grande cambiamento.
+                        La différence, c'est vous : chaque petit geste crée un grand changement.
                     </p>
                 </div>
 
@@ -113,13 +113,13 @@
         </div>
         <div class="flex justify-center">
             <div class="px-4">
-                <p class="mt-4 max-w-xs text-center text-xs text-gray-500"> &copy; 2024. PAC - Project Africa Conservation A.P.S. Tutti i diritti riservati.
-                    <br> &copy; Questo sito è protetto da reCAPTCHA ed è soggetto alla Privacy Policy e ai Termini di Servizio di Google. </p>
+                <p class="mt-4 max-w-xs text-center text-xs text-gray-500"> © 2024. PAC - Project Africa Conservation A.P.S. Tous droits réservés.
+                    <br> © Ce site est protégé par reCAPTCHA et soumis à la Politique de confidentialité et aux Conditions d'utilisation de Google. </p>
             </div>
         </div>
         <div class="flex justify-center bg-[#45752c]">
             <div>
-                <p class="text-xs text-white">Creato con &hearts; da Marian</p>
+                <p class="text-xs text-white">Créé avec ♥ par Marian</p>
             </div>
         </div>
     </div>
