@@ -87,4 +87,32 @@ if (!function_exists('my_env')) {
     }
 }
 
+if (!function_exists('resource_path')) {
+    function resource_path($path = '') {
+        return __DIR__ . '/../../resources/' . $path;
+    }
+}
+
+if (!function_exists('base_path')) {
+    function base_path($path = '') {
+        return __DIR__ . '/../../' . $path;
+    }
+}
+
+
+if (!function_exists('config')) {
+    function config($key, $default = null) {
+        $configurations = [
+            'laravel-translatable-string-exporter' => [
+                'lang_path' => 'resources/lang',
+                'strings_path' => [
+                    resource_path('views'),
+                ],
+                'string_functions' => ['__', 'trans'],
+            ],
+        ];
+        return $configurations[$key] ?? $default;
+    }
+}
+
 

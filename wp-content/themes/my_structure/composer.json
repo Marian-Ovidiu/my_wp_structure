@@ -43,5 +43,8 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build"
+    },
+    "require-dev": {
+        "kkomelin/laravel-translatable-string-exporter": "^1.17"
     }
 }
