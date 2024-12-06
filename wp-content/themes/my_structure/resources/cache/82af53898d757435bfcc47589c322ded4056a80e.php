@@ -56,7 +56,7 @@
                             <div class="mx-auto flex justify-center flex-col items-center max-w-screen-lg px-6">
                                 <!-- Step 1: Selezione dell'importo -->
                                 <div class="w-full text-center" x-show="step === 1">
-                                    <p class="font-serif text-xl font-bold text-custom-dark-green"><?php echo e(__('Scegli quanto donare')); ?></p>
+                                    <p class="font-serif text-xl font-bold text-custom-dark-green"><?php echo e(load_static_strings('Scegli quanto donare')); ?></p>
                                     <div class="mt-4 mx-auto grid grid-cols-2 gap-2 lg:max-w-xl">
                                         <button
                                                 @click="selectedAmount = 20; customAmount = ''"
@@ -83,9 +83,9 @@
 
                                 <!-- Step 1: Importo personalizzato -->
                                 <div class="w-full text-center" x-show="step === 1">
-                                    <p class="mt-8 font-serif text-xl font-bold text-custom-dark-green"><?php echo e(__('Oppure scegli tu l\'importo')); ?></p>
+                                    <p class="mt-8 font-serif text-xl font-bold text-custom-dark-green"><?php echo e(load_static_strings('Oppure scegli tu l\'importo')); ?></p>
                                     <div class="w-full mx-auto md:w-1/2 px-3 mb-2 md:mb-0 flex flex-row justify-center items-center mt-4">
-                                        <input x-model="customAmount" @input="selectedAmount = null" class="appearance-none block w-full rounded py-3 px-4 mb-3 leading-tight" type="number" placeholder="<?php echo e(__('Scegli importo')); ?>">
+                                        <input x-model="customAmount" @input="selectedAmount = null" class="appearance-none block w-full rounded py-3 px-4 mb-3 leading-tight" type="number" placeholder="<?php echo e(load_static_strings('Scegli importo')); ?>">
                                         <div class="decimals h-full px-4">,00</div>
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@
                                 <div  x-show="step === 1" class="buttons flex justify-between flex-row w-full text-center">
                                     <a href="<?php echo e($progetto->url); ?>">
                                         <button class="mt-4 min-w-32 rounded-full border-emerald-500 bg-custom-dark-green px-5 py-4 text-lg font-bold text-white transition hover:translate-y-1">
-                                            <?php echo e(__('Scopri di più')); ?>
+                                            <?php echo e(load_static_strings('Scopri di più')); ?>
 
                                         </button>
                                     </a>
@@ -102,7 +102,7 @@
                                             :disabled="!(selectedAmount || customAmount)"
                                             :class="(selectedAmount || customAmount) ? 'bg-custom-dark-green hover:translate-y-1' : 'bg-gray-400 cursor-not-allowed'"
                                             class="mt-4 min-w-32 rounded-full border-emerald-500 px-5 py-4 text-lg font-bold text-white transition">
-                                        <?php echo e(__('Avanti')); ?>
+                                        <?php echo e(load_static_strings('Avanti')); ?>
 
                                     </button>
                                 </div>
@@ -110,26 +110,26 @@
 
                                 <!-- Step 2: Dettagli di fatturazione -->
                                 <div x-show="step === 2" class="w-full text-center">
-                                    <p class="mt-8 font-serif text-xl font-bold text-custom-dark-green"><?php echo e(__('Dettagli di fatturazione')); ?></p>
+                                    <p class="mt-8 font-serif text-xl font-bold text-custom-dark-green"><?php echo e(load_static_strings('Dettagli di fatturazione')); ?></p>
                                     <div class="mt-4 mx-auto grid grid-cols-1 gap-6 lg:max-w-xl">
-                                        <input x-model="formData.name" type="text" placeholder="Nome" name="name" required class="w-full rounded-lg border-gray-300 px-4 py-2"/>
-                                        <input x-model="formData.surname" type="text" placeholder="Cognome" name="surname" required class="w-full rounded-lg border-gray-300 px-4 py-2"/>
-                                        <input x-model="formData.phone" type="number" placeholder="Numero di telefono" name="phone" class="w-full rounded-lg border-gray-300 px-4 py-2"/>
-                                        <input x-model="formData.email" type="email" placeholder="Email" name="email" required class="w-full rounded-lg border-gray-300 px-4 py-2"/>
-                                        <input x-model="formData.codiceFiscale" type="text" placeholder="Codice Fiscale" name="codiceFiscale" required class="w-full rounded-lg border-gray-300 px-4 py-2"/>
+                                        <input x-model="formData.name" type="text" placeholder="<?php echo e(load_static_strings('Nome')); ?>" name="name" required class="w-full rounded-lg border-gray-300 px-4 py-2"/>
+                                        <input x-model="formData.surname" type="text" placeholder="<?php echo e(load_static_strings('Cognome')); ?>" name="surname" required class="w-full rounded-lg border-gray-300 px-4 py-2"/>
+                                        <input x-model="formData.phone" type="number" placeholder="<?php echo e(load_static_strings('Numero di telefono')); ?>" name="phone" class="w-full rounded-lg border-gray-300 px-4 py-2"/>
+                                        <input x-model="formData.email" type="email" placeholder="<?php echo e(load_static_strings('Email')); ?>" name="email" required class="w-full rounded-lg border-gray-300 px-4 py-2"/>
+                                        <input x-model="formData.codiceFiscale" type="text" placeholder="<?php echo e(load_static_strings('Codice Fiscale')); ?>" name="codiceFiscale" class="w-full rounded-lg border-gray-300 px-4 py-2"/>
                                     </div>
                                     <div class="buttons flex justify-between flex-row">
                                         <button @click="step = 1" class="mt-4 min-w-32 rounded-full border-emerald-500 bg-custom-dark-green px-5 py-4 text-lg font-bold text-white transition hover:translate-y-1">
-                                            <?php echo e(__('Indietro')); ?>
+                                            <?php echo e(load_static_strings('Indietro')); ?>
 
                                         </button>
                                         <button
                                                 @click="createIntent()"
                                                 id="call-intent"
-                                                :disabled="!(formData.name && formData.surname && formData.email && formData.codiceFiscale)"
-                                                :class="(formData.name && formData.surname && formData.email && formData.codiceFiscale) ? 'bg-custom-dark-green hover:translate-y-1' : 'bg-gray-400 cursor-not-allowed'"
+                                                :disabled="!(formData.name && formData.surname && formData.email && formData.phone)"
+                                                :class="(formData.name && formData.surname && formData.email && formData.phone) ? 'bg-custom-dark-green hover:translate-y-1' : 'bg-gray-400 cursor-not-allowed'"
                                                 class="mt-4 min-w-32 rounded-full border-emerald-500 px-5 py-4 text-lg font-bold text-white transition">
-                                            <span x-show="!loading"><?php echo e(__('Avanti')); ?></span>
+                                            <span x-show="!loading"><?php echo e(load_static_strings('Avanti')); ?></span>
                                             <span x-show="loading" class="loader"></span>
                                         </button>
                                     </div>
@@ -137,7 +137,7 @@
 
                                 <!-- Step 3: Dati della carta di credito -->
                                 <div x-show="step === 3" class="w-full text-center">
-                                    <p class="mt-8 font-serif text-xl font-bold text-custom-dark-green"><?php echo e(__('Dati della carta di credito')); ?></p>
+                                    <p class="mt-8 font-serif text-xl font-bold text-custom-dark-green"><?php echo e(load_static_strings('Dati della carta di credito')); ?></p>
                                     <div class="mt-4 mx-auto grid grid-cols-1 gap-6 lg:max-w-xl">
                                         <?php $__currentLoopData = $pagamenti_disponibili; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <?php if($p->id === 'stripe'): ?>
@@ -156,11 +156,11 @@
                                     </div>
                                     <div class="buttons flex justify-between flex-row">
                                         <button @click="step = 2" class="mt-4 min-w-32 rounded-full border-emerald-500 bg-custom-dark-green px-5 py-4 text-lg font-bold text-white transition hover:translate-y-1">
-                                            <?php echo e(__('Indietro')); ?>
+                                            <?php echo e(load_static_strings('Indietro')); ?>
 
                                         </button>
                                         <button @click="submitForm()" class="mt-4 min-w-32 rounded-full border-emerald-500 px-5 py-4 text-lg font-bold text-white transition bg-custom-dark-green hover:translate-y-1">
-                                            <?php echo e(__('Dona ora')); ?>
+                                            <?php echo e(load_static_strings('Dona ora')); ?>
 
                                         </button>
                                     </div>
