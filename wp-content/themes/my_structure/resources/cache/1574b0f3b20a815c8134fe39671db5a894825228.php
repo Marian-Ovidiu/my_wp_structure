@@ -62,8 +62,6 @@
                     <?php echo apply_filters('the_content', wpautop(do_shortcode($fields->shortcode_form))); ?>
 
                 <?php endif; ?>
-
-                
             </div>
         </section>
     </div>

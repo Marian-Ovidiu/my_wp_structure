@@ -20,6 +20,9 @@ return array(
     'ef65a1626449d89d0811cf9befce46f0' => $vendorDir . '/illuminate/events/functions.php',
     '2df68f9e79c919e2d88506611769ed2e' => $vendorDir . '/respect/stringifier/src/stringify.php',
     '667aeda72477189d0494fecd327c3641' => $vendorDir . '/symfony/var-dumper/Resources/functions/dump.php',
-    '884b990fef6d388781933bccf6fbdf2c' => $baseDir . '/app/Helpers/helpers.php',
     'dadca0279bc0666a4bc43794987e0b31' => $baseDir . '/app/Helpers/acf_helpers.php',
+    '8d1c9ac0490c07c7133cab002178fafa' => $baseDir . '/app/Helpers/theme_helpers.php',
+    'ee77b9f00e1a9a117e435627bfb17146' => $baseDir . '/app/Helpers/translation_helpers.php',
+    '9b282633893cbb7c6c3014e14772a4d8' => $baseDir . '/app/Helpers/utility_helpers.php',
+    '7e666006c3cf51d9871ce1a73e757292' => $baseDir . '/app/Helpers/woocommerce_helpers.php',
 );

@@ -14,13 +14,16 @@ class App extends Init
 
     public function registerHook()
     {
+        add_action('init', 'disable_woocommerce_features');
         add_action('after_setup_theme', 'my_theme_setup');
         add_action('admin_menu', 'my_custom_options_page');
         add_action('admin_head', 'acf_form_head');
+        add_action('wp_enqueue_scripts', 'disable_woocommerce_assets');
     }
 
     public function registerFilters()
     {
+        add_filter('woocommerce_get_page_id', 'disable_woocommerce_pages');
         add_filter('acf/location/rule_types', 'acf_location_rules_types');
         add_filter('acf/location/rule_values/page', 'acf_location_rule_values_page');
         add_filter('acf/location/rule_match/page', 'my_acf_location_options_page', 10, 3);
