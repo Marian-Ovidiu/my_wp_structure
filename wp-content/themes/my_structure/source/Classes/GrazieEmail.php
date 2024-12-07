@@ -22,13 +22,16 @@ class GrazieEmail
         $headers = [
             'Content-Type: text/html; charset=UTF-8',
             'From: Project Africa Conservation <marian@project-africa-conservation.org>',
+            'Reply-To: marian@project-africa-conservation.org',
+            'X-Mailer: WP Mail SMTP/GrazieEmail',
         ];
 
         if (!wp_mail($email, $subject, $message, $headers)) {
             error_log("Errore durante l'invio dell'email a {$email}");
+            return false;
         }
 
-        wp_mail($email, $subject, $message, $headers);
+        return true;
     }
 
 }
