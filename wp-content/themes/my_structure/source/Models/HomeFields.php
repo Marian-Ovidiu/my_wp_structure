@@ -118,17 +118,17 @@ class HomeFields extends BaseGroupAcf
         $this->repeater_progetti[0]['titolo'] = $this->titolo_tutti_progetti;
         $this->repeater_progetti[0]['cta'] = $this->cta_tutti_progetti;
         $this->repeater_progetti[1]['immagine'] = $this->immagine_sociale_ghana;
-        $this->repeater_progetti[1]['immagine'] = $this->immagine_sociale_nigeria;
         $this->repeater_progetti[1]['titolo'] = $this->titolo_sociale_ghana;
-        $this->repeater_progetti[1]['titolo'] = $this->titolo_sociale_nigeria;
         $this->repeater_progetti[1]['cta'] = $this->cta_sociale_ghana;
-        $this->repeater_progetti[1]['cta'] = $this->cta_sociale_nigeria;
-        $this->repeater_progetti[2]['immagine'] = $this->immagine_antibracconaggio;
-        $this->repeater_progetti[2]['titolo'] = $this->titolo_antibracconaggio;
-        $this->repeater_progetti[2]['cta'] = $this->cta_antibracconaggio;
-        $this->repeater_progetti[3]['immagine'] = $this->immagine_cani;
-        $this->repeater_progetti[3]['titolo'] = $this->titolo_cani;
-        $this->repeater_progetti[3]['cta'] = $this->cta_cani;
+        $this->repeater_progetti[2]['immagine'] = $this->immagine_sociale_nigeria;
+        $this->repeater_progetti[2]['titolo'] = $this->titolo_sociale_nigeria;
+        $this->repeater_progetti[2]['cta'] = $this->cta_sociale_nigeria;
+        $this->repeater_progetti[3]['immagine'] = $this->immagine_antibracconaggio;
+        $this->repeater_progetti[3]['titolo'] = $this->titolo_antibracconaggio;
+        $this->repeater_progetti[3]['cta'] = $this->cta_antibracconaggio;
+        $this->repeater_progetti[4]['immagine'] = $this->immagine_cani;
+        $this->repeater_progetti[4]['titolo'] = $this->titolo_cani;
+        $this->repeater_progetti[4]['cta'] = $this->cta_cani;
 
         return $this->repeater_progetti;
     }
