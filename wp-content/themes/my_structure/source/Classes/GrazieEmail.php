@@ -27,7 +27,6 @@ class GrazieEmail
         if (!wp_mail($email, $subject, $message, $headers)) {
             error_log("Errore durante l'invio dell'email a {$email}");
         }
-        dd($email, $subject, $message, $headers);
 
         wp_mail($email, $subject, $message, $headers);
     }
