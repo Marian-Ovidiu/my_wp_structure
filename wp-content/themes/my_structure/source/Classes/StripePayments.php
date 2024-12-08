@@ -54,7 +54,7 @@ class StripePayments
                 'payment_method' => ['card', 'paypal'],
                 'confirmation_method' => 'manual',
                 'confirm' => true,
-                'return_url' => 'http://pac.localhost/progetto/'
+                'return_url' => 'https://project-africa-conservation.org'
             ]);
 
             if ($paymentIntent->status === 'succeeded') {
