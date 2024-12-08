@@ -28,7 +28,7 @@ class App extends Init
         add_filter('acf/location/rule_values/page', 'acf_location_rule_values_page');
         add_filter('acf/location/rule_match/page', 'my_acf_location_options_page', 10, 3);
 
-        add_filter('wpseo_sitemap_entry', 'exclude_page_from_sitemap');
+        add_filter('wpseo_sitemap_entry', 'exclude_page_from_sitemap', 10, 3);
     }
 
     public function registerProviders()
