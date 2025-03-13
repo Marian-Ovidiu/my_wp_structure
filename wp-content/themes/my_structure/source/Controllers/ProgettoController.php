@@ -14,6 +14,7 @@ class ProgettoController extends BaseController
         $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
         $this->addJs('stripe', 'https://js.stripe.com/v3/', [], true);
         $this->addJs('donation', 'donation.js', ['stripe'], true);
+        $this->addJs('donation-gpay', 'google-pay.js', ['stripe'], true);
         $opzioniArchivio = OpzioniArchivioProgettoFields::get('option');
 
         $this->addVarJs('donation', 'highlights', [
@@ -33,6 +34,7 @@ class ProgettoController extends BaseController
     {
         $this->addJs('stripe', 'https://js.stripe.com/v3/', [], true);
         $this->addJs('single-donation', 'single-donation.js', ['stripe'], true);
+        $this->addJs('donation-gpay', 'google-pay.js', ['stripe'], true);
         $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 
         $this->render('single-progetto', [

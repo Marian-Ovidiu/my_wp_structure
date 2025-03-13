@@ -15,26 +15,56 @@
             createIntent() {
                 this.loading = true;
                 let selectedDonationAmount = this.customAmount || this.selectedAmount;
-                selectedDonationAmount = selectedDonationAmount*100;
+                selectedDonationAmount = selectedDonationAmount * 100;
+            
                 let call = new window.ApiService();
-                call.post('/create-payment-intent', {'amount' : selectedDonationAmount, 'progetto_id': progettoId}).then(response => {
+                call.post('/create-payment-intent', { 
+                    'amount': selectedDonationAmount, 
+                    'progetto_id': progettoId 
+                }).then(response => {
                     this.clientSecret = response.clientSecret;
-                    this.stripe = Stripe('pk_live_51QQqzmP9ji9EUZt5LkB8kShCP2rhsd195h5SlYAzUb3gGabZ8R8Uinp0TiDGKXqFsBu7oCPVL7of79NbNSGrAr3u00xFyOm6u8');
+                    this.stripe = Stripe('pk_live_xxxxx'); // Usa la tua chiave pubblica Stripe
+            
                     this.elements = this.stripe.elements({
                         clientSecret: this.clientSecret,
                         paymentMethodCreation: 'manual'
                     });
-
+            
                     const paymentElement = this.elements.create('payment');
                     paymentElement.mount('#payment-element-' + progettoId);
-
+            
+                    // ✅ Configura il pulsante Google Pay
+                    this.setupGooglePay(selectedDonationAmount);
+            
                     this.loading = false;
                     this.step = 3;
-                })
-                .catch(error => {
+                }).catch(error => {
                     console.error('Errore nella richiesta:', error);
                 });
-            },
+            },   
+            setupGooglePay(amount) {
+                const paymentRequest = this.stripe.paymentRequest({
+                    country: 'IT',
+                    currency: 'eur',
+                    total: {
+                        label: 'Donazione',
+                        amount: amount
+                    },
+                    requestPayerName: true,
+                    requestPayerEmail: true
+                });
+            
+                paymentRequest.canMakePayment().then(result => {
+                    if (result) {
+                        document.getElementById("google-pay-button").style.display = "block";
+                        const elements = this.stripe.elements();
+                        const prButton = elements.create("paymentRequestButton", {
+                            paymentRequest: paymentRequest,
+                        });
+                        prButton.mount("#google-pay-button");
+                    }
+                });
+            },       
             async submitForm(){
                 this.loading = true;
                 const thankYouUrl = document.querySelector(`#thank-you-url`).value;
@@ -119,7 +149,8 @@
                     });*/
 
                 }
-            }
+            },
+
         };
     }
 
@@ -157,4 +188,6 @@
                 }
             };
         }
-    }
+}
+
+    

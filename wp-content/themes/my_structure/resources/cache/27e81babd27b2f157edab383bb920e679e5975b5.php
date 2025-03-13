@@ -194,20 +194,22 @@
                             <div x-show="step === 3" class="w-full text-center">
                                 <p class="mt-8 font-serif text-xl font-bold text-custom-dark-green"><?php echo e(load_static_strings('Dati della carta di credito')); ?></p>
                                 <div class="mt-4 mx-auto grid grid-cols-1 gap-6 lg:max-w-xl">
-                                    <?php $__currentLoopData = $pagamenti_disponibili; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <?php if($p->id === 'stripe'): ?>
-                                            <div id="card-element-container-<?php echo e($progetto->id); ?>">
-                                                <form id="payment-form-<?php echo e($progetto->id); ?>">
-                                                    <div id="payment-element-<?php echo e($progetto->id); ?>">
-                                                        <!-- Elemento di Stripe per la carta di credito -->
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        <?php else: ?>
-                                            <?php echo '<button data-gateway-id="' . esc_attr( $p->id ) . '">' . esc_html( $p->get_title() ) . '</button>'; ?>
+                                <!-- Google Pay Button -->
+                                <div id="google-pay-button-<?php echo e($progetto->id); ?>" style="display: none;"></div>
 
-                                        <?php endif; ?>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <?php $__currentLoopData = $pagamenti_disponibili; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if($p->id === 'stripe'): ?>
+                                        <div id="card-element-container-<?php echo e($progetto->id); ?>">
+                                            <form id="payment-form-<?php echo e($progetto->id); ?>">
+                                                <div id="payment-element-<?php echo e($progetto->id); ?>"></div>
+                                            </form>
+                                        </div>
+                                    <?php else: ?>
+                                        <?php echo '<button data-gateway-id="' . esc_attr( $p->id ) . '">' . esc_html( $p->get_title() ) . '</button>'; ?>
+
+                                    <?php endif; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                                 </div>
                                 <div class="buttons flex justify-between flex-row">
                                     <button @click="step = 2" class="mt-4 min-w-32 rounded-full border-emerald-500 bg-custom-dark-green px-5 py-4 text-lg font-bold text-white transition hover:translate-y-1">

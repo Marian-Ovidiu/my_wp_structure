@@ -190,19 +190,21 @@
                             <div x-show="step === 3" class="w-full text-center">
                                 <p class="mt-8 font-serif text-xl font-bold text-custom-dark-green">{{load_static_strings('Dati della carta di credito')}}</p>
                                 <div class="mt-4 mx-auto grid grid-cols-1 gap-6 lg:max-w-xl">
-                                    @foreach($pagamenti_disponibili as $p)
-                                        @if($p->id === 'stripe')
-                                            <div id="card-element-container-{{$progetto->id}}">
-                                                <form id="payment-form-{{$progetto->id}}">
-                                                    <div id="payment-element-{{$progetto->id}}">
-                                                        <!-- Elemento di Stripe per la carta di credito -->
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        @else
-                                            {!! '<button data-gateway-id="' . esc_attr( $p->id ) . '">' . esc_html( $p->get_title() ) . '</button>' !!}
-                                        @endif
-                                    @endforeach
+                                <!-- Google Pay Button -->
+                                <div id="google-pay-button-{{$progetto->id}}" style="display: none;"></div>
+
+                                @foreach($pagamenti_disponibili as $p)
+                                    @if($p->id === 'stripe')
+                                        <div id="card-element-container-{{$progetto->id}}">
+                                            <form id="payment-form-{{$progetto->id}}">
+                                                <div id="payment-element-{{$progetto->id}}"></div>
+                                            </form>
+                                        </div>
+                                    @else
+                                        {!! '<button data-gateway-id="' . esc_attr( $p->id ) . '">' . esc_html( $p->get_title() ) . '</button>' !!}
+                                    @endif
+                                @endforeach
+
                                 </div>
                                 <div class="buttons flex justify-between flex-row">
                                     <button @click="step = 2" class="mt-4 min-w-32 rounded-full border-emerald-500 bg-custom-dark-green px-5 py-4 text-lg font-bold text-white transition hover:translate-y-1">
