@@ -1,1 +1,32 @@
+# Config locali e file sensibili
 wp-config.php
+.htaccess
+web.config
+
+# Cache e log
+wp-content/cache/
+wp-content/uploads/
+wp-content/debug.log
+wp-content/upgrade/
+wp-content/upgrade-temp-backup/
+wp-content/wc-logs/
+*.log
+
+# Plugin e temi di terze parti (se li installi da admin e non via git)
+wp-content/plugins/*
+!wp-content/plugins/mioplugin-custom/
+wp-content/themes/*
+!wp-content/themes/miotema-custom/
+
+# File di sistema
+.DS_Store
+Thumbs.db
+node_modules/
+vendor/
+
+# Backup o export
+*.sql
+*.zip
+*.tar.gz
+*.bak
+*.bk
