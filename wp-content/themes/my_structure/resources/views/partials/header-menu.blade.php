@@ -6,7 +6,7 @@ $options = \Models\Options\OpzioniGlobaliFields::get();
         <!-- lg+ -->
         <nav class="flex items-center justify-between h-16 lg:h-20">
             <div class="text-center flex flex-col items-center justify-between">
-                <a href="#" title="" class="flex">
+                <a href="" title="" class="flex">
                     <img class="w-auto h-12 lg:h-12" src="{{$options->logo['url']}}" alt="" />
                 </a>
                 <div class="text-custom-dark-green font-bold text-xs">Project Africa Conservation</div>
