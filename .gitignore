@@ -16,7 +16,7 @@ wp-content/wc-logs/
 wp-content/plugins/*
 !wp-content/plugins/mioplugin-custom/
 wp-content/themes/*
-!wp-content/themes/miotema-custom/
+!wp-content/themes/my_structure/
 
 # File di sistema
 .DS_Store
