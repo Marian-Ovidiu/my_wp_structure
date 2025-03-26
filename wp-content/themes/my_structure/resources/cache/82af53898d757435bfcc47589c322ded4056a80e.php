@@ -21,7 +21,7 @@
                 <div class="min-h-[1.5rem]">
                     <template x-for="(text, index) in texts" :key="index">
                         <p
-                                class="mt-4 text-base text-gray-200 "
+                                class="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl"
                                 x-text="currentText === index ? displayText : ''"
                                 x-show="currentText === index"
                                 x-transition.opacity
@@ -32,11 +32,16 @@
         </div>
     </section>
 
-    <?php echo $__env->make('components.testo-sottotesto',[
-         'titolo' => '',
-         'sottotitolo' => $fields->testo_sotto_hero
-     ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <input type="hidden" id="thank-you-url" value="<?php echo e($thankYouUrl); ?>">
+    <?php echo $__env->make('components.testo-sottotesto', [
+        'titolo' => '',
+        'sottotitolo' => $fields->testo_sotto_hero ?? null,
+        'immagine_url' => $fields->immagine_sotto_hero['url'] ?? null,
+        'immagine_alt' => $fields->immagine_sotto_hero['alt'] ?? null,
+        'immagine_title' => $fields->immagine_sotto_hero['title'] ?? null,
+        'immagine_caption' => $fields->immagine_sotto_hero['caption'] ?? null,
+        'immagine_description' => $fields->immagine_sotto_hero['description'] ?? null,
+    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <input type="hidden"a id="thank-you-url" value="<?php echo e($thankYouUrl); ?>">
     <?php $__currentLoopData = $fields->progetti; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $progetto): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <section class="<?php echo e($index === 0 ? 'py-10' : 'pb-10'); ?> sm:py-16 lg:py-24">
             <div class="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">

@@ -13,15 +13,15 @@ class ProgettoController extends BaseController
         $progetti = Progetto::all();
         $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
         $this->addJs('stripe', 'https://js.stripe.com/v3/', [], true);
-        $this->addJs('donation', 'donation.js', ['stripe'], true);
+        $this->addJs('stripe', 'donation.js', ['stripe'], true);
         $this->addJs('donation-gpay', 'google-pay.js', ['stripe'], true);
         $opzioniArchivio = OpzioniArchivioProgettoFields::get('option');
 
-        $this->addVarJs('donation', 'highlights', [
+        $this->addVarJs('highlights', 'highlights', [
             $opzioniArchivio->highlights_frase_1 ?? '',
             $opzioniArchivio->highlights_frase_2 ?? '',
             $opzioniArchivio->highlights_frase_3 ?? '',
-        ]);
+        ], true, 1.0);
 
         $this->render('archivio-progetto', [
             'progetti' => $progetti,

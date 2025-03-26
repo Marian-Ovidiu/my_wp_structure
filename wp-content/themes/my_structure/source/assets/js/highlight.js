@@ -1,6 +1,6 @@
-function typingEffect() {
+export default function typingEffect() {
     return {
-        texts: highlights, // Array con solo le parole da digitare
+        texts: ['una missione', 'una passione', 'una dedizione'], // Array con solo le parole da digitare
         currentText: 0,
         displayText: "",
         speed: 100, // Velocità di digitazione (in ms)

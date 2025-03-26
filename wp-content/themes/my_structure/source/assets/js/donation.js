@@ -1,5 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
-function donationFormData(progettoId) {
+export default function donationFormData(progettoId) {
     return {
         step: 1,
         selectedAmount: null,
@@ -23,22 +22,23 @@ function donationFormData(progettoId) {
                 'amount': selectedDonationAmount, 
                 'progetto_id': progettoId 
             }).then(response => {
+                this.loading = false;
+                this.step = 3;
                 this.clientSecret = response.clientSecret;
-                this.stripe = Stripe('pk_live_xxxxx'); // Usa la tua chiave pubblica Stripe
+                this.stripe = Stripe('pk_live_51QQqzmP9ji9EUZt5LkB8kShCP2rhsd195h5SlYAzUb3gGabZ8R8Uinp0TiDGKXqFsBu7oCPVL7of79NbNSGrAr3u00xFyOm6u8'); // Usa la tua chiave pubblica Stripe
         
                 this.elements = this.stripe.elements({
                     clientSecret: this.clientSecret,
                     paymentMethodCreation: 'manual'
                 });
         
-                const paymentElement = this.elements.create('payment');
-                paymentElement.mount('#payment-element-' + progettoId);
+                setTimeout(() => {
+                    const paymentElement = this.elements.create('payment');
+                    paymentElement.mount('#payment-element-' + progettoId);
+                }, 50);
         
                 // ✅ Configura il pulsante Google Pay
                 this.setupGooglePay(selectedDonationAmount);
-        
-                this.loading = false;
-                this.step = 3;
             }).catch(error => {
                 console.error('Errore nella richiesta:', error);
             });
@@ -121,4 +121,3 @@ function donationFormData(progettoId) {
         }
     };
 }
-});

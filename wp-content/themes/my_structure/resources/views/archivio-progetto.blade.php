@@ -21,7 +21,7 @@
                 <div class="min-h-[1.5rem]">
                     <template x-for="(text, index) in texts" :key="index">
                         <p
-                                class="mt-4 text-base text-gray-200 "
+                                class="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl"
                                 x-text="currentText === index ? displayText : ''"
                                 x-show="currentText === index"
                                 x-transition.opacity
@@ -32,11 +32,16 @@
         </div>
     </section>
 
-    @include('components.testo-sottotesto',[
-         'titolo' => '',
-         'sottotitolo' => $fields->testo_sotto_hero
-     ])
-    <input type="hidden" id="thank-you-url" value="{{ $thankYouUrl }}">
+    @include('components.testo-sottotesto', [
+        'titolo' => '',
+        'sottotitolo' => $fields->testo_sotto_hero ?? null,
+        'immagine_url' => $fields->immagine_sotto_hero['url'] ?? null,
+        'immagine_alt' => $fields->immagine_sotto_hero['alt'] ?? null,
+        'immagine_title' => $fields->immagine_sotto_hero['title'] ?? null,
+        'immagine_caption' => $fields->immagine_sotto_hero['caption'] ?? null,
+        'immagine_description' => $fields->immagine_sotto_hero['description'] ?? null,
+    ])
+    <input type="hidden"a id="thank-you-url" value="{{ $thankYouUrl }}">
     @foreach($fields->progetti as $index => $progetto)
         <section class="{{$index === 0 ? 'py-10' : 'pb-10'}} sm:py-16 lg:py-24">
             <div class="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">

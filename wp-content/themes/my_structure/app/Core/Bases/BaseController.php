@@ -45,9 +45,14 @@ abstract class BaseController
     protected function addVarJs($handle, $var_name, $data, $in_footer = false, $ver = false)
     {
         add_action('wp_enqueue_scripts', function () use ($handle, $var_name, $data, $ver, $in_footer) {
+            // Enqueue lo script (deve essere registrato o già enqueued altrove)
+            wp_enqueue_script($handle, false, [], $ver, $in_footer);
+    
+            // Localizzazione delle variabili
             wp_localize_script($handle, $var_name, $data);
         });
     }
+    
 
     protected function render($view, $data = [])
     {
