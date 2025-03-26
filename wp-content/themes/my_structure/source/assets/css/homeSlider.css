@@ -6,7 +6,6 @@
 
 }
 
-.sw-wrapper-linear,
 .sw-wrapper-linear-custom,
 .swiper-wrapper {
     max-height: 100% !important;
@@ -18,7 +17,6 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: calc(100% - 140px) /* Important: riempie l’altezza dello slider */
 }
 
 /* Sezione con background image */
