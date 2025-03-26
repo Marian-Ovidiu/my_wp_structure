@@ -1,5 +1,5 @@
 <div class="w-full relative h-[75vh]">
-    <div class="swiper-container logo-carousel h-[65vh]">
+    <div class="swiper-container h-[65vh]">
         <div class="swiper-wrapper sw-wrapper-linear-custom h-full !h-full" aria-live="polite">
             @foreach($slides as $slide)
                 @if($slide['url'] && $slide['titolo'] && $slide['testo'])
