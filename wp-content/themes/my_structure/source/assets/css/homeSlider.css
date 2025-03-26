@@ -9,7 +9,7 @@
 .sw-wrapper-linear,
 .sw-wrapper-linear-custom,
 .swiper-wrapper {
-    height: 100%;
+    height: 100% !important;
 }
 
 /* Le singole slide occupano 100% dell’altezza */
