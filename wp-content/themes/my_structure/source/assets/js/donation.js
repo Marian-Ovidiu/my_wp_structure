@@ -40,7 +40,7 @@ export default function donationFormData(progettoId, thankYouUrl) {
                 });
 
                 this.clientSecret = res.clientSecret;
-                this.stripe = Stripe('pk_live_...'); // <-- sostituisci con la tua public key live o test
+                this.stripe = Stripe('pk_live_51QQqzmP9ji9EUZt5LkB8kShCP2rhsd195h5SlYAzUb3gGabZ8R8Uinp0TiDGKXqFsBu7oCPVL7of79NbNSGrAr3u00xFyOm6u8');
                 this.elements = this.stripe.elements({ clientSecret: this.clientSecret });
 
                 // Prima cambia lo step, così Alpine renderizza il DOM giusto
