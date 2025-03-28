@@ -35,7 +35,7 @@
                 </h1>
 
                 {{-- Frasi emozionali animate sotto l'H1 --}}
-                <div x-data="typingEffect({{ json_encode($typingTextHero) }})" class="h-10 sm:h-12 overflow-hidden">
+                <div x-data="typingEffect({{ json_encode($typingTextHero) }})" class="inline-block mx-auto text-center">
                     <template x-for="(text, index) in texts" :key="index">
                         <p x-show="currentText === index" x-text="displayText"
                             class="text-xl sm:text-2xl lg:text-3xl font-medium text-white" x-transition.opacity></p>
