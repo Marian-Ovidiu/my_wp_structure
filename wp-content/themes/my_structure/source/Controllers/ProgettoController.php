@@ -16,8 +16,7 @@ class ProgettoController extends BaseController
         $this->addJs('stripe', 'donation.js', ['stripe'], true);
         $this->addJs('donation-gpay', 'google-pay.js', ['stripe'], true);
         $opzioniArchivio = OpzioniArchivioProgettoFields::get('option');
-
-        $this->addVarJs('highlights', 'highlights', [
+        $this->addVarJs('texts', 'texts', [
             $opzioniArchivio->highlights_frase_1 ?? '',
             $opzioniArchivio->highlights_frase_2 ?? '',
             $opzioniArchivio->highlights_frase_3 ?? '',

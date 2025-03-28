@@ -1,33 +1,33 @@
-export default function typingEffect() {
+export default function typingEffect(passedTexts = []) {
     return {
-        texts: ['una missione', 'una passione', 'una dedizione'], // Array con solo le parole da digitare
+        texts: passedTexts,
         currentText: 0,
         displayText: "",
-        speed: 100, // Velocità di digitazione (in ms)
-        pauseBetweenTexts: 1000,
+        speed: 100,
+        pauseBetweenTexts: 1500,
+
         startTyping() {
-            this.displayText = ""; // Resetta il testo visualizzato
-            let fullText = this.texts[this.currentText];
+            this.displayText = "";
+            const fullText = this.texts[this.currentText] || "";
             let i = 0;
 
-            let typingInterval = setInterval(() => {
+            const type = () => {
                 if (i < fullText.length) {
-                    this.displayText += fullText[i];
-                    i++;
+                    this.displayText += fullText[i++];
+                    setTimeout(type, this.speed);
                 } else {
-                    clearInterval(typingInterval);
                     setTimeout(() => {
-                        this.currentText++;
-                        if (this.currentText >= this.texts.length) {
-                            this.currentText = 0; // Ritorna al primo testo
-                        }
+                        this.currentText = (this.currentText + 1) % this.texts.length;
                         this.startTyping();
-                    }, this.pauseBetweenTexts); // Ritardo prima del prossimo testo
+                    }, this.pauseBetweenTexts);
                 }
-            }, this.speed);
+            };
+
+            type();
         },
+
         init() {
-            this.startTyping();
+            if (this.texts.length) this.startTyping();
         }
     };
 }

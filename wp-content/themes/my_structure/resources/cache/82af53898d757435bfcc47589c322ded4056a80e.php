@@ -1,174 +1,323 @@
-<?php
-/**
- * @var \Models\Progetti[] $fields
- */
-?>
-<?php
-    $thankYouUrl = get_permalink(pll_get_post(412, pll_current_language()));
-?>
-
-
 <?php $__env->startSection('content'); ?>
-    <section class="relative py-10 overflow-hidden bg-black sm:py-16 lg:py-24 xl:py-32">
-        <div class="absolute inset-0">
-            <img class="object-cover w-full h-full md:object-left md:scale-150 md:origin-top-left" src="<?php echo e($fields->immagine_hero['url']); ?>" alt="" />
-        </div>
-        <div class="absolute inset-0 hidden bg-gradient-to-r md:block from-black to-transparent"></div>
-        <div class="absolute inset-0 block bg-black/60 md:hidden"></div>
-        <div class="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl" x-data="typingEffect()">
-            <div class="text-center md:w-2/3 lg:w-1/2 xl:w-1/3 md:text-left">
-                <h2 class="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl"><?php echo e($fields->titolo_hero); ?></h2>
-                <div class="min-h-[1.5rem]">
+    <?php
+        $thankYouUrl = get_permalink(pll_get_post(412, pll_current_language()));
+        $img = $opzioniArchivio->immagine_hero ?? [];
+
+        // Separati i due gruppi di frasi per animazioni diverse
+        $typingTextHero = array_filter(['una missione', 'una passione', 'una dedizione']);
+
+        $typingTitoliH3 = array_filter([
+            $opzioniArchivio->highlights_frase_1 ?? null,
+            $opzioniArchivio->highlights_frase_2 ?? null,
+            $opzioniArchivio->highlights_frase_3 ?? null,
+        ]);
+    ?>
+
+    
+    <section class="relative bg-black">
+        <?php if(!empty($img['url'])): ?>
+            <div class="absolute inset-0 z-0">
+                <img src="<?php echo e($img['url']); ?>" alt="<?php echo e($img['alt'] ?? ''); ?>" title="<?php echo e($img['title'] ?? ''); ?>"
+                    width="<?php echo e($img['width'] ?? ''); ?>" height="<?php echo e($img['height'] ?? ''); ?>"
+                    aria-label="<?php echo e($img['description'] ?? ($img['alt'] ?? '')); ?>" loading="lazy"
+                    class="w-full h-full object-cover brightness-[.7] transition-all duration-300 ease-in-out" />
+            </div>
+        <?php endif; ?>
+
+        <div class="absolute inset-0 bg-black/10 sm:bg-black/20 z-10"></div>
+
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36">
+            <div class="text-center sm:text-left max-w-3xl">
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-md mb-4 leading-tight">
+                    <?php echo e($opzioniArchivio->titolo_hero); ?>
+
+                </h1>
+
+                
+                <div x-data="typingEffect(<?php echo e(json_encode($typingTextHero)); ?>)" class="h-10 sm:h-12 overflow-hidden">
                     <template x-for="(text, index) in texts" :key="index">
-                        <p
-                                class="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl"
-                                x-text="currentText === index ? displayText : ''"
-                                x-show="currentText === index"
-                                x-transition.opacity
-                        ></p>
+                        <p x-show="currentText === index" x-text="displayText"
+                            class="text-xl sm:text-2xl lg:text-3xl font-medium text-white" x-transition.opacity></p>
                     </template>
                 </div>
             </div>
         </div>
     </section>
 
+    <div class="container flex justify-center pt-6">
+        
+        <h3 class="sr-only"><?php echo e($typingTitoliH3[0] ?? ''); ?></h3> 
+
+        
+        <div x-data="typingEffect(<?php echo e(json_encode($typingTitoliH3)); ?>)" class="mb-2 h-8 text-center">
+            <template x-for="(text, index) in texts" :key="index">
+                <span x-show="currentText === index" x-text="displayText"
+                    class="text-lg sm:text-xl lg:text-2xl font-semibold text-custom-dark-green" x-transition.opacity></span>
+            </template>
+            <span class="text-lg sm:text-xl lg:text-2xl text-custom-dark-green animate-blink">|</span>
+        </div>
+    </div>
+
+
+    
     <?php echo $__env->make('components.testo-sottotesto', [
         'titolo' => '',
-        'sottotitolo' => $fields->testo_sotto_hero ?? null,
-        'immagine_url' => $fields->immagine_sotto_hero['url'] ?? null,
-        'immagine_alt' => $fields->immagine_sotto_hero['alt'] ?? null,
-        'immagine_title' => $fields->immagine_sotto_hero['title'] ?? null,
-        'immagine_caption' => $fields->immagine_sotto_hero['caption'] ?? null,
-        'immagine_description' => $fields->immagine_sotto_hero['description'] ?? null,
+        'sottotitolo' => $opzioniArchivio->testo_sotto_hero,
+        'immagine_url' => $opzioniArchivio->immagine_sotto_hero['url'] ?? null,
+        'immagine_alt' => $opzioniArchivio->immagine_sotto_hero['alt'] ?? null,
+        'immagine_title' => $opzioniArchivio->immagine_sotto_hero['title'] ?? null,
+        'immagine_caption' => $opzioniArchivio->immagine_sotto_hero['caption'] ?? null,
+        'immagine_description' => $opzioniArchivio->immagine_sotto_hero['description'] ?? null,
     ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <input type="hidden"a id="thank-you-url" value="<?php echo e($thankYouUrl); ?>">
-    <?php $__currentLoopData = $fields->progetti; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $progetto): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <section class="<?php echo e($index === 0 ? 'py-10' : 'pb-10'); ?> sm:py-16 lg:py-24">
+    
+
+    
+    <?php $__currentLoopData = $progetti; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $progetto): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <section class="py-10 sm:py-16 lg:py-24">
             <div class="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:items-stretch md:grid-cols-2 gap-y-5">
-                    <div class="h-full flex flex-col justify-center <?php echo e($index % 2 !== 0 ? 'md:order-last' : ''); ?>">
-                        <div class="relative h-full py-10">
-                            <div class="absolute inset-0">
-                                <img class="object-cover w-full h-full md:object-left md:origin-top-left" src="<?php echo e($progetto->featured_image); ?>" alt="" />
-                            </div>
-                            <div class="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-                                <div class="text-center md:text-left">
-                                    <h3 class="font-bold leading-tight text-white text-4xl lg:text-5xl"><?php echo e($progetto->titolo_card); ?></h3>
-                                    <p class="mt-4 text-base text-gray-200"><?php echo $progetto->content; ?></p>
-                                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 md:items-stretch gap-y-5">
+                    <figure class="relative">
+                        
+                        <img src="<?php echo e($progetto->featured_image); ?>" alt="<?php echo e($progetto->titolo_card); ?>"
+                            title="<?php echo e($progetto->titolo_card); ?>" class="object-cover w-full h-full md:object-left md:origin-top-left"
+                            loading="lazy" decoding="async" />
+            
+                        
+                        <div class="absolute inset-0 bg-black/10 sm:bg-black/20 z-10"></div>
+            
+                        
+                        <?php if(!empty($progetto->immagine_card['caption'])): ?>
+                            <figcaption class="absolute bottom-0 left-0 bg-black/60 text-white text-xs italic p-2 z-20">
+                                <?php echo e($progetto->immagine_card['caption']); ?>
+
+                            </figcaption>
+                        <?php endif; ?>
+            
+                        
+                        <?php if(!empty($progetto->immagine_card['description'])): ?>
+                            <div class="sr-only"><?php echo e($progetto->immagine_card['description']); ?></div>
+                        <?php endif; ?>
+            
+                        
+                        <div class="absolute inset-0 z-20 flex items-center justify-center md:justify-start px-4 sm:px-6 lg:px-8">
+                            <div class="max-w-3xl text-center md:text-left">
+                                <h4 class="font-bold text-white text-3xl lg:text-4xl leading-tight">
+                                    <?php echo e($progetto->titolo_card); ?>
+
+                                </h4>
+                                <p class="mt-4 text-sm text-gray-200"><?php echo $progetto->content; ?></p>
                             </div>
                         </div>
-                    </div>
+                    </figure>
 
-                    <div class="h-full">
-                        <div class="container mx-auto" x-data="donationFormData(<?php echo e($progetto->id); ?>)" x-ref="donationForm" id="<?php echo e($progetto->id); ?>">
-                            <div class="mx-auto flex justify-center flex-col items-center max-w-screen-lg px-6">
-                                <!-- Step 1: Selezione dell'importo -->
-                                <div class="w-full text-center" x-show="step === 1">
-                                    <p class="font-serif text-xl font-bold text-custom-dark-green"><?php echo e(load_static_strings('Scegli quanto donare')); ?></p>
-                                    <div class="mt-4 mx-auto grid grid-cols-2 gap-2 lg:max-w-xl">
-                                        <template x-for="amount in [20, 50, 80, 150]" :key="amount">
-                                            <button
-                                                    @click="selectedAmount = amount; customAmount = ''"
-                                                    :class="selectedAmount === amount && !customAmount ? 'bg-custom-dark-green text-white' : 'bg-custom-light-green text-custom-dark-green'"
-                                                    class="rounded-lg px-4 py-2 font-medium active:scale-95"
-                                                    x-text="amount + '€'"
-                                            ></button>
-                                        </template>
-                                    </div>
-                                </div>
 
-                                <!-- Step 1: Importo personalizzato -->
-                                <div class="w-full text-center" x-show="step === 1">
-                                    <p class="mt-8 font-serif text-xl font-bold text-custom-dark-green"><?php echo e(load_static_strings('Oppure scegli tu l\'importo')); ?></p>
-                                    <div class="w-full mx-auto md:w-1/2 px-3 mb-2 md:mb-0 flex flex-row justify-center items-center mt-4">
-                                        <input x-model="customAmount" @input="selectedAmount = null" class="appearance-none block w-full rounded py-3 px-4 mb-3 leading-tight" type="number" placeholder="<?php echo e(load_static_strings('Scegli importo')); ?>">
-                                        <div class="decimals h-full px-4">,00</div>
-                                    </div>
-                                </div>
+                    
+                    <div x-data="donationFormData" x-init="init(<?php echo e($progetto->id); ?>, '<?php echo e($thankYouUrl); ?>')"
+                        class="w-full max-w-xl mx-auto bg-white rounded-xl shadow-xl p-6">
+                        
+                        <div class="flex justify-between mb-6 text-sm font-semibold text-custom-dark-green">
+                            <template x-for="(label, i) in ['Importo', 'Dati', 'Pagamento']" :key="i">
+                                <button class="flex-1 text-center focus:outline-none" @click="goToStep(i+1)"
+                                    :class="{
+                                        'border-b-4 border-custom-dark-green pb-2 text-custom-dark-green': step ===
+                                            i +
+                                            1,
+                                        'text-gray-400 cursor-not-allowed': (i + 1 > step),
+                                        'hover:text-custom-dark-green': (i + 1 <= step)
+                                    }"
+                                    type="button">
+                                    <span x-text="label"></span>
+                                </button>
+                            </template>
+                        </div>
 
-                                <!-- Pulsante per avanzare allo step 2 dal primo step -->
-                                <div  x-show="step === 1" class="buttons flex justify-between flex-row w-full text-center">
-                                    <a href="<?php echo e($progetto->url); ?>">
-                                        <button class="mt-4 min-w-32 rounded-full border-emerald-500 bg-custom-dark-green px-5 py-4 text-lg font-bold text-white transition hover:translate-y-1">
-                                            <?php echo e(load_static_strings('Scopri di più')); ?>
+                        <h2 class="text-2xl font-bold text-custom-dark-green mb-4">
+                            <?php echo e(load_static_strings('Fai una donazione al nostro progetto')); ?>
 
+                        </h2>
+
+                        
+                        <template x-if="step === 1">
+                            <div>
+                                <p class="text-xl font-bold text-custom-dark-green mb-4">
+                                    <?php echo e(load_static_strings('Quanto vuoi donare?')); ?></p>
+
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                    <template x-for="amount in [5, 25, 50, 100]" :key="amount">
+                                        <button @click="selectedAmount = amount; customAmount = ''; showAmountError = false"
+                                            :class="selectedAmount === amount && !customAmount ?
+                                                'bg-custom-dark-green text-white' :
+                                                'bg-custom-light-green text-custom-dark-green'"
+                                            class="rounded-lg px-4 py-2 font-medium text-center transition duration-200 active:scale-95"
+                                            x-text="amount + '€'">
                                         </button>
-                                    </a>
-                                    <button @click="step = 2"
-                                            :disabled="!(selectedAmount || customAmount)"
-                                            :class="(selectedAmount || customAmount) ? 'bg-custom-dark-green hover:translate-y-1' : 'bg-gray-400 cursor-not-allowed'"
-                                            class="mt-4 min-w-32 rounded-full border-emerald-500 px-5 py-4 text-lg font-bold text-white transition">
+                                    </template>
+                                </div>
+
+                                <p class="mt-6 text-custom-dark-green font-semibold">
+                                    <?php echo e(load_static_strings('Oppure inserisci un importo personalizzato')); ?></p>
+
+                                <div class="flex items-center mt-3">
+                                    <input x-model="customAmount" @input="selectedAmount = null; showAmountError = false"
+                                        type="number" min="1"
+                                        placeholder="<?php echo e(load_static_strings('Inserisci importo')); ?>"
+                                        class="flex-1 rounded-l px-4 py-2 border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-custom-dark-green">
+                                    <span class="bg-gray-100 px-3 py-2 rounded-r border border-gray-300 text-gray-700">,00
+                                        €</span>
+                                </div>
+
+                                <template x-if="showAmountError">
+                                    <p class="text-red-600 mt-2">
+                                        <?php echo e(load_static_strings('Seleziona o inserisci un importo valido')); ?></p>
+                                </template>
+
+                                <div class="mt-6 flex justify-end">
+                                    <button @click.prevent="goToStep(2)" :disabled="!isAmountValid()"
+                                        class="rounded-full px-6 py-3 font-bold text-white transition"
+                                        :class="isAmountValid() ? 'bg-custom-dark-green hover:translate-y-1' :
+                                            'bg-gray-400 cursor-not-allowed'">
                                         <?php echo e(load_static_strings('Avanti')); ?>
 
                                     </button>
                                 </div>
+                            </div>
+                        </template>
 
+                        
+                        <template x-if="step === 2">
+                            <div>
+                                <p class="text-xl font-bold text-custom-dark-green mb-4">
+                                    <?php echo e(load_static_strings('I tuoi dati')); ?>
 
-                                <!-- Step 2: Dettagli di fatturazione -->
-                                <div x-show="step === 2" class="w-full text-center">
-                                    <p class="mt-8 font-serif text-xl font-bold text-custom-dark-green"><?php echo e(load_static_strings('Dettagli di fatturazione')); ?></p>
-                                    <div class="mt-4 mx-auto grid grid-cols-1 gap-6 lg:max-w-xl">
-                                        <input x-model="formData.name" type="text" placeholder="<?php echo e(load_static_strings('Nome')); ?>" name="name" required class="w-full rounded-lg border-gray-300 px-4 py-2"/>
-                                        <input x-model="formData.surname" type="text" placeholder="<?php echo e(load_static_strings('Cognome')); ?>" name="surname" required class="w-full rounded-lg border-gray-300 px-4 py-2"/>
-                                        <input x-model="formData.phone" type="number" placeholder="<?php echo e(load_static_strings('Numero di telefono')); ?>" name="phone" class="w-full rounded-lg border-gray-300 px-4 py-2"/>
-                                        <input x-model="formData.email" type="email" placeholder="<?php echo e(load_static_strings('Email')); ?>" name="email" required class="w-full rounded-lg border-gray-300 px-4 py-2"/>
-                                        <input x-model="formData.codiceFiscale" type="text" placeholder="<?php echo e(load_static_strings('Codice Fiscale')); ?>" name="codiceFiscale" class="w-full rounded-lg border-gray-300 px-4 py-2"/>
+                                </p>
+
+                                <div class="grid gap-4 text-left" @submit.prevent>
+                                    
+                                    <div>
+                                        <input x-model="formData.name" @blur="touched.name = true" type="text"
+                                            autocomplete="given-name" required
+                                            placeholder="<?php echo e(load_static_strings('Nome')); ?>" class="input-field w-full"
+                                            aria-label="Nome">
+                                        <template x-if="touched.name && formData.name === ''">
+                                            <p class="text-red-500 text-sm mt-1">
+                                                <?php echo e(load_static_strings('Il nome è obbligatorio')); ?>
+
+                                            </p>
+                                        </template>
                                     </div>
-                                    <div class="buttons flex justify-between flex-row">
-                                        <button @click="step = 1" class="mt-4 min-w-32 rounded-full border-emerald-500 bg-custom-dark-green px-5 py-4 text-lg font-bold text-white transition hover:translate-y-1">
-                                            <?php echo e(load_static_strings('Indietro')); ?>
 
-                                        </button>
-                                        <button
-                                                @click="createIntent()"
-                                                id="call-intent"
-                                                :disabled="!(formData.name && formData.surname && formData.email && formData.phone)"
-                                                :class="(formData.name && formData.surname && formData.email && formData.phone) ? 'bg-custom-dark-green hover:translate-y-1' : 'bg-gray-400 cursor-not-allowed'"
-                                                class="mt-4 min-w-32 rounded-full border-emerald-500 px-5 py-4 text-lg font-bold text-white transition">
-                                            <span x-show="!loading"><?php echo e(load_static_strings('Avanti')); ?></span>
-                                            <span x-show="loading" class="loader"></span>
-                                        </button>
+                                    
+                                    <div>
+                                        <input x-model="formData.surname" @blur="touched.surname = true" type="text"
+                                            autocomplete="family-name" required
+                                            placeholder="<?php echo e(load_static_strings('Cognome')); ?>" class="input-field w-full"
+                                            aria-label="Cognome">
+                                        <template x-if="touched.surname && formData.surname === ''">
+                                            <p class="text-red-500 text-sm mt-1">
+                                                <?php echo e(load_static_strings('Il cognome è obbligatorio')); ?>
+
+                                            </p>
+                                        </template>
+                                    </div>
+
+                                    
+                                    <div>
+                                        <input x-model="formData.email" @blur="touched.email = true" type="email"
+                                            autocomplete="email" required
+                                            placeholder="<?php echo e(load_static_strings('Email')); ?>" class="input-field w-full"
+                                            aria-label="Email">
+                                        <template
+                                            x-if="touched.email && (formData.email === '' || !formData.email.includes('@'))">
+                                            <p class="text-red-500 text-sm mt-1">
+                                                <?php echo e(load_static_strings('Inserisci un’email valida')); ?>
+
+                                            </p>
+                                        </template>
+                                    </div>
+
+                                    
+                                    <div>
+                                        <input x-model="formData.phone" @blur="touched.phone = true" type="tel"
+                                            autocomplete="tel" required
+                                            placeholder="<?php echo e(load_static_strings('Telefono')); ?>"
+                                            class="input-field w-full" aria-label="Telefono">
+                                        <template x-if="touched.phone && formData.phone === ''">
+                                            <p class="text-red-500 text-sm mt-1">
+                                                <?php echo e(load_static_strings('Il telefono è obbligatorio')); ?>
+
+                                            </p>
+                                        </template>
+                                    </div>
+
+                                    
+                                    <div>
+                                        <label for="cf" class="block text-sm text-gray-600 mb-1">
+                                            <?php echo e(load_static_strings('Codice Fiscale')); ?>
+
+                                            <span class="text-xs text-gray-400 ml-1">
+                                                (<?php echo e(load_static_strings('opzionale')); ?>)
+                                            </span>
+                                        </label>
+                                        <input id="cf" x-model="formData.codiceFiscale" type="text"
+                                            placeholder="<?php echo e(load_static_strings('Codice Fiscale')); ?>"
+                                            class="input-field w-full" aria-label="Codice Fiscale">
                                     </div>
                                 </div>
 
-                               <!-- Step 3: Dati della carta di credito -->
-                                <div x-show="step === 3" class="w-full text-center">
-                                    <p class="mt-8 font-serif text-xl font-bold text-custom-dark-green"><?php echo e(load_static_strings('Dati della carta di credito')); ?></p>
-                                    <div class="mt-4 mx-auto grid grid-cols-1 gap-6 lg:max-w-xl">
-                                        <!-- Google Pay Button -->
-                                        <div id="google-pay-button-<?php echo e($progetto->id); ?>" style="display: none;"></div>
+                                <div class="mt-6 flex justify-between">
+                                    <button @click="step = 1"
+                                        class="rounded-full px-6 py-3 bg-gray-200 text-custom-dark-green font-semibold hover:bg-gray-300">
+                                        <?php echo e(load_static_strings('Indietro')); ?>
 
-                                        <?php $__currentLoopData = $pagamenti_disponibili; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <?php if($p->id === 'stripe'): ?>
-                                                <div id="card-element-container-<?php echo e($progetto->id); ?>">
-                                                    <form id="payment-form-<?php echo e($progetto->id); ?>">
-                                                        <div id="payment-element-<?php echo e($progetto->id); ?>"></div>
-                                                    </form>
-                                                </div>
-                                            <?php else: ?>
-                                                <?php echo '<button data-gateway-id="' . esc_attr( $p->id ) . '">' . esc_html( $p->get_title() ) . '</button>'; ?>
+                                    </button>
 
-                                            <?php endif; ?>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </div>
-                                    <div class="buttons flex justify-between flex-row">
-                                        <button @click="step = 2" class="mt-4 min-w-32 rounded-full border-emerald-500 bg-custom-dark-green px-5 py-4 text-lg font-bold text-white transition hover:translate-y-1">
-                                            <?php echo e(load_static_strings('Indietro')); ?>
+                                    <button
+                                        @click="touched.name = true; touched.surname = true; touched.email = true; touched.phone = true; goToStep(3)"
+                                        :disabled="!isUserDataValid()"
+                                        class="rounded-full px-6 py-3 font-bold text-white transition"
+                                        :class="isUserDataValid() ? 'bg-custom-dark-green hover:translate-y-1' :
+                                            'bg-gray-400 cursor-not-allowed'">
+                                        <?php echo e(load_static_strings('Procedi al pagamento')); ?>
 
-                                        </button>
-                                        <button @click="submitForm()" class="mt-4 min-w-32 rounded-full border-emerald-500 px-5 py-4 text-lg font-bold text-white transition bg-custom-dark-green hover:translate-y-1">
-                                            <?php echo e(load_static_strings('Dona ora')); ?>
-
-                                        </button>
-                                    </div>
+                                    </button>
                                 </div>
                             </div>
-                        </div>
+                        </template>
+
+                        
+                        <template x-if="step === 3">
+                            <div>
+                                <p class="text-xl font-bold text-custom-dark-green mb-4">
+                                    <?php echo e(load_static_strings('Metodo di pagamento')); ?></p>
+
+                                <div class="mb-6" :id="'google-pay-button-' + progettoId" style="display: none;">
+                                </div>
+                                <div :id="'card-element-container-' + progettoId">
+                                    <form :id="'payment-form-' + progettoId">
+                                        <div :id="'payment-element-' + progettoId"></div>
+                                    </form>
+                                </div>
+
+                                <div class="mt-6 flex justify-between">
+                                    <button @click="step = 2"
+                                        class="rounded-full px-6 py-3 bg-gray-200 text-custom-dark-green font-semibold hover:bg-gray-300">
+                                        <?php echo e(load_static_strings('Indietro')); ?>
+
+                                    </button>
+                                    <button @click="submitForm()"
+                                        class="rounded-full px-6 py-3 bg-custom-dark-green text-white font-bold hover:translate-y-1 transition">
+                                        <?php echo e(load_static_strings('Dona ora')); ?>
+
+                                    </button>
+                                </div>
+                            </div>
+                        </template>
                     </div>
                 </div>
             </div>
         </section>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.mainLayout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/editweb2/Sites/01progetti-test/pac/wp-content/themes/my_structure/resources/views/archivio-progetto.blade.php ENDPATH**/ ?>

@@ -4,4 +4,4 @@
  Template Post Type: page
  */
 
-Controllers\PageController::call('progetti');
+Controllers\ProgettoController::call('archive');
