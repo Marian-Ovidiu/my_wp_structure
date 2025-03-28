@@ -33,7 +33,14 @@ abstract class BaseController
         if (filter_var($src, FILTER_VALIDATE_URL) && preg_match('/^https?:\/\//', $src)) {
             $fullSrc = $src;
         } else {
-            $fullSrc = get_template_directory_uri() . '/source/assets/js/' . ltrim($src, '/');
+            $relativePath = '/source/assets/js/' . ltrim($src, '/');
+            $fullSrc = get_template_directory_uri() . $relativePath;
+            if (!$ver) {
+                $filePath = get_template_directory() . $relativePath;
+                if (file_exists($filePath)) {
+                    $ver = filemtime($filePath);
+                }
+            }
         }
 
         add_action('wp_enqueue_scripts', function () use ($handle, $fullSrc, $deps, $ver, $in_footer) {
