@@ -5,221 +5,275 @@
 ?>
 @php
     $thankYouUrl = get_permalink(pll_get_post(412, pll_current_language()));
+    $img = $progetto->immagine_hero ?? [];
 @endphp
 @extends('layouts.mainLayout')
 @section('content')
-    <section class="relative py-10 overflow-hidden bg-black sm:py-16 lg:py-24 xl:py-32">
-        <div class="absolute inset-0">
-            <img class="object-cover w-full h-full md:object-left md:scale-150 md:origin-top-left" src="{{$progetto->immagine_hero['url']}}" alt="" />
+    {{-- Hero --}}
+    <section class="relative">
+        <div class="absolute inset-0 -z-10">
+            <img src="{!! $img['url'] !!}" alt="{{ $img['alt'] ?? $progetto->titolo_hero }}"
+                class="w-full h-full object-cover object-top" loading="eager" decoding="async" width="1920" height="1080">
+            <div class="absolute inset-0 bg-black/25"></div>
         </div>
-        <div class="absolute inset-0 hidden bg-gradient-to-r md:block from-black to-transparent"></div>
-        <div class="absolute inset-0 block bg-black/60 md:hidden"></div>
-        <div class="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl" x-data="typingEffect()">
-            <div class="text-center md:w-2/3 lg:w-1/2 xl:w-1/2 md:text-left">
-                <h1 class="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">{{$progetto->titolo_hero}}</h1>
-                <div class="min-h-[1.5rem] mt-4 text-base text-gray-200 ">
+
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 sm:py-40">
+            <div
+                class="max-w-3xl mx-auto text-center sm:text-left rounded-xl px-6 py-8 shadow-2xl">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight drop-shadow-xl">
+                    {{ $progetto->titolo_hero }}
+                </h1>
+                <div class="mt-6 text-base sm:text-lg text-gray-200 prose prose-invert max-w-none">
                     {!! $progetto->testo_hero !!}
                 </div>
             </div>
         </div>
     </section>
+    {{-- Fine Hero --}}
 
-    <section class="container bg-white flex-column lg:flex lg:flex-row mx-auto">
-        <div class="container px-6 mx-auto">
-            @component('components.section', ['titolo' => $progetto->problemi_titolo_1, 'items' => [
-                [
-                    'sottoTitolo' => $progetto->problemi_sotto_titolo_1,
-                    'testo' => $progetto->problemi_testo_1,
-                    'immagini' => [
-                        $progetto->problemi_immagine_1_1,
-                        $progetto->problemi_immagine_1_2,
-                        $progetto->problemi_immagine_1_3,
-                    ]
-                ],
-                [
-                    'sottoTitolo' => $progetto->problemi_sotto_titolo_2,
-                    'testo' => $progetto->problemi_testo_2,
-                    'immagini' => [
-                        $progetto->problemi_immagine_2_1,
-                        $progetto->problemi_immagine_2_2,
-                        $progetto->problemi_immagine_2_3,
-                    ]
-                ],
-                [
-                    'sottoTitolo' => $progetto->problemi_sotto_titolo_3,
-                    'testo' => $progetto->problemi_testo_3,
-                    'immagini' => [
-                        $progetto->problemi_immagine_3_1,
-                        $progetto->problemi_immagine_3_2,
-                        $progetto->problemi_immagine_3_3,
-                    ]
-                ]
-            ]])
-            @endcomponent
-        </div>
-        <div class="container px-6 mx-auto">
-            @component('components.section', ['titolo' => $progetto->soluzioni_titolo_1, 'items' => [
-                           [
-                               'sottoTitolo' => $progetto->soluzioni_sotto_titolo_1,
-                               'testo' => $progetto->soluzioni_testo_1,
-                               'immagini' => [
-                                   $progetto->soluzioni_immagine_1_1,
-                                   $progetto->soluzioni_immagine_1_2,
-                                   $progetto->soluzioni_immagine_1_3,
-                               ]
-                           ],
-                           [
-                               'sottoTitolo' => $progetto->soluzioni_sotto_titolo_2,
-                               'testo' => $progetto->soluzioni_testo_2,
-                               'immagini' => [
-                                   $progetto->soluzioni_immagine_2_1,
-                                   $progetto->soluzioni_immagine_2_2,
-                                   $progetto->soluzioni_immagine_2_3,
-                               ]
-                           ],
-                           [
-                               'sottoTitolo' => $progetto->soluzioni_sotto_titolo_3,
-                               'testo' => $progetto->soluzioni_testo_3,
-                               'immagini' => []
-                           ]
-                       ]])
-            @endcomponent
-        </div>
-    </section>
+    <section class="container mx-auto">
+        {{-- Sezione Problemi --}}
+          @component('components.section', [
+              'titolo' => $progetto->problemi_titolo_1,
+              'items' => $progetto->getProblemi(),
+          ])
+          @endcomponent
+      
+        {{-- Sezione Soluzioni --}}
+          @component('components.section', [
+              'titolo' => $progetto->soluzioni_titolo_1,
+              'items' => $progetto->getSoluzioni(),
+          ])
+          @endcomponent
+      </section>
+
 
     <section class="py-10 sm:py-16 lg:py-24">
         <div class="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:items-stretch md:grid-cols-2 gap-y-5">
-                <div class="h-full flex flex-col justify-center">
-                    <div class="relative h-full py-10">
-                        <div class="absolute inset-0">
-                            <img class="object-cover w-full h-full md:object-left md:origin-top-left" src="{{$progetto->featured_image}}" alt="" />
-                        </div>
-                        <div class="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-                            <div class="text-center md:text-left">
-                                <h3 class="font-bold leading-tight text-white text-4xl lg:text-5xl">{{$progetto->titolo_card}}</h3>
-                                <p class="mt-4 text-base text-gray-200">{!! $progetto->content !!}</p>
-                            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 md:items-stretch gap-y-5">
+                <figure class="relative py-4">
+                    {{-- Immagine di sfondo --}}
+                    <img src="{{ $progetto->featured_image }}" alt="{{ $progetto->titolo_card }}"
+                        title="{{ $progetto->titolo_card }}"
+                        class="object-cover w-full h-full md:object-left md:origin-top-left" loading="lazy"
+                        decoding="async" />
+
+                    {{-- Overlay per leggibilità testo --}}
+                    <div class="absolute inset-0 bg-black/10 sm:bg-black/20 z-10"></div>
+
+                    {{-- Caption visibile (se presente) --}}
+                    @if (!empty($progetto->immagine_card['caption']))
+                        <figcaption class="absolute bottom-0 left-0 bg-black/60 text-white text-xs italic p-2 z-20">
+                            {{ $progetto->immagine_card['caption'] }}
+                        </figcaption>
+                    @endif
+
+                    {{-- Caption SEO invisibile ma letta dai reader --}}
+                    @if (!empty($progetto->immagine_card['description']))
+                        <div class="sr-only">{{ $progetto->immagine_card['description'] }}</div>
+                    @endif
+
+                    {{-- Contenuto sovrapposto (titolo e testo) --}}
+                    <div
+                        class="absolute inset-0 z-20 flex items-center justify-center md:justify-start px-4 sm:px-6 lg:px-8">
+                        <div class="max-w-3xl text-center md:text-left">
+                            <h4 class="font-bold text-white text-3xl lg:text-4xl leading-tight">
+                                {{ $progetto->titolo_card }}
+                            </h4>
+                            <p class="mt-4 text-sm text-gray-200">{!! $progetto->content !!}</p>
                         </div>
                     </div>
-                </div>
+                </figure>
 
-                <div class="h-full">
-                    <input type="hidden" id="thank-you-url" value="{{ $thankYouUrl }}">
-                    <div class="container mx-auto" x-data="donationFormData({{ $progetto->id }})" x-ref="donationForm" id="{{$progetto->id}}">
-                        <div class="mx-auto flex justify-center flex-col items-center max-w-screen-lg px-6">
-                            <!-- Step 1: Selezione dell'importo -->
-                            <div class="w-full text-center" x-show="step === 1">
-                                <p class="font-serif text-xl font-bold text-custom-dark-green">{{load_static_strings('Scegli quanto donare')}}</p>
-                                <div class="mt-4 mx-auto grid grid-cols-2 gap-2 lg:max-w-xl">
-                                    <button
-                                            @click="selectedAmount = 20; customAmount = ''"
-                                            :class="selectedAmount === 20 && !customAmount ? 'bg-custom-dark-green text-white' : 'bg-custom-light-green text-custom-dark-green'"
-                                            class="rounded-lg px-4 py-2 font-medium active:scale-95"
-                                    >20€</button>
-                                    <button
-                                            @click="selectedAmount = 50; customAmount = ''"
-                                            :class="selectedAmount === 50 && !customAmount ? 'bg-custom-dark-green text-white' : 'bg-custom-light-green text-custom-dark-green'"
-                                            class="rounded-lg px-4 py-2 font-medium active:scale-95"
-                                    >50€</button>
-                                    <button
-                                            @click="selectedAmount = 80; customAmount = ''"
-                                            :class="selectedAmount === 80 && !customAmount ? 'bg-custom-dark-green text-white' : 'bg-custom-light-green text-custom-dark-green'"
-                                            class="rounded-lg px-4 py-2 font-medium active:scale-95"
-                                    >80€</button>
-                                    <button
-                                            @click="selectedAmount = 150; customAmount = ''"
-                                            :class="selectedAmount === 150 && !customAmount ? 'bg-custom-dark-green text-white' : 'bg-custom-light-green text-custom-dark-green'"
-                                            class="rounded-lg px-4 py-2 font-medium active:scale-95"
-                                    >150€</button>
-                                </div>
-                            </div>
 
-                            <!-- Step 1: Importo personalizzato -->
-                            <div class="w-full text-center" x-show="step === 1">
-                                <p class="mt-8 font-serif text-xl font-bold text-custom-dark-green">{{ load_static_strings('Oppure scegli tu l\'importo') }}</p>
-                                <div class="w-full mx-auto md:w-1/2 px-3 mb-2 md:mb-0 flex flex-row justify-center items-center mt-4">
-                                    <input x-model="customAmount" @input="selectedAmount = null" class="appearance-none block w-full rounded py-3 px-4 mb-3 leading-tight" type="number" placeholder="{{load_static_strings('Scegli importo')}}">
-                                    <div class="decimals h-full px-4">,00</div>
-                                </div>
-                            </div>
+                {{-- Form Donazione --}}
+                <div x-data="donationFormData" x-init="init({{ $progetto->id }}, '{{ $thankYouUrl }}')"
+                    class="w-full max-w-xl mx-auto bg-white rounded-xl shadow-xl py-3 px-6">
+                    {{-- Stepper header --}}
+                    <div class="flex justify-between mb-6 text-sm font-semibold text-custom-dark-green">
+                        <template x-for="(label, i) in ['Importo', 'Dati', 'Pagamento']" :key="i">
+                            <button class="flex-1 text-center focus:outline-none" @click="goToStep(i+1)"
+                                :class="{
+                                    'border-b-4 border-custom-dark-green pb-2 text-custom-dark-green': step ===
+                                        i +
+                                        1,
+                                    'text-gray-400 cursor-not-allowed': (i + 1 > step),
+                                    'hover:text-custom-dark-green': (i + 1 <= step)
+                                }"
+                                type="button">
+                                <span x-text="label"></span>
+                            </button>
+                        </template>
+                    </div>
 
-                            <!-- Pulsante per avanzare allo step 2 dal primo step -->
-                            <div  x-show="step === 1" class="buttons flex justify-between flex-row w-full text-center">
-                                <a href="{{$progetto->url}}">
-                                    <button class="mt-4 min-w-32 rounded-full border-emerald-500 bg-custom-dark-green px-5 py-4 text-lg font-bold text-white transition hover:translate-y-1">
-                                        {{load_static_strings('Scopri di più')}}
+                    <h2 class="text-2xl font-bold text-custom-dark-green mb-4">
+                        {{ load_static_strings('Fai una donazione al nostro progetto') }}
+                    </h2>
+
+                    {{-- STEP 1 – Importo --}}
+                    <template x-if="step === 1">
+                        <div>
+                            <p class="text-xl font-bold text-custom-dark-green mb-4">
+                                {{ load_static_strings('Quanto vuoi donare?') }}</p>
+
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                <template x-for="amount in [5, 25, 50, 100]" :key="amount">
+                                    <button @click="selectedAmount = amount; customAmount = ''; showAmountError = false"
+                                        :class="selectedAmount === amount && !customAmount ?
+                                            'bg-custom-dark-green text-white' :
+                                            'bg-custom-light-green text-custom-dark-green'"
+                                        class="rounded-lg px-4 py-2 font-medium text-center transition duration-200 active:scale-95"
+                                        x-text="amount + '€'">
                                     </button>
-                                </a>
-                                <button @click="step = 2"
-                                        :disabled="!(selectedAmount || customAmount)"
-                                        :class="(selectedAmount || customAmount) ? 'bg-custom-dark-green hover:translate-y-1' : 'bg-gray-400 cursor-not-allowed'"
-                                        class="mt-4 min-w-32 rounded-full border-emerald-500 px-5 py-4 text-lg font-bold text-white transition">
+                                </template>
+                            </div>
+
+                            <p class="mt-6 text-custom-dark-green font-semibold">
+                                {{ load_static_strings('Oppure inserisci un importo personalizzato') }}</p>
+
+                            <div class="flex items-center mt-3">
+                                <input x-model="customAmount" @input="selectedAmount = null; showAmountError = false"
+                                    type="number" min="1"
+                                    placeholder="{{ load_static_strings('Inserisci importo') }}"
+                                    class="flex-1 rounded-l px-4 py-2 border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-custom-dark-green">
+                                <span class="bg-gray-100 px-3 py-2 rounded-r border border-gray-300 text-gray-700">,00
+                                    €</span>
+                            </div>
+
+                            <template x-if="showAmountError">
+                                <p class="text-red-600 mt-2">
+                                    {{ load_static_strings('Seleziona o inserisci un importo valido') }}</p>
+                            </template>
+
+                            <div class="mt-6 flex justify-end">
+                                <button @click.prevent="goToStep(2)" :disabled="!isAmountValid()"
+                                    class="rounded-full px-6 py-3 font-bold text-white transition"
+                                    :class="isAmountValid() ? 'bg-custom-dark-green hover:translate-y-1' :
+                                        'bg-gray-400 cursor-not-allowed'">
                                     {{ load_static_strings('Avanti') }}
                                 </button>
                             </div>
+                        </div>
+                    </template>
 
+                    {{-- STEP 2 – Dati Utente --}}
+                    <template x-if="step === 2">
+                        <div>
+                            <p class="text-xl font-bold text-custom-dark-green mb-4">
+                                {{ load_static_strings('I tuoi dati') }}
+                            </p>
 
-                            <!-- Step 2: Dettagli di fatturazione -->
-                            <div x-show="step === 2" class="w-full text-center">
-                                <p class="mt-8 font-serif text-xl font-bold text-custom-dark-green">{{load_static_strings('Dettagli di fatturazione')}}</p>
-                                <div class="mt-4 mx-auto grid grid-cols-1 gap-6 lg:max-w-xl">
-                                    <input x-model="formData.name" type="text" placeholder="{{load_static_strings('Nome')}}" name="name" required class="w-full rounded-lg border-gray-300 px-4 py-2"/>
-                                    <input x-model="formData.surname" type="text" placeholder="{{load_static_strings('Cognome')}}" name="surname" required class="w-full rounded-lg border-gray-300 px-4 py-2"/>
-                                    <input x-model="formData.phone" type="number" placeholder="{{load_static_strings('Numero di telefono')}}" name="phone" class="w-full rounded-lg border-gray-300 px-4 py-2"/>
-                                    <input x-model="formData.email" type="email" placeholder="{{load_static_strings('Email')}}" name="email" required class="w-full rounded-lg border-gray-300 px-4 py-2"/>
-                                    <input x-model="formData.codiceFiscale" type="text" placeholder="{{load_static_strings('Codice Fiscale')}}" name="codiceFiscale" class="w-full rounded-lg border-gray-300 px-4 py-2"/>
+                            <div class="grid gap-4 text-left" @submit.prevent>
+                                {{-- Nome --}}
+                                <div>
+                                    <input x-model="formData.name" @blur="touched.name = true" type="text"
+                                        autocomplete="given-name" required placeholder="{{ load_static_strings('Nome') }}"
+                                        class="input-field w-full" aria-label="Nome">
+                                    <template x-if="touched.name && formData.name === ''">
+                                        <p class="text-red-500 text-sm mt-1">
+                                            {{ load_static_strings('Il nome è obbligatorio') }}
+                                        </p>
+                                    </template>
                                 </div>
-                                <div class="buttons flex justify-between flex-row">
-                                    <button @click="step = 1" class="mt-4 min-w-32 rounded-full border-emerald-500 bg-custom-dark-green px-5 py-4 text-lg font-bold text-white transition hover:translate-y-1">
-                                        {{load_static_strings('Indietro')}}
-                                    </button>
-                                    <button
-                                            @click="createIntent()"
-                                            id="call-intent"
-                                            :disabled="!(formData.name && formData.surname && formData.email && formData.phone)"
-                                            :class="(formData.name && formData.surname && formData.email && formData.phone) ? 'bg-custom-dark-green hover:translate-y-1' : 'bg-gray-400 cursor-not-allowed'"
-                                            class="mt-4 min-w-32 rounded-full border-emerald-500 px-5 py-4 text-lg font-bold text-white transition">
-                                        <span x-show="!loading">{{load_static_strings('Avanti')}}</span>
-                                        <span x-show="loading" class="loader"></span>
-                                    </button>
+
+                                {{-- Cognome --}}
+                                <div>
+                                    <input x-model="formData.surname" @blur="touched.surname = true" type="text"
+                                        autocomplete="family-name" required
+                                        placeholder="{{ load_static_strings('Cognome') }}" class="input-field w-full"
+                                        aria-label="Cognome">
+                                    <template x-if="touched.surname && formData.surname === ''">
+                                        <p class="text-red-500 text-sm mt-1">
+                                            {{ load_static_strings('Il cognome è obbligatorio') }}
+                                        </p>
+                                    </template>
+                                </div>
+
+                                {{-- Email --}}
+                                <div>
+                                    <input x-model="formData.email" @blur="touched.email = true" type="email"
+                                        autocomplete="email" required placeholder="{{ load_static_strings('Email') }}"
+                                        class="input-field w-full" aria-label="Email">
+                                    <template
+                                        x-if="touched.email && (formData.email === '' || !formData.email.includes('@'))">
+                                        <p class="text-red-500 text-sm mt-1">
+                                            {{ load_static_strings('Inserisci un’email valida') }}
+                                        </p>
+                                    </template>
+                                </div>
+
+                                {{-- Telefono --}}
+                                <div>
+                                    <input x-model="formData.phone" @blur="touched.phone = true" type="tel"
+                                        autocomplete="tel" required placeholder="{{ load_static_strings('Telefono') }}"
+                                        class="input-field w-full" aria-label="Telefono">
+                                    <template x-if="touched.phone && formData.phone === ''">
+                                        <p class="text-red-500 text-sm mt-1">
+                                            {{ load_static_strings('Il telefono è obbligatorio') }}
+                                        </p>
+                                    </template>
+                                </div>
+
+                                {{-- Codice Fiscale (opzionale) --}}
+                                <div>
+                                    <label for="cf" class="block text-sm text-gray-600 mb-1">
+                                        {{ load_static_strings('Codice Fiscale') }}
+                                        <span class="text-xs text-gray-400 ml-1">
+                                            ({{ load_static_strings('opzionale') }})
+                                        </span>
+                                    </label>
+                                    <input id="cf" x-model="formData.codiceFiscale" type="text"
+                                        placeholder="{{ load_static_strings('Codice Fiscale') }}"
+                                        class="input-field w-full" aria-label="Codice Fiscale">
                                 </div>
                             </div>
 
-                            <!-- Step 3: Dati della carta di credito -->
-                            <div x-show="step === 3" class="w-full text-center">
-                                <p class="mt-8 font-serif text-xl font-bold text-custom-dark-green">{{load_static_strings('Dati della carta di credito')}}</p>
-                                <div class="mt-4 mx-auto grid grid-cols-1 gap-6 lg:max-w-xl">
-                                <!-- Google Pay Button -->
-                                <div id="google-pay-button-{{$progetto->id}}" style="display: none;"></div>
+                            <div class="mt-6 flex justify-between">
+                                <button @click="step = 1"
+                                    class="rounded-full px-6 py-3 bg-gray-200 text-custom-dark-green font-semibold hover:bg-gray-300">
+                                    {{ load_static_strings('Indietro') }}
+                                </button>
 
-                                @foreach($pagamenti_disponibili as $p)
-                                    @if($p->id === 'stripe')
-                                        <div id="card-element-container-{{$progetto->id}}">
-                                            <form id="payment-form-{{$progetto->id}}">
-                                                <div id="payment-element-{{$progetto->id}}"></div>
-                                            </form>
-                                        </div>
-                                    @else
-                                        {!! '<button data-gateway-id="' . esc_attr( $p->id ) . '">' . esc_html( $p->get_title() ) . '</button>' !!}
-                                    @endif
-                                @endforeach
-
-                                </div>
-                                <div class="buttons flex justify-between flex-row">
-                                    <button @click="step = 2" class="mt-4 min-w-32 rounded-full border-emerald-500 bg-custom-dark-green px-5 py-4 text-lg font-bold text-white transition hover:translate-y-1">
-                                        {{load_static_strings('Indietro')}}
-                                    </button>
-                                    <button @click="submitForm()" class="mt-4 min-w-32 rounded-full border-emerald-500 px-5 py-4 text-lg font-bold text-white transition bg-custom-dark-green hover:translate-y-1">
-                                        {{load_static_strings('Dona ora')}}
-                                    </button>
-                                </div>
+                                <button
+                                    @click="touched.name = true; touched.surname = true; touched.email = true; touched.phone = true; goToStep(3)"
+                                    :disabled="!isUserDataValid()"
+                                    class="rounded-full px-6 py-3 font-bold text-white transition"
+                                    :class="isUserDataValid() ? 'bg-custom-dark-green hover:translate-y-1' :
+                                        'bg-gray-400 cursor-not-allowed'">
+                                    {{ load_static_strings('Procedi al pagamento') }}
+                                </button>
                             </div>
                         </div>
-                    </div>
+                    </template>
+
+                    {{-- STEP 3 – Pagamento --}}
+                    <template x-if="step === 3">
+                        <div>
+                            <p class="text-xl font-bold text-custom-dark-green mb-4">
+                                {{ load_static_strings('Metodo di pagamento') }}</p>
+
+                            <div class="mb-6" :id="'google-pay-button-' + progettoId" style="display: none;">
+                            </div>
+                            <div :id="'card-element-container-' + progettoId">
+                                <form :id="'payment-form-' + progettoId">
+                                    <div :id="'payment-element-' + progettoId"></div>
+                                </form>
+                            </div>
+
+                            <div class="mt-6 flex justify-between">
+                                <button @click="step = 2"
+                                    class="rounded-full px-6 py-3 bg-gray-200 text-custom-dark-green font-semibold hover:bg-gray-300">
+                                    {{ load_static_strings('Indietro') }}
+                                </button>
+                                <button @click="submitForm()"
+                                    class="rounded-full px-6 py-3 bg-custom-dark-green text-white font-bold hover:translate-y-1 transition">
+                                    {{ load_static_strings('Dona ora') }}
+                                </button>
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </div>
         </div>
     </section>
-
 @stop

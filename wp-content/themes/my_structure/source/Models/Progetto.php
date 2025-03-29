@@ -43,7 +43,7 @@ class Progetto extends BasePostType
     public $soluzioni_immagine_3_1;
     public $soluzioni_immagine_3_2;
     public $soluzioni_immagine_3_3;
-    
+
     public function __construct($post = null)
     {
         parent::__construct($post);
@@ -95,4 +95,47 @@ class Progetto extends BasePostType
         $this->soluzioni_immagine_3_2   = get_field('soluzioni_immagine_3_2', $this->id);
         $this->soluzioni_immagine_3_3   = get_field('soluzioni_immagine_3_3', $this->id);
     }
+
+    public function getProblemi()
+    {
+        return [
+            [
+                'sottoTitolo' => $this->problemi_sotto_titolo_1,
+                'testo'       => $this->problemi_testo_1,
+                'immagini'    => array_filter([$this->problemi_immagine_1_1, $this->problemi_immagine_1_2, $this->problemi_immagine_1_3], fn($img) => isset($img['url'])),
+            ],
+            [
+                'sottoTitolo' => $this->problemi_sotto_titolo_2,
+                'testo'       => $this->problemi_testo_2,
+                'immagini'    => array_filter([$this->problemi_immagine_2_1, $this->problemi_immagine_2_2, $this->problemi_immagine_2_3], fn($img) => isset($img['url'])),
+            ],
+            [
+                'sottoTitolo' => $this->problemi_sotto_titolo_3,
+                'testo'       => $this->problemi_testo_3,
+                'immagini'    => array_filter([$this->problemi_immagine_3_1, $this->problemi_immagine_3_2, $this->problemi_immagine_3_3], fn($img) => isset($img['url'])),
+            ],
+        ];
+    }
+
+    public function getSoluzioni()
+    {
+        return [
+            [
+                'sottoTitolo' => $this->soluzioni_sotto_titolo_1,
+                'testo'       => $this->soluzioni_testo_1,
+                'immagini'    => array_filter([$this->soluzioni_immagine_1_1, $this->soluzioni_immagine_1_2, $this->soluzioni_immagine_1_3], fn($img) => isset($img['url'])),
+            ],
+            [
+                'sottoTitolo' => $this->soluzioni_sotto_titolo_2,
+                'testo'       => $this->soluzioni_testo_2,
+                'immagini'    => array_filter([$this->soluzioni_immagine_2_1, $this->soluzioni_immagine_2_2, $this->soluzioni_immagine_2_3], fn($img) => isset($img['url'])),
+            ],
+            [
+                'sottoTitolo' => $this->soluzioni_sotto_titolo_3,
+                'testo'       => $this->soluzioni_testo_3,
+                'immagini'    => array_filter([$this->soluzioni_immagine_3_1, $this->soluzioni_immagine_3_2, $this->soluzioni_immagine_3_3], fn($img) => isset($img['url'])),
+            ],
+        ];
+    }
+
 }

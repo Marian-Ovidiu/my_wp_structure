@@ -1,52 +1,68 @@
-<div>
-    @if(isset($titolo))
-        <div class="px-6">
-            <h2 class="text-2xl text-custom-dark-green font-semibold capitalize lg:text-3xl pt-10">{{ $titolo }}</h2>
-        </div>
-    @endif
-    @foreach ($items as $item)
-        <div class="mt-8 px-6 lg:-mx-6 lg:flex-col lg:items-center lg:justify-center">
-            <div class="mt-6 lg:mt-0 lg:mx-6">
-                @if(isset($item['sottoTitolo']))
-                    <h3 class="block mt-4 text-xl font-semibold text-gray-800">
-                        {{ $item['sottoTitolo'] }}
-                    </h3>
-                @endif
-                @if(isset($item['testo']))
-                    <p class="mt-3 text-sm text-gray-500 md:text-sm">
-                        {!! $item['testo'] !!}
-                    </p>
-                @endif
-            </div>
+<section class="py-12 md:py-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6">
+        @if ($titolo)
+            <h2 class="text-3xl font-nunitoBold text-custom-dark-green text-center mb-12 md:mb-20 lg:text-4xl">
+                {{ $titolo }}
+            </h2>
+        @endif
 
-            @php
-                $immagini = array_filter($item['immagini'], fn($img) => isset($img['url']));
-                $immaginiCount = count($immagini);
-            @endphp
-
-            <div class="relative w-full max-w-lg mt-4 mx-auto overflow-hidden" @if($immaginiCount > 1) x-data="{ current: 0 }" @endif>
-                @if($immaginiCount > 1)
-                    <!-- Galleria con più immagini -->
-                    <div class="flex transition-transform duration-700" :style="`transform: translateX(-${current * 100}%)`">
-                        @foreach($immagini as $immagine)
-                            <img src="{{ $immagine['url'] }}" alt="{{ $immagine['alt'] ?? '' }}" loading="lazy" class="w-full" />
-                        @endforeach
+        <div class="space-y-12 md:space-y-16 max-w-7xl mx-auto">
+            @foreach ($items as $index => $item)
+                @php
+                    $hasImage = isset($item['immagini']) && count($item['immagini']) > 0;
+                @endphp
+        
+                <article class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100">
+                    <div class="flex flex-col {{ $hasImage ? 'md:flex-row' : 'items-center text-center' }} {{ $hasImage && $index % 2 === 1 ? 'md:flex-row-reverse' : '' }}">
+                        
+                        {{-- Sezione immagine (solo se presente) --}}
+                        @if($hasImage)
+                            <div class="md:w-1/2 p-6 md:p-8">
+                                <div class="overflow-hidden rounded-xl">
+                                    <div class="h-[150px] sm:h-[250px] lg:h-[300px] xl:h-[300px] 2xl:h-[300px] swiper swiper-progetto w-full" role="group" aria-label="Image slider">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($item['immagini'] as $img)
+                                                <figure class="swiper-slide h-[150px] sm:h-[250px] lg:h-[300px] xl:h-[300px] 2xl:h-[300px]">
+                                                    <img 
+                                                        src="{{ $img['url'] }}" 
+                                                        alt="{{ $img['alt'] ?? ($item['sottoTitolo'] ?? 'Project image') }}" 
+                                                        title="{{ $img['title'] ?? ($item['sottoTitolo'] ?? '') }}"
+                                                        class="w-full object-cover"
+                                                        loading="lazy"
+                                                    >
+                                                    @if(isset($img['caption']) && $img['caption'])
+                                                        <figcaption class="sr-only">{{ $img['caption'] }}</figcaption>
+                                                    @endif
+                                                </figure>
+                                            @endforeach
+                                        </div>
+                                        <div class="swiper-pagination mt-4" aria-hidden="true"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+        
+                        {{-- Sezione testo --}}
+                        <div class="{{ $hasImage ? 'md:w-1/2 p-6 md:p-8 flex flex-col justify-center border-t md:border-t-0 md:border-l border-gray-100' : 'p-6 sm:p-10' }}">
+                            <div class="{{ $hasImage ? '' : 'max-w-xl mx-auto' }}">
+                                @if (!empty($item['sottoTitolo']))
+                                    <h3 class="text-xl md:text-2xl font-nunitoSansRegular text-custom-dark-green mb-3 md:mb-4">
+                                        {{ $item['sottoTitolo'] }}
+                                    </h3>
+                                @endif
+        
+                                @if (!empty($item['testo']))
+                                    <div class="prose text-gray-600 font-nunitoSansLight">
+                                        {!! $item['testo'] !!}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+        
                     </div>
-                    <button @click="current = (current + 1) % {{ $immaginiCount }}" aria-label="Prossima immagine" class="absolute right-0 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </button>
-                    <button @click="current = (current - 1 + {{ $immaginiCount }}) % {{ $immaginiCount }}" aria-label="Immagine precedente" class="absolute left-0 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                        </svg>
-                    </button>
-                @elseif($immaginiCount === 1)
-                    <!-- Singola immagine fissa senza navigazione -->
-                    <img src="{{ $immagini[0]['url'] }}" alt="{{ $immagini[0]['alt'] ?? '' }}" loading="lazy" class="w-full" />
-                @endif
-            </div>
+                </article>
+            @endforeach
         </div>
-    @endforeach
-</div>
+        
+    </div>
+</section>

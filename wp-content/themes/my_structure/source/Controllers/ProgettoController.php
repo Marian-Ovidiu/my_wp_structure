@@ -35,7 +35,9 @@ class ProgettoController extends BaseController
         $this->addJs('single-donation', 'single-donation.js', ['stripe'], true);
         $this->addJs('donation-gpay', 'google-pay.js', ['stripe'], true);
         $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
-
+        $this->addJs('swiper-js', 'https://unpkg.com/swiper/swiper-bundle.min.js', [], true);
+        $this->addCss('swiper-css', 'https://unpkg.com/swiper/swiper-bundle.min.css');
+        $this->addJs('progetto', 'progettoSlider.js', ['swiper-js'], true, '6.8.1');
         $this->render('single-progetto', [
             'progetto' => Progetto::find(get_the_ID()),
             'pagamenti_disponibili' => $available_gateways
