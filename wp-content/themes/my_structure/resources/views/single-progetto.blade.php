@@ -29,36 +29,22 @@
         </div>
     </section>
     {{-- Fine Hero --}}
-    @if(function_exists('pll_get_the_languages'))
-    @php
-        $languages = pll_get_the_languages(['raw' => 1]);
-    @endphp
+    @if (function_exists('pll_get_the_languages'))
+        @php
+            $languages = pll_get_the_languages(['raw' => 1]);
+        @endphp
 
-    {{-- Mostra le lingue --}}
-    <ul class="flex gap-2">
-        @foreach($languages as $lang)
-            <li>
-                <a href="{{ $lang['url'] }}" class="{{ $lang['current_lang'] ? 'font-bold underline' : '' }}">
-                    {{ strtoupper($lang['slug']) }}
-                </a>
-            </li>
-        @endforeach
-    </ul>
-@endif
-
-
-    {{-- Mostra le lingue --}}
-    <ul class="flex gap-2">
-        @foreach($languages as $lang)
-            <li>
-                <a href="{{ $lang['url'] }}" class="{{ $lang['current_lang'] ? 'font-bold underline' : '' }}">
-                    {{ strtoupper($lang['slug']) }}
-                </a>
-            </li>
-        @endforeach
-    </ul>
-@endif
-
+        {{-- Mostra le lingue --}}
+        <ul class="flex gap-2">
+            @foreach ($languages as $lang)
+                <li>
+                    <a href="{{ $lang['url'] }}" class="{{ $lang['current_lang'] ? 'font-bold underline' : '' }}">
+                        {{ strtoupper($lang['slug']) }}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    @endif
 
     <section class="container mx-auto">
         {{-- Sezione Problemi --}}

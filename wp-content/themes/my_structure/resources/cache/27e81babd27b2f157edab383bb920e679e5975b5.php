@@ -18,8 +18,7 @@
         </div>
 
         <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 sm:py-40">
-            <div
-                class="max-w-3xl mx-auto text-center sm:text-left rounded-xl px-6 py-8 shadow-2xl">
+            <div class="max-w-3xl mx-auto text-center sm:text-left rounded-xl px-6 py-8 shadow-2xl">
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight drop-shadow-xl">
                     <?php echo e($progetto->titolo_hero); ?>
 
@@ -32,22 +31,39 @@
         </div>
     </section>
     
+    <?php if(function_exists('pll_get_the_languages')): ?>
+        <?php
+            $languages = pll_get_the_languages(['raw' => 1]);
+        ?>
+
+        
+        <ul class="flex gap-2">
+            <?php $__currentLoopData = $languages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <li>
+                    <a href="<?php echo e($lang['url']); ?>" class="<?php echo e($lang['current_lang'] ? 'font-bold underline' : ''); ?>">
+                        <?php echo e(strtoupper($lang['slug'])); ?>
+
+                    </a>
+                </li>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </ul>
+    <?php endif; ?>
 
     <section class="container mx-auto">
         
-          <?php $__env->startComponent('components.section', [
-              'titolo' => $progetto->problemi_titolo_1,
-              'items' => $progetto->getProblemi(),
-          ]); ?>
-          <?php echo $__env->renderComponent(); ?>
-      
+        <?php $__env->startComponent('components.section', [
+            'titolo' => $progetto->problemi_titolo_1,
+            'items' => $progetto->getProblemi(),
+        ]); ?>
+        <?php echo $__env->renderComponent(); ?>
+
         
-          <?php $__env->startComponent('components.section', [
-              'titolo' => $progetto->soluzioni_titolo_1,
-              'items' => $progetto->getSoluzioni(),
-          ]); ?>
-          <?php echo $__env->renderComponent(); ?>
-      </section>
+        <?php $__env->startComponent('components.section', [
+            'titolo' => $progetto->soluzioni_titolo_1,
+            'items' => $progetto->getSoluzioni(),
+        ]); ?>
+        <?php echo $__env->renderComponent(); ?>
+    </section>
 
 
     <section class="py-10 sm:py-16 lg:py-24">
