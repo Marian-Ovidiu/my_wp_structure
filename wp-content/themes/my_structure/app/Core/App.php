@@ -16,6 +16,7 @@ class App extends Init
     {
         add_action('init', 'disable_woocommerce_features');
         add_action('after_setup_theme', 'my_theme_setup');
+        add_action('widgets_init', 'register_my_widgets');
         add_action('admin_menu', 'my_custom_options_page');
         add_action('admin_head', 'acf_form_head');
         add_action('wp_enqueue_scripts', 'disable_woocommerce_assets');

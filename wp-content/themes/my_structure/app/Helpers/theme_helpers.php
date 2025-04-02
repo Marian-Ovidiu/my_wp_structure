@@ -4,7 +4,6 @@ if (!function_exists('my_theme_setup')) {
     function my_theme_setup() {
         add_base_js();
         add_base_css();
-        register_my_widgets();
         register_menus();
     }
 }

@@ -195,7 +195,7 @@ class BladeManager
 
         // Imposta anche il container sulla factory
         $view->setContainer($container);
-
+        $this->registerDirectives($container);
         // Ora assegna a bladeFactory
         $this->bladeFactory = $view;
 
@@ -211,7 +211,6 @@ class BladeManager
     protected function registerDirectives($container)
     {
         $compiler = $container['view']->getEngineResolver()->resolve('blade')->getCompiler();
-
         $compiler->directive('widget', function ($menu_name) {
             return "<?php the_widget('Widget\\MenuWidget', ['menu_name' => {$menu_name}]); ?>";
         });

@@ -39,22 +39,22 @@
 </head>
 <body class="flex flex-col min-h-screen font-nunitoSansRegular">
    <?php wp_head(); ?>
-    @widget('LanguageMenu')
+    <?php the_widget('Widget\MenuWidget', ['menu_name' => 'LanguageMenu']); ?>
     <?php switch(pll_current_language()):
         case ('it'): ?>
-            @widget('HeaderMenu')
+            <?php the_widget('Widget\MenuWidget', ['menu_name' => 'HeaderMenu']); ?>
             <?php break; ?>
         <?php case ('en'): ?>
-            @widget('HeaderMenuEnglish')
+            <?php the_widget('Widget\MenuWidget', ['menu_name' => 'HeaderMenuEnglish']); ?>
             <?php break; ?>
         <?php case ('fr'): ?>
-            @widget('HeaderMenuFrancais')
+            <?php the_widget('Widget\MenuWidget', ['menu_name' => 'HeaderMenuFrancais']); ?>
             <?php break; ?>
         <?php case ('de'): ?>
-            @widget('HeaderMenuDeutsch')
+            <?php the_widget('Widget\MenuWidget', ['menu_name' => 'HeaderMenuDeutsch']); ?>
             <?php break; ?>
         <?php default: ?>
-            @widget('HeaderMenu')
+            <?php the_widget('Widget\MenuWidget', ['menu_name' => 'HeaderMenu']); ?>
             <?php break; ?>
     <?php endswitch; ?>
 
@@ -65,19 +65,19 @@
     <footer class="text-white">
         <?php switch(pll_current_language()):
             case ('it'): ?>
-                @widget('FooterMenu')
+                <?php the_widget('Widget\MenuWidget', ['menu_name' => 'FooterMenu']); ?>
                 <?php break; ?>
             <?php case ('en'): ?>
-                @widget('FooterMenuEnglish')
+                <?php the_widget('Widget\MenuWidget', ['menu_name' => 'FooterMenuEnglish']); ?>
                 <?php break; ?>
             <?php case ('fr'): ?>
-                @widget('FooterMenuFrancais')
+                <?php the_widget('Widget\MenuWidget', ['menu_name' => 'FooterMenuFrancais']); ?>
                 <?php break; ?>
             <?php case ('de'): ?>
-                @widget('FooterMenuDeutsch')
+                <?php the_widget('Widget\MenuWidget', ['menu_name' => 'FooterMenuDeutsch']); ?>
                 <?php break; ?>
             <?php default: ?>
-                @widget('FooterMenu')
+                <?php the_widget('Widget\MenuWidget', ['menu_name' => 'FooterMenu']); ?>
                 <?php break; ?>
         <?php endswitch; ?>
     </footer>
