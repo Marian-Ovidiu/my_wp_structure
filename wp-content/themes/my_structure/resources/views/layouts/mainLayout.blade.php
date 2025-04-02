@@ -20,14 +20,14 @@
           ]
         }
     </script>
-    @php
+    {{-- @php
         $hreflangs = function_exists('pll_get_the_languages') ? pll_get_the_languages(['raw' => 1]) : [];
     @endphp
     @if(isset($hreflangs))
     @foreach($hreflangs as $lang)
         <link rel="alternate" hreflang="{{ $lang['locale'] }}" href="{{ $lang['url'] }}" />
     @endforeach
-    @endif
+    @endif --}}
     <link rel="canonical" href="{{ get_permalink() }}">
 
     <link rel="manifest" href="/site.webmanifest">

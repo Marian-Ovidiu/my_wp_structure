@@ -20,14 +20,7 @@
           ]
         }
     </script>
-    <?php
-        $hreflangs = function_exists('pll_get_the_languages') ? pll_get_the_languages(['raw' => 1]) : [];
-    ?>
-    <?php if(isset($hreflangs)): ?>
-    <?php $__currentLoopData = $hreflangs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <link rel="alternate" hreflang="<?php echo e($lang['locale']); ?>" href="<?php echo e($lang['url']); ?>" />
-    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    <?php endif; ?>
+    
     <link rel="canonical" href="<?php echo e(get_permalink()); ?>">
 
     <link rel="manifest" href="/site.webmanifest">
