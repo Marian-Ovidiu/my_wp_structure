@@ -1,5 +1,5 @@
 @php
-$options = \Models\Options\OpzioniGlobaliFields::get();
+    $options = \Models\Options\OpzioniGlobaliFields::get();
 @endphp
 <header x-data="{ open: false }" class="p-6 bg-white lg:pb-0">
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -9,7 +9,8 @@ $options = \Models\Options\OpzioniGlobaliFields::get();
                 <div class="text-center flex flex-col items-center justify-between">
                     <img class="w-auto h-12 lg:h-12" src="{{ $options->logo['url'] }}"
                         alt="Project Africa Conservation logo" />
-                    <div class="text-custom-dark-green font-bold text-lg">Project Africa Conservation</div> <!-- Increased font size -->
+                    <div class="text-custom-dark-green font-bold text-lg">Project Africa Conservation</div>
+                    <!-- Increased font size -->
                 </div>
             </a>
 
@@ -27,25 +28,29 @@ $options = \Models\Options\OpzioniGlobaliFields::get();
             </button>
 
             <!-- Desktop menu -->
-            <div class="hidden lg:flex lg:items-center lg:ml-auto lg:space-x-10">
+            <div class="hidden lg:flex lg:items-center lg:ml-auto lg:space-x-10 py-6">
                 @foreach ($menu as $key => $item)
                     <div class="relative group">
                         <a href="{{ $item->url }}"
-                            class="text-lg font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green font-nunitoSans"> <!-- Increased font size -->
+                            class="text-lg font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green font-nunitoSans">
+                            <!-- Increased font size -->
                             {{ $item->title }}
                         </a>
                         @if (!empty($item->children))
                             <!-- Dropdown Menu -->
                             <div
-                                class="absolute left-0 hidden mt-2 space-y-2 bg-white border border-gray-200 rounded-lg shadow-md group-hover:block">
+                                class="absolute left-0 hidden p-2 bg-white border border-gray-200 rounded-lg shadow-md group-hover:block z-50">
+                                <!-- Ho aggiunto z-index qui -->
                                 @foreach ($item->children as $subkey => $subitem)
                                     <a href="{{ $subitem->url }}"
-                                        class="block px-4 py-2 text-lg font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green"> <!-- Increased font size -->
+                                        class="block px-4 py-1 text-lg font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green">
+                                        <!-- Increased font size -->
                                         {{ $subitem->title }}
                                     </a>
                                 @endforeach
                             </div>
                         @endif
+
                     </div>
                 @endforeach
             </div>
@@ -65,30 +70,22 @@ $options = \Models\Options\OpzioniGlobaliFields::get();
                         <div class="flex flex-col flex-start justify-between w-full">
 
                             <a href="{{ $item->url }}"
-                                class="text-lg font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green font-nunitoSans"> <!-- Increased font size -->
+                                class="text-lg font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green font-nunitoSans">
+                                <!-- Increased font size -->
                                 {{ $item->title }}
                             </a>
 
                             <!-- Submenu for mobile -->
                             @if (!empty($item->children))
-                                <div class="mt-2 space-y-2 pl-6"> <!-- Slightly reduced left padding -->
-                                    @foreach ($item->children as $subitem)
-                                        <div class="flex flex-row">
-                                            <div class="arrow">
-                                                <svg class="w-4 h-4 ml-2 text-black" xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </div>
-
-                                            <div class="link">
-                                                <a href="{{ $subitem->url }}"
-                                                    class="block text-base font-medium text-gray-700 transition-all duration-200 hover:text-custom-green"> <!-- Increased font size -->
-                                                    {{ $subitem->title }}
-                                                </a>
-                                            </div>
-                                        </div>
+                                <!-- Dropdown Menu -->
+                                <div
+                                    class="absolute left-0 hidden mt-2 px-2 py-4 bg-white border border-gray-200 rounded-lg shadow-md group-hover:block z-50">
+                                    <!-- Ridotto space-y a 1 e aggiunto p-2 al contenitore -->
+                                    @foreach ($item->children as $subkey => $subitem)
+                                        <a href="{{ $subitem->url }}"
+                                            class="block px-4 py-2 text-lg font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green">
+                                            {{ $subitem->title }}
+                                        </a>
                                     @endforeach
                                 </div>
                             @endif
