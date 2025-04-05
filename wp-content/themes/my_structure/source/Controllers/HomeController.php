@@ -12,7 +12,7 @@ class HomeController extends BaseController {
         $data = HomeFields::get(get_the_ID());
 
         $this->addJs('swiper-js', 'https://unpkg.com/swiper/swiper-bundle.min.js', [], true);
-        $this->addJs('homeSlider', 'homeSlider.js', ['swiper-js'], true, '6.8');
+        $this->addJs('homeSlider', 'homeSlider.js', ['swiper-js'], true, '6.9');
         $this->addCss('swiper-css', 'https://unpkg.com/swiper/swiper-bundle.min.css');
         $this->render('home', ['data'=> $data, 'duo_fields' => DuoFields::get(get_the_ID()) ?? null]);
     }

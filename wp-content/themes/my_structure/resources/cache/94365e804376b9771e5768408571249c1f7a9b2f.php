@@ -56,12 +56,15 @@
             ],
         ],
     ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <?php echo $__env->make('components.linear-slider', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
     
 
-
-
+    <?php echo $__env->make('components.duo-logo', [
+        'titolo_duo_logo_1' => $duo_fields->titolo_duo_logo_1,
+        'immagine_duo_logo_1' => $duo_fields->immagine_duo_logo_1['url'] ?? null,
+        'titolo_duo_logo_2' => $duo_fields->titolo_duo_logo_2,
+        'immagine_duo_logo_2' => $duo_fields->immagine_duo_logo_2['url'] ?? null,
+        'sottotitolo_comune' => $duo_fields->sottotitolo_duo_logo_2
+    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->make('components.missione', [
         'titolo_missione' => $data->titolo_missione ?? null,
         'testo_missione' => $data->testo_missione ?? null,

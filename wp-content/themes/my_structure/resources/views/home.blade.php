@@ -56,18 +56,15 @@
             ],
         ],
     ])
-    @include('components.linear-slider')
+    {{-- @include('components.linear-slider') --}}
 
-    {{-- @include('components.duo-logo', [
+    @include('components.duo-logo', [
         'titolo_duo_logo_1' => $duo_fields->titolo_duo_logo_1,
         'immagine_duo_logo_1' => $duo_fields->immagine_duo_logo_1['url'] ?? null,
         'titolo_duo_logo_2' => $duo_fields->titolo_duo_logo_2,
         'immagine_duo_logo_2' => $duo_fields->immagine_duo_logo_2['url'] ?? null,
         'sottotitolo_comune' => $duo_fields->sottotitolo_duo_logo_2
-    ]) --}}
-
-
-
+    ])
     @include('components.missione', [
         'titolo_missione' => $data->titolo_missione ?? null,
         'testo_missione' => $data->testo_missione ?? null,
