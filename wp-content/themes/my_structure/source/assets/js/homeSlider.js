@@ -22,17 +22,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const swiper = new Swiper('.logo-marquee', {
-        slidesPerView: 'auto', // Adatta automaticamente i loghi visibili sulla larghezza del viewport
-        loop: true, // Abilita il loop continuo
+        slidesPerView: 'auto', // Mostra tanti loghi quanto possibile
+        loop: true,
         centeredSlides: false,
         autoplay: {
-            delay: 0, // Nessun ritardo, per un effetto continuo
+            delay: 0,
             disableOnInteraction: false,
         },
-        speed: 3500, // Velocità dello scorrimento dei loghi
-        grabCursor: true, // Permette l'interazione con il cursore
-        observer: true, // Rileva quando gli swiper-elements vengono modificati
-        observeParents: true, // Rileva quando i parent-elements dello swiper vengono modificati
-        freeMode: true, // Permette uno scorrimento libero senza fermarsi ai singoli slide
+        speed: 3500,
+        grabCursor: true,
+        observer: true,
+        observeParents: true,
+        freeMode: true,
+        breakpoints: {
+            640: { slidesPerView: 'auto' },
+            768: { slidesPerView: 'auto' },
+            1024: { slidesPerView: 'auto' },
+        }
     });
+    
 });

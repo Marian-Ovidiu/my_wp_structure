@@ -1,4 +1,4 @@
-<div class="swiper-container logo-marquee w-full my-4">
+<div class="swiper-container logo-marquee w-full my-4 overflow-hidden">
     <div class="swiper-wrapper sw-wrapper-linear">
         <?php if(isset($linearSlider) && !empty($linearSlider)): ?>
             <?php
@@ -16,20 +16,27 @@
                         'title' => $linearSlider->titolo_logo_3 ?? null,
                     ],
                 ];
+                $loopLogos = array_merge($logos, $logos); // duplica
             ?>
 
             <?php $__currentLoopData = $logos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php if(isset($item['logo']['url']) && isset($item['logo']['title'])): ?>
-                    <div class="swiper-slide flex flex-col items-center justify-center p-4">
-                        <div class="text-center mb-2 custom-dark-green">
-                            <p class="font-bold text-lg custom-dark-green"><?php echo e($item['title']); ?></p>
+                    <div class="swiper-slide !w-auto flex flex-col items-center justify-center px-4 py-2">
+                        <div class="text-center mb-2">
+                            <p class="font-bold text-sm sm:text-base custom-dark-green whitespace-nowrap">
+                                <?php echo e($item['title']); ?>
+
+                            </p>
                         </div>
-                        <img src="<?php echo e($item['logo']['url']); ?>" alt="<?php echo e($item['logo']['title']); ?>" style="max-height: 80px;">
+                        <img src="<?php echo e($item['logo']['url']); ?>" alt="<?php echo e($item['logo']['title']); ?>"
+                            class="max-h-20 object-contain">
                     </div>
                 <?php endif; ?>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         <?php else: ?>
-            <p>No logos available</p>
+            <div class="swiper-slide">
+                <p class="text-sm text-gray-500">No logos available</p>
+            </div>
         <?php endif; ?>
     </div>
 </div>
