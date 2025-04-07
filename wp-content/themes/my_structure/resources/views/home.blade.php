@@ -56,15 +56,10 @@
             ],
         ],
     ])
-    {{-- @include('components.linear-slider') --}}
-
-    @include('components.duo-logo', [
-        'titolo_duo_logo_1' => $duo_fields->titolo_duo_logo_1,
-        'immagine_duo_logo_1' => $duo_fields->immagine_duo_logo_1['url'] ?? null,
-        'titolo_duo_logo_2' => $duo_fields->titolo_duo_logo_2,
-        'immagine_duo_logo_2' => $duo_fields->immagine_duo_logo_2['url'] ?? null,
-        'sottotitolo_comune' => $duo_fields->sottotitolo_duo_logo_2
+    @include('components.linear-slider', [
+        'linearSlider' => $linearSlider,
     ])
+
     @include('components.missione', [
         'titolo_missione' => $data->titolo_missione ?? null,
         'testo_missione' => $data->testo_missione ?? null,
@@ -88,17 +83,7 @@
     ])
 
     @include('components.home-cards', ['progetti' => $data->progetti])
-    {{-- @include('components.home-mobile-cards', ['progetti' => $data->progetti]) --}}
 
-    {{-- <div class="container mx-auto py-12">
-        <div class="flex flex-col items-center justify-center md:flex-row-reverse">
-            @include('components.testo-sottotesto',[
-                'titolo' => $data->titolo_chart,
-                'sottotitolo' => $data->descrizione_chart,
-            ])
-            @include('components.chart')
-        </div>
-    </div> --}}
     @include('components.aziende', [
         'titolo' => $data->titolo_azienda ?? null,
         'descrizione' => $data->descrizione_azienda ?? null,
