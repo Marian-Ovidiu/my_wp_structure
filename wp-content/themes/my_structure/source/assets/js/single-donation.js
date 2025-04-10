@@ -1,6 +1,7 @@
-function donationFormData(progettoId) {
+function donationFormData(progettoId, thankYouUrl) {
     return {
         step: 1,
+        thankYouUrl: thankYouUrl,
         selectedAmount: null,
         customAmount: '',
         loading: false,
@@ -72,15 +73,15 @@ function donationFormData(progettoId) {
             const { error } = await this.stripe.confirmPayment({
                 elements: this.elements,
                 confirmParams: {
-                  return_url: thankYouUrl,
-                  payment_method_data: {
-                    billing_details: {
-                      name: `${this.formData.name} ${this.formData.surname}`,
-                      email: this.formData.email,
+                    return_url: this.thankYouUrl,
+                    payment_method_data: {
+                        billing_details: {
+                            name: `${this.formData.name} ${this.formData.surname}`,
+                            email: this.formData.email,
+                        }
                     }
-                  }
                 }
-              });
+            });
 
             if (error) {
                 console.error('Errore durante il pagamento:', error.message);

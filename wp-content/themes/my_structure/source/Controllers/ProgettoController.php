@@ -30,14 +30,14 @@ class ProgettoController extends BaseController
     public function single()
     {
         $this->addJs('stripe', 'https://js.stripe.com/v3/', [], true);
-        $this->addJs('single-donation', 'single-donation.js', ['stripe'], true);
+        $this->addJs('single-donation', 'single-donation.js', ['stripe'], true, '2.0');
         $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
         $this->addJs('swiper-js', 'https://unpkg.com/swiper/swiper-bundle.min.js', [], true);
         $this->addCss('swiper-css', 'https://unpkg.com/swiper/swiper-bundle.min.css');
         $this->addJs('progetto', 'progettoSlider.js', ['swiper-js'], true, '6.8.1');
         $progetto = Progetto::find(get_the_ID());
 
-        if (! $progetto) {
+        if (!$progetto) {
             global $wp_query;
             $wp_query->set_404();
             status_header(404);
