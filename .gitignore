@@ -1,34 +1,38 @@
-# Ignora tutto dentro wp-content
-wp-content/*
+# ❌ Config locali e file sensibili
+!wp-config.php
 
-# Ma tieni solo i tuoi plugin e il tuo tema custom
+# ❌ Ignora tutta la wp-content (ma solo se non serve)
+# wp-content/* ← LO RIMUOVIAMO perché vogliamo plugin e tema custom
+
+# ✅ Mantieni TUTTI i plugin installati (anche WP Mail SMTP ecc.)
 !wp-content/plugins/
-!wp-content/plugins/*/
-!wp-content/plugins/*/src/
-!wp-content/plugins/*/assets/
-!wp-content/plugins/*/*.php
-wp-content/plugins/*/vendor/
-!wp-content/plugins/*/node_modules/
+wp-content/plugins/*/node_modules/
+wp-content/plugins/*/vendor/ # se non vuoi vendor nei plugin
 
-# Tema custom incluso tutto
+# ✅ Mantieni SOLO il tuo tema custom
 !wp-content/themes/
 !wp-content/themes/my_structure/**
+wp-content/themes/*/node_modules/
+wp-content/themes/*/vendor/
 
-# Includi anche i compilati Vite (es. manifest.json, build JS/CSS)
-!wp-content/themes/my_structure/public/
-!wp-content/themes/my_structure/public/.vite/
-!wp-content/themes/my_structure/public/.vite/manifest.json
-!wp-content/themes/my_structure/public/build/
-!wp-content/themes/my_structure/public/build/**
-wp-content/plugins/wp-mail-smtp/
-
-# Cache, backup e roba inutile
+# ❌ Ignora le robe runtime
 wp-content/cache/
 wp-content/uploads/
 wp-content/debug.log
+wp-content/upgrade/
+wp-content/upgrade-temp-backup/
+wp-content/wc-logs/
 *.log
-*.zip
-*.sql
+
+# ❌ File di sistema e dipendenze
+.DS_Store
+Thumbs.db
 node_modules/
 vendor/
-.DS_Store
+
+# ❌ Backup o export
+*.sql
+*.zip
+*.tar.gz
+*.bak
+*.bk
