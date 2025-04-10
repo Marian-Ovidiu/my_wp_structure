@@ -10,8 +10,16 @@ wp-content/*
 wp-content/plugins/*/vendor/
 !wp-content/plugins/*/node_modules/
 
+# Tema custom incluso tutto
 !wp-content/themes/
 !wp-content/themes/my_structure/**
+
+# Includi anche i compilati Vite (es. manifest.json, build JS/CSS)
+!wp-content/themes/my_structure/public/
+!wp-content/themes/my_structure/public/.vite/
+!wp-content/themes/my_structure/public/.vite/manifest.json
+!wp-content/themes/my_structure/public/build/
+!wp-content/themes/my_structure/public/build/**
 
 # Cache, backup e roba inutile
 wp-content/cache/
