@@ -20,6 +20,7 @@ wp-content/plugins/*/vendor/
 !wp-content/themes/my_structure/public/.vite/manifest.json
 !wp-content/themes/my_structure/public/build/
 !wp-content/themes/my_structure/public/build/**
+wp-content/plugins/wp-mail-smtp/
 
 # Cache, backup e roba inutile
 wp-content/cache/
