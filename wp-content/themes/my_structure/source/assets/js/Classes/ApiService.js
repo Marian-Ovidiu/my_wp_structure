@@ -27,8 +27,6 @@ export default class ApiService {
             }
         })
         .then((response) => {
-            console.log('wewee');
-            console.log(response);
             return response.data;
         })
         .catch(error => {
