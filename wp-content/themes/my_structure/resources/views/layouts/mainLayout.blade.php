@@ -54,20 +54,29 @@
     </footer>
     @yield('scripts')
     <script>
+        window.RECAPTCHA_SITE_KEY = "{{ my_env('RECAPTCHA_SITE_KEY') }}";
         window.setRecaptchaToken = function(token) {
             document.querySelectorAll('[x-data]').forEach(el => {
                 if (el.__x && el.__x.$data && 'recaptchaToken' in el.__x.$data) {
                     el.__x.$data.recaptchaToken = token;
                 }
             });
-        }
-        window.RECAPTCHA_SITE_KEY = "{{ my_env('RECAPTCHA_SITE_KEY') }}";
-        grecaptcha.ready(function () {
-            grecaptcha.execute('{{ my_env('RECAPTCHA_SITE_KEY') }}', { action: 'donazione' }).then(function (token) {
-                window.setRecaptchaToken(token);
-            });
-        });
+        };
+    
+        (function waitForRecaptcha() {
+            if (window.grecaptcha && grecaptcha.ready) {
+                grecaptcha.ready(function () {
+                    grecaptcha.execute(window.RECAPTCHA_SITE_KEY, { action: 'donazione' }).then(function (token) {
+                        window.setRecaptchaToken(token);
+                    });
+                });
+            } else {
+                // riprova ogni 300ms finché non è disponibile
+                setTimeout(waitForRecaptcha, 300);
+            }
+        })();
     </script>
+    
     <?php wp_footer(); ?>
 </body>
 </html>
