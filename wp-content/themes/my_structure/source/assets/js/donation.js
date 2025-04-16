@@ -33,47 +33,46 @@ export default function donationFormData(progettoId, thankYouUrl) {
             const call = new window.ApiService();
         
             try {
+                // ✅ Aspetta che grecaptcha sia caricato prima di eseguire
+                await this.waitForRecaptcha();
+        
                 const token = await grecaptcha.execute(window.RECAPTCHA_SITE_KEY, { action: 'donazione' });
         
                 const res = await call.post('/create-payment-intent', {
                     amount,
                     progetto_id: this.progettoId,
-                    recaptchaToken: token // <-- ⚠️ fondamentale
+                    recaptchaToken: token
                 });
+        
+                if (!res?.data?.clientSecret) {
+                    throw new Error("clientSecret mancante o errore nella risposta");
+                }
         
                 this.clientSecret = res.data.clientSecret;
                 this.stripe = Stripe('pk_live_51QQqzmP9ji9EUZt5LkB8kShCP2rhsd195h5SlYAzUb3gGabZ8R8Uinp0TiDGKXqFsBu7oCPVL7of79NbNSGrAr3u00xFyOm6u8');
                 this.elements = this.stripe.elements({ clientSecret: this.clientSecret });
         
-                // STEP 3 → Alpine render → mount elementi
                 this.step = 3;
         
                 await this.$nextTick(() => {
                     const paymentElement = this.elements.create('payment');
                     paymentElement.mount(`#payment-element-${this.progettoId}`);
-        
-                    const gpayEl = document.getElementById(`google-pay-button-${this.progettoId}`);
-                    if (gpayEl) gpayEl.innerHTML = '';
                     this.setupGooglePay(amount);
         
                     const paypalEl = document.getElementById(`paypal-button-container-${this.progettoId}`);
                     if (paypalEl && window.paypal) {
                         paypal.Buttons({
-                            createOrder: (data, actions) => {
-                                return actions.order.create({
-                                    purchase_units: [{
-                                        amount: {
-                                            value: ((this.customAmount || this.selectedAmount)).toString()
-                                        }
-                                    }]
-                                });
-                            },
-                            onApprove: (data, actions) => {
-                                return actions.order.capture().then(details => {
-                                    alert(`Pagamento completato da ${details.payer.name.given_name}`);
-                                    window.location.href = this.thankYouUrl;
-                                });
-                            },
+                            createOrder: (data, actions) => actions.order.create({
+                                purchase_units: [{
+                                    amount: {
+                                        value: ((this.customAmount || this.selectedAmount)).toString()
+                                    }
+                                }]
+                            }),
+                            onApprove: (data, actions) => actions.order.capture().then(details => {
+                                alert(`Pagamento completato da ${details.payer.name.given_name}`);
+                                window.location.href = this.thankYouUrl;
+                            }),
                             onError: (err) => {
                                 console.error('Errore PayPal:', err);
                                 alert("Errore PayPal: " + err.message);
@@ -88,7 +87,22 @@ export default function donationFormData(progettoId, thankYouUrl) {
             } finally {
                 this.loading = false;
             }
-        }
+        },
+        async waitForRecaptcha() {
+            return new Promise((resolve, reject) => {
+                let attempts = 0;
+                const check = () => {
+                    if (window.grecaptcha && grecaptcha.execute) {
+                        resolve();
+                    } else {
+                        attempts++;
+                        if (attempts > 10) return reject(new Error("reCAPTCHA non disponibile"));
+                        setTimeout(check, 300);
+                    }
+                };
+                check();
+            });
+        }        
         ,
         async setupGooglePay(amount) {
             const paymentRequest = this.stripe.paymentRequest({
