@@ -33,7 +33,7 @@ export default function donationFormData(progettoId, thankYouUrl) {
             const call = new window.ApiService();
         
             try {
-                const token = await grecaptcha.execute('6LfB3I0qAAAAAHF7ordjbfV1Vom7mybdBgPV0_N1', { action: 'donazione' });
+                const token = await grecaptcha.execute(window.RECAPTCHA_SITE_KEY, { action: 'donazione' });
         
                 const res = await call.post('/create-payment-intent', {
                     amount,
@@ -122,7 +122,7 @@ export default function donationFormData(progettoId, thankYouUrl) {
             this.loading = true;
         
             try {
-                const token = await grecaptcha.execute('6LeD2BIrAAAAAMW5YdtryPjvrOPPA_ScO2ZWYUUV', { action: 'donazione' });
+                const token = await grecaptcha.execute(window.RECAPTCHA_SITE_KEY, { action: 'donazione' });
                 this.recaptchaToken = token;
         
                 const { error } = await this.stripe.confirmPayment({

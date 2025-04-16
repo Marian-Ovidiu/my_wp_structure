@@ -61,7 +61,7 @@
                 }
             });
         }
-
+        window.RECAPTCHA_SITE_KEY = "{{ my_env('RECAPTCHA_SITE_KEY') }}";
         grecaptcha.ready(function () {
             grecaptcha.execute('{{ my_env('RECAPTCHA_SITE_KEY') }}', { action: 'donazione' }).then(function (token) {
                 window.setRecaptchaToken(token);
