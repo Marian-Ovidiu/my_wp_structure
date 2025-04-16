@@ -21,7 +21,7 @@
         }
     </script>
     <link rel="canonical" href="{{ get_permalink() }}">
-    <script src="https://www.google.com/recaptcha/api.js?render=6LeD2BIrAAAAAMW5YdtryPjvrOPPA_ScO2ZWYUUV" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?render={{ my_env('RECAPTCHA_SITE_KEY') }}" async defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400&display=swap" rel="stylesheet">
@@ -29,24 +29,14 @@
     @yield('head')
 </head>
 <body class="flex flex-col min-h-screen font-nunitoSansRegular">
-   <?php wp_head(); ?>
+    <?php wp_head(); ?>
     @widget('LanguageMenu')
     @switch(pll_current_language())
-        @case('it')
-            @widget('HeaderMenu')
-            @break
-        @case('en')
-            @widget('HeaderMenuEnglish')
-            @break
-        @case('fr')
-            @widget('HeaderMenuFrancais')
-            @break
-        @case('de')
-            @widget('HeaderMenuDeutsch')
-            @break
-        @default
-            @widget('HeaderMenu')
-            @break
+        @case('it')   @widget('HeaderMenu')         @break
+        @case('en')   @widget('HeaderMenuEnglish')  @break
+        @case('fr')   @widget('HeaderMenuFrancais') @break
+        @case('de')   @widget('HeaderMenuDeutsch')  @break
+        @default      @widget('HeaderMenu')         @break
     @endswitch
 
     <main class="flex-grow main">
@@ -55,21 +45,11 @@
 
     <footer class="text-white">
         @switch(pll_current_language())
-            @case('it')
-                @widget('FooterMenu')
-                @break
-            @case('en')
-                @widget('FooterMenuEnglish')
-                @break
-            @case('fr')
-                @widget('FooterMenuFrancais')
-                @break
-            @case('de')
-                @widget('FooterMenuDeutsch')
-                @break
-            @default
-                @widget('FooterMenu')
-                @break
+            @case('it')   @widget('FooterMenu')         @break
+            @case('en')   @widget('FooterMenuEnglish')  @break
+            @case('fr')   @widget('FooterMenuFrancais') @break
+            @case('de')   @widget('FooterMenuDeutsch')  @break
+            @default      @widget('FooterMenu')         @break
         @endswitch
     </footer>
     @yield('scripts')
@@ -81,13 +61,13 @@
                 }
             });
         }
-    
+
         grecaptcha.ready(function () {
-            grecaptcha.execute('6LeD2BIrAAAAAMW5YdtryPjvrOPPA_ScO2ZWYUUV', { action: 'donazione' }).then(function (token) {
+            grecaptcha.execute('{{ my_env('RECAPTCHA_SITE_KEY') }}', { action: 'donazione' }).then(function (token) {
                 window.setRecaptchaToken(token);
             });
         });
     </script>
-   <?php wp_footer(); ?>
+    <?php wp_footer(); ?>
 </body>
 </html>

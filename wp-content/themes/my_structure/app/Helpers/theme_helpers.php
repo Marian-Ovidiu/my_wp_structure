@@ -64,7 +64,7 @@ if (!function_exists('create_payment_intent')) {
         
         $response = wp_remote_post('https://www.google.com/recaptcha/api/siteverify', [
             'body' => [
-                'secret'   => '6LeD2BIrAAAAAMW5YdtryPjvrOPPA_ScO2ZWYUUV',
+                'secret'   => '6LfB3I0qAAAAAHF7ordjbfV1Vom7mybdBgPV0_N1',
                 'response' => sanitize_text_field($_POST['g-recaptcha-response']),
             ]
         ]);
