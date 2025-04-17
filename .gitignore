@@ -39,3 +39,5 @@ vendor/
 !public/css/
 !public/js/
 !public/assets/
+/wp-content/ewww/
+/wp-content/themes/my_structure/resources/cache/
