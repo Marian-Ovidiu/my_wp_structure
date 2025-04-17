@@ -21,7 +21,6 @@
         }
     </script>
     <link rel="canonical" href="{{ get_permalink() }}">
-    <script src="https://www.google.com/recaptcha/api.js?render={{ my_env('RECAPTCHA_SITE_KEY') }}" async defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400&display=swap" rel="stylesheet">
@@ -53,30 +52,6 @@
         @endswitch
     </footer>
     @yield('scripts')
-    <script>
-        window.RECAPTCHA_SITE_KEY = "{{ my_env('RECAPTCHA_SITE_KEY') }}";
-        window.setRecaptchaToken = function(token) {
-            document.querySelectorAll('[x-data]').forEach(el => {
-                if (el.__x && el.__x.$data && 'recaptchaToken' in el.__x.$data) {
-                    el.__x.$data.recaptchaToken = token;
-                }
-            });
-        };
-    
-        (function waitForRecaptcha() {
-            if (window.grecaptcha && grecaptcha.ready) {
-                grecaptcha.ready(function () {
-                    grecaptcha.execute(window.RECAPTCHA_SITE_KEY, { action: 'donazione' }).then(function (token) {
-                        window.setRecaptchaToken(token);
-                    });
-                });
-            } else {
-                // riprova ogni 300ms finché non è disponibile
-                setTimeout(waitForRecaptcha, 300);
-            }
-        })();
-    </script>
-    
     <?php wp_footer(); ?>
 </body>
 </html>

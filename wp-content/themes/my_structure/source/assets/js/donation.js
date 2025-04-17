@@ -33,15 +33,9 @@ export default function donationFormData(progettoId, thankYouUrl) {
             const call = new window.ApiService();
         
             try {
-                // ✅ Aspetta che grecaptcha sia caricato prima di eseguire
-                await this.waitForRecaptcha();
-        
-                const token = await grecaptcha.execute(window.RECAPTCHA_SITE_KEY, { action: 'donazione' });
-        
                 const res = await call.post('/create-payment-intent', {
                     amount,
                     progetto_id: this.progettoId,
-                    recaptchaToken: token
                 });
         
                 if (!res?.data?.clientSecret) {
@@ -88,22 +82,6 @@ export default function donationFormData(progettoId, thankYouUrl) {
                 this.loading = false;
             }
         },
-        async waitForRecaptcha() {
-            return new Promise((resolve, reject) => {
-                let attempts = 0;
-                const check = () => {
-                    if (window.grecaptcha && grecaptcha.execute) {
-                        resolve();
-                    } else {
-                        attempts++;
-                        if (attempts > 10) return reject(new Error("reCAPTCHA non disponibile"));
-                        setTimeout(check, 300);
-                    }
-                };
-                check();
-            });
-        }        
-        ,
         async setupGooglePay(amount) {
             const paymentRequest = this.stripe.paymentRequest({
                 country: 'IT',
@@ -136,10 +114,6 @@ export default function donationFormData(progettoId, thankYouUrl) {
             this.loading = true;
         
             try {
-                const token = await grecaptcha.execute(window.RECAPTCHA_SITE_KEY, { action: 'donazione' });
-                console.log(token);
-                this.recaptchaToken = token;
-                console.log(token);
                 const { error } = await this.stripe.confirmPayment({
                     elements: this.elements,
                     confirmParams: {
@@ -160,10 +134,10 @@ export default function donationFormData(progettoId, thankYouUrl) {
                     return;
                 }
             } catch (err) {
-                console.error('Errore Stripe o ReCaptcha:', err.message);
+                console.error('Errore Stripe:', err.message);
                 this.loading = false;
             }
-        },        
+        },
         isAmountValid() {
             return this.selectedAmount || (this.customAmount && this.customAmount > 0);
         },

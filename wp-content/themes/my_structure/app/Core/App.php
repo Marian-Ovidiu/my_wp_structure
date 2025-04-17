@@ -19,8 +19,6 @@ class App extends Init
         add_action('admin_menu', 'my_custom_options_page');
         add_action('admin_head', 'acf_form_head');
         add_action('wp_enqueue_scripts', 'disable_woocommerce_assets');
-        add_action('wp_ajax_create_payment_intent', 'create_payment_intent');
-        add_action('wp_ajax_nopriv_create_payment_intent', 'create_payment_intent');
     }
 
     public function registerFilters()

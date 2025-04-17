@@ -21,7 +21,6 @@
         }
     </script>
     <link rel="canonical" href="<?php echo e(get_permalink()); ?>">
-    <script src="https://www.google.com/recaptcha/api.js?render=<?php echo e(my_env('RECAPTCHA_SITE_KEY')); ?>" async defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400&display=swap" rel="stylesheet">
@@ -53,21 +52,6 @@
         <?php endswitch; ?>
     </footer>
     <?php echo $__env->yieldContent('scripts'); ?>
-    <script>
-        window.setRecaptchaToken = function(token) {
-            document.querySelectorAll('[x-data]').forEach(el => {
-                if (el.__x && el.__x.$data && 'recaptchaToken' in el.__x.$data) {
-                    el.__x.$data.recaptchaToken = token;
-                }
-            });
-        }
-
-        grecaptcha.ready(function () {
-            grecaptcha.execute('<?php echo e(my_env('RECAPTCHA_SITE_KEY')); ?>', { action: 'donazione' }).then(function (token) {
-                window.setRecaptchaToken(token);
-            });
-        });
-    </script>
     <?php wp_footer(); ?>
 </body>
 </html>

@@ -11,34 +11,7 @@ class StripePayments
     public static function createIntent()
     {
         Stripe::setApiKey(my_env('SECRET_KEY'));
-        $data = json_decode(file_get_contents("php://input"), true);
-
-        // 🔐 Verifica ReCAPTCHA
-        $recaptchaToken = $data['recaptchaToken'] ?? null;
-        if (! $recaptchaToken) {
-            wp_send_json_error(['message' => 'Token reCAPTCHA mancante.']);
-            return;
-        }
-
-        // Chiamata al servizio di verifica di Google
-        $response = wp_remote_post('https://www.google.com/recaptcha/api/siteverify', [
-            'body' => [
-                'secret'   => my_env('RECAPTCHA_SECRET_KEY'),
-                'response' => $recaptchaToken,
-            ],
-        ]);
-
-        if (is_wp_error($response)) {
-            wp_send_json_error(['message' => 'Errore di comunicazione con reCAPTCHA.']);
-            return;
-        }
-
-        $body = json_decode(wp_remote_retrieve_body($response), true);
-        if (! $body['success'] || $body['score'] < 0.5) {
-            wp_send_json_error(['message' => 'Verifica reCAPTCHA fallita.']);
-            return;
-        }
-
+        $data = json_decode(file_get_contents("php://input"), true);   
         $amount       = isset($data['amount']) ? (int) $data['amount'] : 0;
         $progetto_id  = $data['progetto_id'] ?? null;
         $progetto     = Progetto::find($progetto_id);
@@ -61,35 +34,11 @@ class StripePayments
 
     public static function completePayment()
     {
-        // 🔐 Verifica ReCAPTCHA
-        $recaptchaToken = $data['recaptchaToken'] ?? null;
-        if (! $recaptchaToken) {
-            wp_send_json_error(['message' => 'Token reCAPTCHA mancante.']);
-            return;
-        }
-
-        $response = wp_remote_post('https://www.google.com/recaptcha/api/siteverify', [
-            'body' => [
-                'secret'   => my_env('RECAPTCHA_SECRET_KEY'),
-                'response' => $recaptchaToken,
-            ],
-        ]);
-
-        if (is_wp_error($response)) {
-            wp_send_json_error(['message' => 'Errore di comunicazione con reCAPTCHA.']);
-            return;
-        }
-
-        $body = json_decode(wp_remote_retrieve_body($response), true);
-        if (! $body['success'] || $body['score'] < 0.5) {
-            wp_send_json_error(['message' => 'Verifica reCAPTCHA fallita.']);
-            return;
-        }
-
         $data = json_decode(file_get_contents("php://input"), true);
 
         $paymentMethodId = $data['paymentMethodId'];
-        $amount          = $data['amount'];
+        $amount = isset($data['amount']) ? (int) $data['amount'] : 0;
+
         $email           = $data['email'] ?? null;
 
         if (! $email || ! filter_var($email, FILTER_VALIDATE_EMAIL)) {
