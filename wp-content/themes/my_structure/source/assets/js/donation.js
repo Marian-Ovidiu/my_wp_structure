@@ -1,7 +1,7 @@
 export default function donationFormData(progettoId, thankYouUrl) {
     return {
-        progettoId,
-        thankYouUrl: null,
+        progettoId: progettoId,
+        thankYouUrl: thankYouUrl,
         step: 1,
         selectedAmount: null,
         customAmount: '',
@@ -22,10 +22,6 @@ export default function donationFormData(progettoId, thankYouUrl) {
             phone: '',
             email: '',
             codiceFiscale: '',
-        },
-        init(progettoId, thankYouUrl) {
-            this.progettoId = progettoId;
-            this.thankYouUrl = thankYouUrl;
         },
         async createIntent() {
             this.loading = true;
