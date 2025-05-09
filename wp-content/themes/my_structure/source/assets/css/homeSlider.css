@@ -6,17 +6,19 @@
 
 }
 
-.sw-wrapper-linear-custom,
+.sw-wrapper-linear,
 .swiper-wrapper {
+    min-width: 200px;
+    margin-right: 16px;
     max-height: 100% !important;
 }
 
 /* Le singole slide occupano 100% dell’altezza */
 .swiper-slide {
+    width: auto !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
 }
 
 /* Sezione con background image */

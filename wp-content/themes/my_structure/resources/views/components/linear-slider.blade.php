@@ -16,10 +16,10 @@
                         'title' => $linearSlider->titolo_logo_3 ?? null,
                     ],
                 ];
-                $loopLogos = array_merge($logos, $logos); // duplica
+                $loopLogos = array_merge($logos, $logos);
             @endphp
 
-            @foreach ($logos as $item)
+            @foreach ($loopLogos as $item)
                 @if (isset($item['logo']['url']) && isset($item['logo']['title']))
                     <div class="swiper-slide !w-auto flex flex-col items-center justify-center px-4 py-2">
                         <div class="text-center mb-2">

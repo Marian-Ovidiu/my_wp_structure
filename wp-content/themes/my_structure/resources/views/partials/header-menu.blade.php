@@ -67,29 +67,25 @@
             <div class="flow-root pl-12">
                 <div class="flex flex-col flex-start px-3 space-y-4 pt-2">
                     @foreach ($menu as $item)
-                        <div class="flex flex-col flex-start justify-between w-full">
-
-                            <a href="{{ $item->url }}"
+                        <div class="flex flex-col justify-between w-full relative" x-data="{ openSub: false }">
+                            <a href="{{ $item->url }}" @click.prevent="openSub = !openSub"
                                 class="text-lg font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green font-nunitoSans">
-                                <!-- Increased font size -->
                                 {{ $item->title }}
                             </a>
-
-                            <!-- Submenu for mobile -->
                             @if (!empty($item->children))
-                                <!-- Dropdown Menu -->
-                                <div
-                                    class="absolute left-0 hidden mt-2 px-2 py-4 bg-white border border-gray-200 rounded-lg shadow-md group-hover:block z-50">
-                                    <!-- Ridotto space-y a 1 e aggiunto p-2 al contenitore -->
-                                    @foreach ($item->children as $subkey => $subitem)
+                                <div x-show="openSub" x-transition
+                                    class="pl-4 mt-2 space-y-2 border-l border-gray-200 ml-2">
+                                    @foreach ($item->children as $subitem)
                                         <a href="{{ $subitem->url }}"
-                                            class="block px-4 py-2 text-lg font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green">
-                                            {{ $subitem->title }}
+                                            class="block text-base font-medium text-black hover:text-custom-green">
+                                            {{ get_permalink($subitem->ID) }}
                                         </a>
                                     @endforeach
                                 </div>
                             @endif
+                        </div>
                     @endforeach
+
                 </div>
             </div>
         </nav>

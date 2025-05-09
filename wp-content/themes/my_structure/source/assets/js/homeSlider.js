@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const swiper = new Swiper('.logo-marquee', {
         slidesPerView: 'auto', // Mostra tanti loghi quanto possibile
+        spaceBetween: 32,
         loop: true,
         centeredSlides: false,
         autoplay: {
