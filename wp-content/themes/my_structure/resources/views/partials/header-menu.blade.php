@@ -57,37 +57,30 @@
         </nav>
 
         <!-- Mobile menu -->
-        <nav x-show="open" @click.away="open = false" x-transition:enter="transition ease-out duration-400"
-            x-transition:enter-start="opacity-0 transform scale-95"
-            x-transition:enter-end="opacity-100 transform scale-100"
-            x-transition:leave="transition ease-in duration-300"
-            x-transition:leave-start="opacity-100 transform scale-100"
-            x-transition:leave-end="opacity-0 transform scale-95"
-            class="absolute inset-x-0 mt-6 pt-4 pb-6 bg-white border border-gray-200 rounded-md shadow-md lg:hidden z-50">
+        <nav x-show="open" @click.away="open = false" ...>
             <div class="flow-root pl-12">
                 <div class="flex flex-col flex-start px-3 space-y-4 pt-2">
                     @foreach ($menu as $item)
-                        <div class="flex flex-col justify-between w-full relative" x-data="{ openSub: false }">
-                            <a href="{{ $item->url }}" @click.prevent="openSub = !openSub"
+                        <div class="flex flex-col justify-between w-full relative">
+                            <a href="{{ $item->url }}"
                                 class="text-lg font-medium text-black transition-all duration-200 hover:text-custom-green focus:text-custom-green font-nunitoSans">
                                 {{ $item->title }}
                             </a>
                             @if (!empty($item->children))
-                                <div x-show="openSub" x-transition
-                                    class="pl-4 mt-2 space-y-2 border-l border-gray-200 ml-2">
+                                <div class="pl-4 mt-2 space-y-2 border-l border-gray-200 ml-2">
                                     @foreach ($item->children as $subitem)
-                                        <a href="{{ $subitem->url }}"
+                                        <a href="{{ get_permalink($subitem->ID) }}"
                                             class="block text-base font-medium text-black hover:text-custom-green">
-                                            {{ get_permalink($subitem->ID) }}
+                                            {{ $subitem->post_title }}
                                         </a>
                                     @endforeach
                                 </div>
                             @endif
                         </div>
                     @endforeach
-
                 </div>
             </div>
         </nav>
+
     </div>
 </header>
