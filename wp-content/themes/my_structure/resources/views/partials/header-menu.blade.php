@@ -58,7 +58,7 @@
 
         <!-- Mobile menu -->
         <nav x-show="open" @click.away="open = false" ...>
-            <div class="flow-root pl-12">
+            <div class="flow-root pl-4">
                 <div class="flex flex-col flex-start px-3 space-y-4 pt-2">
                     @foreach ($menu as $item)
                         <div class="flex flex-col justify-between w-full relative">
