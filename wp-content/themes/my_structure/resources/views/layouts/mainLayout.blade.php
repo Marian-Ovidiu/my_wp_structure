@@ -49,7 +49,7 @@
             @case('it')   @widget('FooterMenu')         @break
             {{-- @case('en')   @widget('FooterMenuEnglish')  @break
             @case('fr')   @widget('FooterMenuFrancais') @break
-            @case('de')   @widget('FooterMenuDeutsch')  @break --}}
+            @case('de')   @widget('FooterMenuDeutsch')  @break
             @default      @widget('FooterMenu')         @break
         @endswitch --}}
     </footer>
