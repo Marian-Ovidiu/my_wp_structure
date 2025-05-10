@@ -27,6 +27,9 @@ define( 'DB_PASSWORD', 'projectAfricaC2024');
 //  define( 'DB_USER', 'root' );
 //  define( 'DB_PASSWORD', '');
 
+define('WP_HOME', 'https://project-africa-conservation.org');
+define('WP_SITEURL', 'https://project-africa-conservation.org');
+
 /** Database hostname */
 define( 'DB_HOST', 'localhost' );
 
