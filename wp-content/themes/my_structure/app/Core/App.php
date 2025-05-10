@@ -19,6 +19,7 @@ class App extends Init
         add_action('admin_menu', 'my_custom_options_page');
         add_action('admin_head', 'acf_form_head');
         add_action('wp_enqueue_scripts', 'disable_woocommerce_assets');
+        add_action('template_redirect', 'tp_redirect', 1);
     }
 
     public function registerFilters()

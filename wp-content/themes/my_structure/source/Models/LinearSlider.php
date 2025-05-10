@@ -25,7 +25,7 @@ class LinearSlider extends BaseGroupAcf
         //Slider
         $this->addField('titolo_logo_1');
         $this->addField('titolo_logo_2');
-        $this->addField('titolo_logo_3');+
+        $this->addField('titolo_logo_3');
         $this->addField('logo_1');
         $this->addField('logo_2');
         $this->addField('logo_3');

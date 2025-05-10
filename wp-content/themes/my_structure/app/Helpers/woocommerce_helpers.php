@@ -1,7 +1,8 @@
 <?php
 
-if (!function_exists('disable_woocommerce_features')) {
-    function disable_woocommerce_features() {
+if (! function_exists('disable_woocommerce_features')) {
+    function disable_woocommerce_features()
+    {
         remove_post_type_support('product', 'title');
         remove_post_type_support('product', 'editor');
         unregister_post_type('product');
@@ -10,8 +11,9 @@ if (!function_exists('disable_woocommerce_features')) {
     }
 }
 
-if (!function_exists('disable_woocommerce_pages')) {
-    function disable_woocommerce_pages($page_id, $page) {
+if (! function_exists('disable_woocommerce_pages')) {
+    function disable_woocommerce_pages($page_id, $page)
+    {
         if (in_array($page, ['shop', 'cart', 'checkout', 'myaccount'])) {
             return false;
         }
@@ -19,10 +21,17 @@ if (!function_exists('disable_woocommerce_pages')) {
     }
 }
 
-if (!function_exists('disable_woocommerce_assets')) {
-    function disable_woocommerce_assets() {
-        add_action('wp_enqueue_scripts', function() {
-            if (!is_woocommerce() && !is_cart() && !is_checkout()) {
+if (! function_exists('disable_woocommerce_assets')) {
+    function disable_woocommerce_assets()
+    {
+        if (! class_exists('WooCommerce') || ! function_exists('is_woocommerce')) {
+            return;
+        }
+
+        add_action('wp_enqueue_scripts', function () {
+            if (! is_woocommerce() && ! is_cart() && ! is_checkout()) {
+                require_once get_template_directory() . '/app/Helpers/woocommerce_helpers.php';
+
                 wp_dequeue_style('woocommerce-layout');
                 wp_dequeue_style('woocommerce-general');
                 wp_dequeue_style('woocommerce-smallscreen');
@@ -33,5 +42,20 @@ if (!function_exists('disable_woocommerce_assets')) {
                 wp_dequeue_script('wc-add-to-cart');
             }
         }, 99);
+    }
+}
+if (!function_exists('tp_redirect')) {
+    function tp_redirect()
+    {
+        if (
+            function_exists('is_cart') &&
+            function_exists('is_checkout') &&
+            (is_cart() || is_checkout())
+        ) {
+            return;
+        }
+        remove_all_actions('woocommerce_init');
+        remove_all_actions('woocommerce_loaded');
+        remove_all_filters('template_include');
     }
 }
