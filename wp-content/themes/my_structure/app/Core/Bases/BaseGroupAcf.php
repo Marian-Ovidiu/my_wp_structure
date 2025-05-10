@@ -75,7 +75,8 @@ class BaseGroupAcf
         return null;
     }
     public static function getByLanguage($postType, $acfField = 'lingua', $language = null) {
-        $language = $language ?? pll_current_language();
+        // $language = $language ?? pll_current_language();
+        $language = $language ?? 'it';
 
         $args = [
             'post_type' => $postType,

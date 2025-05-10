@@ -4,7 +4,8 @@
  */
 ?>
 @php
-    $thankYouPage = pll_get_post(412, pll_current_language());
+    // $thankYouPage = pll_get_post(412, pll_current_language());
+    $thankYouPage = = get_permalink(412);
     $thankYouUrl = $thankYouPage ? get_permalink($thankYouPage) : home_url('/grazie');
 
     $img = $progetto->immagine_hero ?? [];

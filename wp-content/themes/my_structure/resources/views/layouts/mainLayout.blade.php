@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ function_exists('pll_current_language') ? pll_current_language() : 'it' }}">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,13 +44,14 @@
     </main>
 
     <footer class="text-white">
-        @switch(pll_current_language())
+         @widget('FooterMenu')
+        {{-- @switch(pll_current_language())
             @case('it')   @widget('FooterMenu')         @break
             {{-- @case('en')   @widget('FooterMenuEnglish')  @break
             @case('fr')   @widget('FooterMenuFrancais') @break
             @case('de')   @widget('FooterMenuDeutsch')  @break --}}
             @default      @widget('FooterMenu')         @break
-        @endswitch
+        @endswitch --}}
     </footer>
     @yield('scripts')
     <?php wp_footer(); ?>

@@ -1,7 +1,8 @@
 @extends('layouts.mainLayout')
 @section('content')
     @php
-        $thankYouUrl = get_permalink(pll_get_post(412, pll_current_language()));
+        // $thankYouUrl = get_permalink(pll_get_post(412, pll_current_language()));
+        $thankYouUrl = get_permalink(412);
         $img = $opzioniArchivio->immagine_hero ?? [];
 
         // Separati i due gruppi di frasi per animazioni diverse
