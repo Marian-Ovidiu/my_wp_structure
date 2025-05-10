@@ -5,8 +5,8 @@
 ?>
 @php
     // $thankYouPage = pll_get_post(412, pll_current_language());
-    $thankYouPage = = get_permalink(412);
-    $thankYouUrl = $thankYouPage ? get_permalink($thankYouPage) : home_url('/grazie');
+    // $thankYouUrl = $thankYouPage ? get_permalink($thankYouPage) : home_url('/grazie');
+    $thankYouUrl = home_url('/grazie');
 
     $img = $progetto->immagine_hero ?? [];
 @endphp
@@ -38,7 +38,6 @@
             $languages = pll_get_the_languages(['raw' => 1]);
         @endphp
 
-        {{-- Mostra le lingue --}}
         <ul class="flex gap-2">
             @foreach ($languages as $lang)
                 <li>
