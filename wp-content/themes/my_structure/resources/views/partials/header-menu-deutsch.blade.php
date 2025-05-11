@@ -64,7 +64,7 @@
             x-transition:leave-start="opacity-100 transform scale-100"
             x-transition:leave-end="opacity-0 transform scale-95"
             class="absolute inset-x-0 mt-6 pt-4 pb-6 bg-white border border-gray-200 rounded-md shadow-md lg:hidden z-50">
-            <div class="flow-root pl-12">
+            <div class="flow-root pl-4">
                 <div class="flex flex-col flex-start px-3 space-y-4 pt-2">
                     @foreach ($menu as $item)
                         <div class="flex flex-col flex-start justify-between w-full">

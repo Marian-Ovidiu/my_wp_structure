@@ -7,7 +7,16 @@ if (! function_exists('disable_woocommerce_features')) {
         remove_post_type_support('product', 'editor');
         unregister_post_type('product');
         remove_action('woocommerce_after_register_post_type', 'woocommerce_register_taxonomy');
-        load_textdomain('woocommerce-gateway-stripe', '/path/to/language/file');
+    }
+}
+
+if (! function_exists('custom_load_textdomain')) {
+    function custom_load_textdomain()
+    {
+        load_textdomain(
+            'woocommerce-gateway-stripe',
+            get_template_directory() . '/languages/woocommerce-gateway-stripe-it_IT.mo'
+        );
     }
 }
 
