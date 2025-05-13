@@ -56,10 +56,10 @@
             ],
         ],
     ])
-    @include('components.linear-slider', [
+    {{-- @include('components.linear-slider', [
         'linearSlider' => $linearSlider,
-    ])
-
+    ]) --}}
+     
     @include('components.missione', [
         'titolo_missione' => $data->titolo_missione ?? null,
         'testo_missione' => $data->testo_missione ?? null,

@@ -1,5 +1,5 @@
 @if($immagine_missione_url)
-    <figure class="mb-6">
+    <figure class="my-6">
         <img src="{{ $immagine_missione_url }}"
              alt="{{ $immagine_missione_alt ?? $titolo_missione }}"
              title="{{ $immagine_missione_title ?? '' }}"

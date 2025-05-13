@@ -21,25 +21,25 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    const swiper = new Swiper('.logo-marquee', {
-        slidesPerView: 'auto', // Mostra tanti loghi quanto possibile
-        spaceBetween: 32,
-        loop: true,
-        centeredSlides: false,
-        autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
-        },
-        speed: 3500,
-        grabCursor: true,
-        observer: true,
-        observeParents: true,
-        freeMode: true,
-        breakpoints: {
-            640: { slidesPerView: 'auto' },
-            768: { slidesPerView: 'auto' },
-            1024: { slidesPerView: 'auto' },
-        }
-    });
+    // const swiper = new Swiper('.logo-marquee', {
+    //     slidesPerView: 'auto', // Mostra tanti loghi quanto possibile
+    //     spaceBetween: 32,
+    //     loop: true,
+    //     centeredSlides: false,
+    //     autoplay: {
+    //         delay: 0,
+    //         disableOnInteraction: false,
+    //     },
+    //     speed: 3500,
+    //     grabCursor: true,
+    //     observer: true,
+    //     observeParents: true,
+    //     freeMode: true,
+    //     breakpoints: {
+    //         640: { slidesPerView: 'auto' },
+    //         768: { slidesPerView: 'auto' },
+    //         1024: { slidesPerView: 'auto' },
+    //     }
+    // });
     
 });

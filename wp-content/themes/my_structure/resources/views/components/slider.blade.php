@@ -1,4 +1,4 @@
-<div class="w-full relative h-[75vh] overflow-hidden">
+<div class="w-full relative h-[75vh] overflow-hidden mb-12">
     <div class="swiper-container logo-carousel h-full opacity-0 transition-opacity duration-300" x-init="$nextTick(() => setTimeout(() => $el.classList.remove('opacity-0'), 100))">
         <div class="swiper-wrapper sw-wrapper-linear-custom h-full" aria-live="polite">
             @foreach($slides as $slide)
