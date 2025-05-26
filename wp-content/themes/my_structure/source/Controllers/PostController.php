@@ -2,12 +2,26 @@
 namespace Controllers;
 
 use Core\Bases\BaseController;
+use Models\Options\OpzioniGlobaliFields;
+use WP_Query;
 
 class PostController extends BaseController
 {
     public function archive()
     {
-        $this->render('archivio-post', ['fields' => 'ciaoooo']);
+        $query = new WP_Query([
+            'post_type'      => 'post',
+            'post_status'    => 'publish',
+            'posts_per_page' => -1, // tutti senza limiti
+        ]);
+
+        
+        $this->render('archivio-post', [
+            'fields' => OpzioniGlobaliFields::get(),
+            'posts' => $query->get_posts()
+        ]
+
+        );
     }
 
     public function single()
