@@ -6,70 +6,47 @@
 @extends('layouts.mainLayout')
 
 @section('content')
-    <section class="relative bg-gradient-to-b from-[#f5fef4] to-[#ffffff] py-20 sm:py-24 lg:py-28 overflow-hidden px-12">
+    <section class="relative bg-gradient-to-b from-[#f5fef4] to-[#ffffff] py-20 sm:py-24 lg:py-28 overflow-hidden px-4 sm:px-6 lg:px-12">
         <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none"
             style="background-image: url('/images/pattern-leaves.svg'); background-repeat: repeat; background-size: 400px;">
         </div>
 
-        <div class="relative z-10 px-4 mx-auto max-w-4xl text-center sm:px-6 lg:px-8 animate-fadeIn">
-            <h1
-                class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-custom-dark-green font-nunitoBold leading-tight drop-shadow-sm">
+        <div class="relative z-10 mx-auto max-w-4xl text-center animate-fadeIn">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-custom-dark-green font-nunitoBold leading-tight drop-shadow-sm">
                 {{ $fields->title_blog }}
             </h1>
-            <div class="mx-auto mt-4 max-w-2xl">
-                <p class="text-lg sm:text-xl text-custom-dark-green font-nunitoRegular opacity-90">
+            <div class="mx-auto mt-3 max-w-2xl">
+                <p class="text-base sm:text-lg text-custom-dark-green font-nunitoRegular opacity-90">
                     {{ $fields->subtitle_blog }}
                 </p>
             </div>
-            <div class="mt-6 mx-auto w-24 h-1 bg-custom-green rounded-full"></div>
+            <div class="mt-5 mx-auto w-20 h-1 bg-custom-green rounded-full"></div>
         </div>
 
-        <div class="grid grid-cols-1 gap-10 mt-16 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 sm:gap-10 mt-16">
             @foreach ($posts as $post)
                 <article
                     class="bg-white border border-[#e1f5d8] rounded-2xl shadow-sm hover:shadow-xl transition duration-300 ease-in-out overflow-hidden animate-fadeInUp">
-                    <a href="{{ $post->url }}" class="block w-full aspect-w-4 aspect-h-3 bg-gray-100 overflow-hidden">
-                        <img src="{{get_the_post_thumbnail_url($post->ID, 'medium') }}" alt="{{$post->title}}" class="object-cover w-full h-full" />
+                    <a href="{{ $post->url }}" class="block w-full bg-gray-100 overflow-hidden">
+                        <img src="{{ get_the_post_thumbnail_url($post->ID, 'medium') }}" alt="{{ $post->title }}"
+                             class="object-cover w-full h-auto max-h-64 rounded-t-2xl" />
                     </a>
                     <div class="p-6">
                         <span
-                            class="inline-block px-3 py-1 text-xs font-medium text-custom-dark-green bg-custom-green bg-opacity-20 rounded-full uppercase tracking-wide font-nunitoSansLight">Ghana</span>
+                            class="inline-block px-3 py-1 text-[10px] font-medium text-custom-dark-green bg-custom-green bg-opacity-20 rounded-full uppercase tracking-wide font-nunitoSansLight">Ghana</span>
                         <h2
-                            class="mt-3 text-xl font-semibold text-custom-dark-green hover:text-custom-green transition font-nunitoBold">
-                            <a href="#">{{ $post->post_tite }}</a>
+                            class="mt-2 text-base font-semibold text-custom-dark-green hover:text-custom-green transition font-nunitoBold leading-snug">
+                            <a href="{{ $post->url }}">{{ $post->post_title }}</a>
                         </h2>
-                        <p class="mt-3 text-[#5c4433] text-sm leading-relaxed font-nunitoRegular">
-                            {!! $post->post_content !!}
+                        <p class="mt-2 text-[13px] text-[#5c4433] leading-snug font-nunitoRegular">
+                            {!! the_excerpt() !!}
                         </p>
-                        <div class="mt-5 text-sm text-[#967148] font-nunitoSansRegular">
-                            Scritto da <strong>Marian Ov.</strong> {{$post->post_date}}
+                        <div class="mt-4 text-[12px] text-[#967148] font-nunitoSansRegular">
+                            Scritto da <strong>Marian Ov.</strong> {{ date('d M Y', strtotime($post->post_date)) }}
                         </div>
                     </div>
                 </article>
             @endforeach
-            {{-- <article
-                class="bg-white border border-[#e1f5d8] rounded-2xl shadow-sm hover:shadow-xl transition duration-300 ease-in-out overflow-hidden animate-fadeInUp">
-                <a href="#" class="block w-full aspect-w-4 aspect-h-3 bg-gray-100 overflow-hidden">
-                    <img src="http://pac.localhost/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-26-at-16.00.51-2.jpeg"
-                        alt="Blog Image" class="object-cover w-full h-full" />
-                </a>
-                <div class="p-6">
-                    <span
-                        class="inline-block px-3 py-1 text-xs font-medium text-custom-dark-green bg-custom-green bg-opacity-20 rounded-full uppercase tracking-wide font-nunitoSansLight">Ghana</span>
-                    <h2
-                        class="mt-3 text-xl font-semibold text-custom-dark-green hover:text-custom-green transition font-nunitoBold">
-                        <a href="#">Infiltrazioni nei tetti in Ghana: come affrontiamo le sfide strutturali delle
-                            scuole</a>
-                    </h2>
-                    <p class="mt-3 text-[#5c4433] text-sm leading-relaxed font-nunitoRegular">
-                        Dopo mesi di attesa, i bambini del villaggio possono finalmente bere acqua pulita. È solo l'inizio
-                        di una nuova speranza.
-                    </p>
-                    <div class="mt-5 text-sm text-[#967148] font-nunitoSansRegular">
-                        Scritto da <strong>Marian Ov.</strong> · 26 Mag 2025
-                    </div>
-                </div>
-            </article> --}}
+        </div>
     </section>
-
 @stop
