@@ -1,4 +1,4 @@
-export default function donationFormData(progettoId, thankYouUrl) {
+function donationFormData(progettoId, thankYouUrl) {
     return {
         progettoId: progettoId,
         thankYouUrl: thankYouUrl,
@@ -166,3 +166,5 @@ export default function donationFormData(progettoId, thankYouUrl) {
         }
     };
 }
+
+window.donationFormData = donationFormData;

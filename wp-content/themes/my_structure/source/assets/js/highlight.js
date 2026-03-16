@@ -1,4 +1,4 @@
-export default function typingEffect(passedTexts = []) {
+function typingEffect(passedTexts = []) {
     return {
         texts: passedTexts,
         currentText: 0,
@@ -31,3 +31,5 @@ export default function typingEffect(passedTexts = []) {
         }
     };
 }
+
+window.typingEffect = typingEffect;
