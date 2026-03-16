@@ -6,6 +6,11 @@ class AcfOptionsFeature
 {
     public function register()
     {
+        $helpersFile = get_template_directory() . '/app/Features/AcfOptions/acf_helpers.php';
+        if (file_exists($helpersFile)) {
+            require_once $helpersFile;
+        }
+
         if (function_exists('my_custom_options_page')) {
             add_action('admin_menu', 'my_custom_options_page');
         }

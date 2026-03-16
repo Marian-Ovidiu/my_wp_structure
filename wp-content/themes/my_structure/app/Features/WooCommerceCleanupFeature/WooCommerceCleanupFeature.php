@@ -6,6 +6,11 @@ class WooCommerceCleanupFeature
 {
     public function register()
     {
+        $helpersFile = get_template_directory() . '/app/Features/WooCommerce/woocommerce_helpers.php';
+        if (file_exists($helpersFile)) {
+            require_once $helpersFile;
+        }
+
         if (function_exists('disable_woocommerce_features')) {
             add_action('init', 'disable_woocommerce_features');
         }
