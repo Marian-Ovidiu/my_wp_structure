@@ -24,7 +24,7 @@ class MenuWidget extends WP_Widget
             $menu_items = [];
         }
 
-        echo App::blade('view')->make('partials.'. $view_name, ['menu' => $menu_items])->render();
+        echo App::blade()->make('partials.'. $view_name, ['menu' => $menu_items])->render();
         echo $args['after_widget'];
     }
 
