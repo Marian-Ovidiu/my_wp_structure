@@ -1,1 +1,0 @@
-@include('pages.singolo-post')

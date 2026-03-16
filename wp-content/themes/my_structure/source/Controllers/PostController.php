@@ -15,12 +15,9 @@ class PostController extends BaseController
             'paged' => max(1, (int) get_query_var('paged')),
         ]);
 
-        $this->render('archivio-post', [
-            'fields' => (object) [
-                'title_blog' => get_bloginfo('name'),
-                'subtitle_blog' => get_bloginfo('description'),
-            ],
-            'posts' => $query->get_posts()
+        $this->render('pages.generic-archive', [
+            'title' => get_the_archive_title(),
+            'posts' => $query->get_posts(),
         ]);
     }
 
@@ -28,12 +25,20 @@ class PostController extends BaseController
     {
         global $post;
 
-        $this->render('singolo-post', [
-            'post'    => $post,
-            'title'   => get_the_title(),
-            'content' => apply_filters('the_content', get_the_content()),
-            'author'  => get_the_author(),
-            'date'    => get_the_date(),
+        if (!$post) {
+            global $wp_query;
+            $wp_query->set_404();
+            status_header(404);
+            nocache_headers();
+            include get_404_template();
+            return;
+        }
+
+        $this->render('pages.generic-single', [
+            'title' => get_the_title($post),
+            'content' => apply_filters('the_content', get_the_content(null, false, $post)),
+            'author' => get_the_author_meta('display_name', $post->post_author),
+            'date' => get_the_date('', $post),
         ]);
     }
 
