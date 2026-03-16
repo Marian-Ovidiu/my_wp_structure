@@ -1,8 +1,7 @@
 <?php
 
 /*
- * Optional feature providers.
- * Keep empty by default so Core can bootstrap a neutral theme.
+ * Enable only project-required features.
  *
  * Example:
  * return [

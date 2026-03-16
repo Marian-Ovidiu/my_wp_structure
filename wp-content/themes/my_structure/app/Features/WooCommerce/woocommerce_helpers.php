@@ -1,15 +1,5 @@
 <?php
 
-if (! function_exists('custom_load_textdomain')) {
-    function custom_load_textdomain()
-    {
-        $mo = get_template_directory() . '/languages/woocommerce-gateway-stripe-it_IT.mo';
-        if (file_exists($mo)) {
-            load_textdomain('woocommerce-gateway-stripe', $mo);
-        }
-    }
-}
-
 if (! function_exists('disable_woocommerce_features')) {
     function disable_woocommerce_features()
     {

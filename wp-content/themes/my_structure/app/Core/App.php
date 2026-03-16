@@ -28,12 +28,18 @@ class App extends Init
 
     public function registerFeatureProviders()
     {
-        $file = get_template_directory() . '/app/Config/feature-providers.php';
-        if (!file_exists($file)) {
-            return;
+        $providers = [];
+        $featuresFile = get_template_directory() . '/app/Config/features.php';
+        if (file_exists($featuresFile)) {
+            $providers = require $featuresFile;
         }
 
-        $providers = require $file;
+        // Backward-compatibility with older feature provider config.
+        $legacyFile = get_template_directory() . '/app/Config/feature-providers.php';
+        if (file_exists($legacyFile)) {
+            $providers = array_merge($providers, require $legacyFile);
+        }
+
         foreach ($providers as $provider) {
             if (class_exists($provider)) {
                 (new $provider())->register();
