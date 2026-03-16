@@ -26,6 +26,7 @@
     "autoload": {
         "psr-4": {
             "Core\\": "app/Core/",
+            "Features\\": "app/Features/",
             "Helpers\\": "app/Helpers/",
             "Middleware\\": "app/Middleware/",
             "Widget\\": "app/Widget/",

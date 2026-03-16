@@ -2,7 +2,6 @@
 
 if (!function_exists('my_theme_setup')) {
     function my_theme_setup() {
-        disable_woocommerce_assets();
         add_base_js();
         add_base_css();
         register_menus();
