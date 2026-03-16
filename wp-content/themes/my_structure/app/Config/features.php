@@ -8,7 +8,6 @@
  *     Features\TranslationFeature\TranslationFeature::class,
  *     Features\WooCommerceCleanupFeature\WooCommerceCleanupFeature::class,
  *     Features\AcfOptionsFeature\AcfOptionsFeature::class,
- *     Features\StripeDonationFeature\StripeDonationFeature::class,
  *     Features\SitemapCleanupFeature\SitemapCleanupFeature::class,
  * ];
  */

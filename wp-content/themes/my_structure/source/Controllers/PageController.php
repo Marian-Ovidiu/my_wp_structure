@@ -36,25 +36,8 @@ class PageController extends BaseController
             $progetti[] = Progetto::find($progetto);
         }
         $fields->progetti   = $progetti;
-        $available_gateways = [];
-        if (function_exists('WC') && class_exists('\WC_Payment_Gateways')) {
-            $wc = \WC();
-            if ($wc && $wc->payment_gateways) {
-                $available_gateways = $wc->payment_gateways->get_available_payment_gateways();
-            }
-        }
-
-        $this->addJs('stripe', 'https://js.stripe.com/v3/', [], true);
-        $this->addJs('donation', 'donation.js', ['stripe'], true);
-
-        $this->addVarJs('donation', 'highlights', [
-            $fields->highlights_frase_1 ?? '',
-            $fields->highlights_frase_2 ?? '',
-            $fields->highlights_frase_3 ?? '',
-        ]);
         $this->render('archivio-progetto', [
-            'fields'                => $fields,
-            'pagamenti_disponibili' => $available_gateways,
+            'fields' => $fields,
         ]);
     }
 }
