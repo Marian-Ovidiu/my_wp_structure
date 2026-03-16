@@ -62,8 +62,6 @@ abstract class BasePostType
 
         if (function_exists('pll_current_language')) {
             $defaults['lang'] = pll_current_language();
-        } else {
-            $defaults['lang'] = 'it';
         }
 
         $queryArgs = wp_parse_args($args, $defaults);
@@ -87,7 +85,19 @@ abstract class BasePostType
     }
     protected function getDefaultImage()
     {
-        return get_template_directory_uri() . '/assets/images/placeholder.png';
+        $candidates = [
+            '/public/images/placeholder.png',
+            '/source/assets/images/placeholder.png',
+            '/source/assets/images/placeholder.webp',
+        ];
+
+        foreach ($candidates as $relativePath) {
+            if (file_exists(get_template_directory() . $relativePath)) {
+                return get_template_directory_uri() . $relativePath;
+            }
+        }
+
+        return '';
     }
 
 }

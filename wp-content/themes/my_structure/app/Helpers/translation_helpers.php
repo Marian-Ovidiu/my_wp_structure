@@ -36,8 +36,13 @@ if (!function_exists('theme_current_locale')) {
 if (!function_exists('theme_translate_string')) {
     function theme_translate_string($key, $locale = null, $fallbackLocale = 'en')
     {
+        if (!is_string($key) || $key === '') {
+            return '';
+        }
+
         $langDir = get_template_directory() . '/resources/lang';
-        $locale = $locale ?: theme_current_locale($fallbackLocale);
+        $locale = is_string($locale) && $locale !== '' ? $locale : theme_current_locale($fallbackLocale);
+        $fallbackLocale = is_string($fallbackLocale) && $fallbackLocale !== '' ? $fallbackLocale : 'en';
 
         $candidates = [];
         $candidates[] = $locale;

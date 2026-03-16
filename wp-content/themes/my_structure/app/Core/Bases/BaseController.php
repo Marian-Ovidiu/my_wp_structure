@@ -6,16 +6,19 @@ use Core\App;
 
 abstract class BaseController
 {
-    public function __construct(){}
+    public function __construct()
+    {
+    }
 
     public static function call($method, $params = [])
     {
-        $instance = new static;
+        $instance = new static();
         if (method_exists($instance, $method)) {
             call_user_func_array([$instance, $method], $params);
-        } else {
-            throw new \Exception("Method $method not found in " . static::class);
+            return;
         }
+
+        throw new \Exception("Method $method not found in " . static::class);
     }
 
     protected function addCss($handle, $src, $deps = [], $ver = false)
@@ -25,6 +28,7 @@ abstract class BaseController
         } else {
             $fullSrc = get_template_directory_uri() . '/source/assets/css/' . ltrim($src, '/');
         }
+
         wp_enqueue_style($handle, $fullSrc, $deps, $ver);
     }
 
@@ -48,18 +52,17 @@ abstract class BaseController
         });
     }
 
-
-    protected function addVarJs($handle, $var_name, $data, $in_footer = false, $ver = false)
+    protected function addVarJs($handle, $varName, $data, $inFooter = false, $ver = false)
     {
-        add_action('wp_enqueue_scripts', function () use ($handle, $var_name, $data, $ver, $in_footer) {
-            // Enqueue lo script (deve essere registrato o già enqueued altrove)
-            wp_enqueue_script($handle, false, [], $ver, $in_footer);
-    
-            // Localizzazione delle variabili
-            wp_localize_script($handle, $var_name, $data);
+        add_action('wp_enqueue_scripts', function () use ($handle, $varName, $data, $ver, $inFooter) {
+            if (!wp_script_is($handle, 'registered') && !wp_script_is($handle, 'enqueued')) {
+                wp_register_script($handle, '', [], $ver, $inFooter);
+            }
+
+            wp_enqueue_script($handle);
+            wp_localize_script($handle, $varName, $data);
         });
     }
-    
 
     protected function render($view, $data = [])
     {
