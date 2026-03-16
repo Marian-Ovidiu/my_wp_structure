@@ -1,2 +1,2 @@
 <?php
-\Controllers\PostController::call('archive');
+\Controllers\ExampleController::call('archive');

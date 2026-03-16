@@ -1,3 +1,3 @@
 <?php
 
-\Controllers\PostController::call('single');
+\Controllers\ExampleController::call('single');
