@@ -7,6 +7,21 @@ use WP_Query;
 
 class ExampleController extends BaseController
 {
+    public function home()
+    {
+        $posts = get_posts([
+            'post_type' => 'post',
+            'post_status' => 'publish',
+            'numberposts' => 3,
+        ]);
+
+        $this->render('pages.home-demo', [
+            'siteName' => get_bloginfo('name'),
+            'siteDescription' => get_bloginfo('description'),
+            'posts' => $posts,
+        ]);
+    }
+
     public function page()
     {
         global $post;

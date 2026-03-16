@@ -61,6 +61,6 @@ Date: 2026-03-16
   - This is valid for direct source loading, but not cache-optimal vs Vite-manifest strategy.
   - Consider a future unified asset loader policy (all dynamic JS via `vite_asset` entrypoints).
 
-- Legacy/unused JS files remain in `source/assets/js/` (`progettoSlider.js`, `homeSlider.js`, etc.):
-  - Not active in current Vite entrypoints, but still present.
-  - Consider archiving/removing in a dedicated cleanup task.
+- Custom route matching remains intentionally strict (exact path match):
+  - Useful for a minimal starter, but not enough for complex route parameters.
+  - If needed, extend router matching before using it for advanced APIs.

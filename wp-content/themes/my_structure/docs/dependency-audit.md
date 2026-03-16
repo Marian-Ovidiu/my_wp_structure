@@ -26,7 +26,10 @@ Audit of PHP (`composer.json`) and JS (`package.json`) dependencies after charit
   - No active import in current Vite entrypoints (`source/assets/js/main.js` + `source/assets/scss/style.scss`).
 - `swiper`
   - No active import in current Vite entrypoints.
-  - Legacy slider files remain in repo but are not bundled by default.
+- `axios`
+  - Removed from starter runtime to keep frontend bootstrap minimal.
+- `tailwind-scrollbar`
+  - Removed to keep default Tailwind stack minimal.
 
 ## Adjustments
 
@@ -49,9 +52,7 @@ Audit of PHP (`composer.json`) and JS (`package.json`) dependencies after charit
 
 - `alpinejs`, `@alpinejs/intersect`
   - Used in global frontend bootstrap (`source/assets/js/main.js`).
-- `axios`
-  - Used in `main.js` and `source/assets/js/Classes/ApiService.js`.
-- Tailwind/PostCSS/Sass toolchain (`tailwindcss`, `@tailwindcss/forms`, `tailwind-scrollbar`, `postcss`, `autoprefixer`, `sass`)
+- Tailwind/PostCSS/Sass toolchain (`tailwindcss`, `@tailwindcss/forms`, `postcss`, `autoprefixer`, `sass`)
   - Required by current style pipeline.
 
 ## Lockfile / Verification
