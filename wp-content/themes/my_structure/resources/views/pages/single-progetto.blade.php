@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \Models\Progetto $progetto
+ * @var object $progetto
  */
 ?>
 @php

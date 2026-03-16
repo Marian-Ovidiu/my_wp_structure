@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \Models\HomeFields $data
+ * @var object $data
  */
 ?>
 @extends('layouts.mainLayout')

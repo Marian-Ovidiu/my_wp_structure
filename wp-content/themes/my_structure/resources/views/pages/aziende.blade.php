@@ -1,6 +1,6 @@
 @php
     /**
-     * @var Models\AziendeFields $fields
+     * @var object $fields
      */
 @endphp
 @extends('layouts.mainLayout')

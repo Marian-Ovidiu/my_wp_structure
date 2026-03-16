@@ -6,41 +6,25 @@ if (!function_exists('my_custom_options_page')) {
     function my_custom_options_page()
     {
         add_menu_page(
-            'Impostazioni Generali',
-            'Opzioni Generali',
+            'Theme Options',
+            'Theme Options',
             'manage_options',
-            'opzioni-generali',
+            'theme-options',
             function (){
-                my_custom_options_page_html('generali');
-            }
-        );
-        add_menu_page(
-            'Opzioni Archvio Progetto',
-            'Opzioni Archvio Progetto',
-            'manage_options',
-            'opzioni-archivio-progetto',
-            function (){
-                my_custom_options_page_html('archive-progetto');
+                my_custom_options_page_html();
             }
         );
     }
 }
 
 if (!function_exists('my_custom_options_page_html')) {
-    function my_custom_options_page_html($page)
+    function my_custom_options_page_html()
     {
         if (!current_user_can('manage_options')) {
             return;
         }
 
-        switch ($page) {
-            case 'generali':
-                echo App::blade()->make('optionPages.generals', [])->render();
-                break;
-            case 'archive-progetto':
-                echo App::blade()->make('optionPages.archivioOpzioniProgetto', [])->render();
-                break;
-        }
+        echo App::blade()->make('optionPages.generals', [])->render();
     }
 }
 
@@ -53,8 +37,7 @@ if (!function_exists('acf_location_rules_types')) {
 
 if (!function_exists('acf_location_rule_values_page')) {
     function acf_location_rule_values_page( $choices ) {
-        $choices['opzioni-generali'] = 'Opzioni Generali';
-        $choices['opzioni-archivio-progetto'] = 'Opzioni Archivio Progetto';
+        $choices['theme-options'] = 'Theme Options';
         return $choices;
     }
 }
@@ -63,8 +46,7 @@ if (!function_exists('my_acf_location_options_page')) {
     function my_acf_location_options_page($match, $rule, $options) {
         if (isset($_GET['page'])) {
             switch ($_GET['page']) {
-                case 'opzioni-generali':
-                case 'opzioni-archivio-progetto':
+                case 'theme-options':
                     $match = true;
                     break;
                 default:
