@@ -1,2 +1,2 @@
 <?php
-Controllers\ProgettoController::call('archive');
+Controllers\ExampleController::call('archive');

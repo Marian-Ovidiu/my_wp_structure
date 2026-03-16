@@ -4,4 +4,4 @@
  Template Post Type: page
  */
 
-Controllers\PageController::call('grazie');
+Controllers\ExampleController::call('page');

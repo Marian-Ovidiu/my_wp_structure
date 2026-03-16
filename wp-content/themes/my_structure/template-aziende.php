@@ -4,4 +4,4 @@
  Template Post Type: page
  */
 
-Controllers\PageController::call('aziende');
+Controllers\ExampleController::call('page');

@@ -4,4 +4,4 @@
  Template Post Type: page
  */
 
-Controllers\PageController::call('galleria');
+Controllers\ExampleController::call('page');

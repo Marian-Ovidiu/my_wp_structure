@@ -1,2 +1,2 @@
 <?php
-Controllers\ProgettoController::call('single');
+Controllers\ExampleController::call('single');

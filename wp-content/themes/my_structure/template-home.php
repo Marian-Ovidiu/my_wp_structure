@@ -4,4 +4,4 @@
  Template Post Type: page
  */
 
-Controllers\HomeController::call('index');
+Controllers\ExampleController::call('page');

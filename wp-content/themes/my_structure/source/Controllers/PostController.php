@@ -2,7 +2,6 @@
 namespace Controllers;
 
 use Core\Bases\BaseController;
-use Models\Options\OpzioniGlobaliFields;
 use WP_Query;
 
 class PostController extends BaseController
@@ -12,16 +11,17 @@ class PostController extends BaseController
         $query = new WP_Query([
             'post_type'      => 'post',
             'post_status'    => 'publish',
-            'posts_per_page' => -1, // tutti senza limiti
+            'posts_per_page' => get_option('posts_per_page'),
+            'paged' => max(1, (int) get_query_var('paged')),
         ]);
 
-        
         $this->render('archivio-post', [
-            'fields' => OpzioniGlobaliFields::get(),
+            'fields' => (object) [
+                'title_blog' => get_bloginfo('name'),
+                'subtitle_blog' => get_bloginfo('description'),
+            ],
             'posts' => $query->get_posts()
-        ]
-
-        );
+        ]);
     }
 
     public function single()
