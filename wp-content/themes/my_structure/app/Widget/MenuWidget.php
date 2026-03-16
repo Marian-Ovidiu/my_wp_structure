@@ -17,14 +17,45 @@ class MenuWidget extends WP_Widget
         echo $args['before_widget'];
 
         $menu_name = !empty($instance['menu_name']) ? camelToKebab($instance['menu_name']) : 'header-menu';
-        $menu_items_raw = wp_get_nav_menu_items($menu_name);
+        $view_name = $this->resolveViewName($menu_name);
+        $menu_items_raw = $this->resolveMenuItems($menu_name, $view_name);
         $menu_items = $this->buildMenuTree($menu_items_raw);
         if (!is_array($menu_items)) {
             $menu_items = [];
         }
 
-        echo App::blade('view')->make('partials.'. $menu_name, ['menu' => $menu_items])->render();
+        echo App::blade('view')->make('partials.'. $view_name, ['menu' => $menu_items])->render();
         echo $args['after_widget'];
+    }
+
+    private function resolveViewName(string $menuName): string
+    {
+        if (str_starts_with($menuName, 'header-menu')) {
+            return 'header-menu';
+        }
+
+        if (str_starts_with($menuName, 'footer-menu')) {
+            return 'footer-menu';
+        }
+
+        return $menuName;
+    }
+
+    private function resolveMenuItems(string $menuName, string $viewName)
+    {
+        $menuItems = wp_get_nav_menu_items($menuName);
+        if ($menuItems !== false && !empty($menuItems)) {
+            return $menuItems;
+        }
+
+        if ($viewName !== $menuName) {
+            $fallbackItems = wp_get_nav_menu_items($viewName);
+            if ($fallbackItems !== false) {
+                return $fallbackItems;
+            }
+        }
+
+        return is_array($menuItems) ? $menuItems : [];
     }
 
     private function buildMenuTree($items, $parent_id = 0) {
