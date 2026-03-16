@@ -1,3 +1,4 @@
 <?php
 
-\Controllers\ExampleController::call('single');
+// Minimal runtime entrypoint.
+\Controllers\ExampleController::call('demo');

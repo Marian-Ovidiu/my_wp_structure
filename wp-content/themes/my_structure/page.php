@@ -1,4 +1,4 @@
 <?php
 
-// Generic static page entrypoint.
-\Controllers\ExampleController::call('page');
+// Minimal runtime entrypoint.
+\Controllers\ExampleController::call('demo');

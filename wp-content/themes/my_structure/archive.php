@@ -1,2 +1,3 @@
 <?php
-\Controllers\ExampleController::call('archive');
+// Minimal runtime entrypoint.
+\Controllers\ExampleController::call('demo');

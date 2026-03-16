@@ -1,4 +1,4 @@
 <?php
 
-// Category archive entrypoint.
-\Controllers\ExampleController::call('archive');
+// Minimal runtime entrypoint.
+\Controllers\ExampleController::call('demo');

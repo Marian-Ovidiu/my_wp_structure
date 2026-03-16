@@ -5,21 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="@yield('meta_description', get_bloginfo('description'))">
     <title>@yield('title', get_bloginfo('name'))</title>
-    <link rel="canonical" href="{{ get_permalink() }}">
-    @yield('head')
-</head>
-<body class="flex flex-col min-h-screen font-sans">
     <?php wp_head(); ?>
-    @widget('HeaderMenu')
+</head>
+<body class="flex min-h-screen flex-col font-sans">
+    @include('partials.generic-header')
 
-    <main class="flex-grow main">
+    <main class="flex-grow">
         @yield('content')
     </main>
 
-    <footer class="text-white">
-        @widget('FooterMenu')
-    </footer>
-    @yield('scripts')
+    @include('partials.generic-footer')
     <?php wp_footer(); ?>
 </body>
 </html>

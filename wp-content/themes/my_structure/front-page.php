@@ -1,4 +1,4 @@
 <?php
 
-// Starter demo homepage entrypoint.
-\Controllers\ExampleController::call('home');
+// Minimal runtime entrypoint.
+\Controllers\ExampleController::call('demo');

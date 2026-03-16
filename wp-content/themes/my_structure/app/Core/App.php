@@ -13,7 +13,6 @@ class App extends Init
     public function registerHook()
     {
         add_action('after_setup_theme', 'my_theme_setup');
-        add_action('widgets_init', 'register_my_widgets');
     }
 
     public function registerProviders()
