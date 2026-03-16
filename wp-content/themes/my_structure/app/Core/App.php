@@ -34,12 +34,6 @@ class App extends Init
             $providers = require $featuresFile;
         }
 
-        // Backward-compatibility with older feature provider config.
-        $legacyFile = get_template_directory() . '/app/Config/feature-providers.php';
-        if (file_exists($legacyFile)) {
-            $providers = array_merge($providers, require $legacyFile);
-        }
-
         foreach ($providers as $provider) {
             if (class_exists($provider)) {
                 (new $provider())->register();
